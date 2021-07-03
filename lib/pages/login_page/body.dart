@@ -18,7 +18,7 @@ class Body extends StatelessWidget {
     return Background(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
+        children: [
           Text(
             "Login Page",
             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
