@@ -1,4 +1,4 @@
-# uirp
+# test_side_profile
 
 A new Flutter project.
 
