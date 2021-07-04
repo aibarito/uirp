@@ -3,7 +3,7 @@ import 'package:uirp/components/textField.dart';
 
 import '../constants.dart';
 
-class RoundedPasswordField extends StatelessWidget {
+class RoundedPasswordField extends StatefulWidget {
   final ValueChanged<String> onChanged;
   const RoundedPasswordField({
     Key? key,
@@ -11,10 +11,20 @@ class RoundedPasswordField extends StatelessWidget {
   }) : super(key: key);
 
   @override
+  _RoundedPasswordFieldState createState() =>
+      _RoundedPasswordFieldState(onChanged);
+}
+
+class _RoundedPasswordFieldState extends State<RoundedPasswordField> {
+  final ValueChanged<String> onChanged;
+  bool isHidden = true;
+  _RoundedPasswordFieldState(this.onChanged);
+
+  @override
   Widget build(BuildContext context) {
     return TextFieldContainer(
         child: TextField(
-            obscureText: true,
+            obscureText: isHidden,
             onChanged: onChanged,
             decoration: InputDecoration(
               hintText: "password",
@@ -22,11 +32,16 @@ class RoundedPasswordField extends StatelessWidget {
                 Icons.lock,
                 color: primaryColor,
               ),
-              suffixIcon: Icon(
-                Icons.visibility,
+              suffixIcon: IconButton(
+                icon: (isHidden)
+                    ? Icon(Icons.visibility_off)
+                    : Icon(Icons.visibility),
+                onPressed: togglePasswordVisibility,
                 color: primaryColor,
               ),
               border: InputBorder.none,
             )));
   }
+
+  void togglePasswordVisibility() => setState(() => isHidden = !isHidden);
 }

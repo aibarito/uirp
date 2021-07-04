@@ -19,7 +19,11 @@ class Background extends StatelessWidget {
           alignment: Alignment.center,
           children: <Widget>[
             HomeArrow(),
-            child,
+            Positioned(
+              width: size.width,
+              child: child,
+              height: size.height * 0.75,
+            )
           ],
         ),
       ),

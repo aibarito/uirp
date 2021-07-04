@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:uirp/pages/home_page/home.dart';
+import 'package:uirp/pages/main_page/mainPage.dart';
 
 class HomeArrow extends StatelessWidget {
   const HomeArrow({
@@ -14,14 +14,14 @@ class HomeArrow extends StatelessWidget {
       child: GestureDetector(
         onTap: () {
           Navigator.push(context, MaterialPageRoute(builder: (value) {
-            return (HomePage());
+            return (MainPage());
           }));
         },
         child: Row(
           children: [
             Icon(Icons.arrow_back),
             Text(
-              " home",
+              " main",
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
             )
           ],

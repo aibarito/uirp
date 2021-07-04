@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:uirp/components/homeArrow.dart';
+import 'package:uirp/components/mainArrow.dart';
 
 class Background extends StatelessWidget {
   final Widget child;

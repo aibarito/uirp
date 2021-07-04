@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:uirp/components/mainArrow.dart';
 
 class Background extends StatelessWidget {
   const Background({
@@ -17,10 +18,11 @@ class Background extends StatelessWidget {
         child: Stack(
           alignment: Alignment.center,
           children: <Widget>[
+            HomeArrow(),
             Positioned(
               width: size.width,
               child: child,
-              height: size.height * 0.8,
+              height: size.height * 0.7,
             )
           ],
         ));
