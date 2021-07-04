@@ -1,9 +1,10 @@
 /**
  * Version 1.0: All the List views are very similar, will be moved to
  * component style soon.
- * To use this, call sideProfile(required-String your_chosen_title,
+ * To use this, call sideProfile(
    required-leUser variable,
-   optional-Widget child )
+   optional-Widget child
+    )
  *
  * requried-leUser varible example:
  *  Map<String, dynamic> userMap = jsonDecode("{\"name\":\"Le Putintin\", \"email\":\"putin@unist.ac.kr\"}");
@@ -17,12 +18,10 @@ import '../dataBase/leUser.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 class sideProfile extends StatelessWidget {
-  final String title;
   final leUser data;
   Widget? child;
   sideProfile({
     Key? key,
-    required this.title,
     required this.data,
     this.child,
   }) : super(key: key);
@@ -31,7 +30,6 @@ class sideProfile extends StatelessWidget {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
-      appBar: AppBar(title: Text(title)),
       body: Center(
         child: this.child == null? Text('empty child in Scaffold') : child,
       ),
