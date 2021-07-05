@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:uirp/pages/debug_page/debugPage.dart';
 import 'package:uirp/pages/home_page/background.dart';
 import 'package:uirp/components/roundedButton.dart';
 import 'package:uirp/constants.dart';
@@ -48,7 +49,20 @@ class Body extends StatelessWidget {
             },
             color: lightColor,
             textColor: Colors.black,
-          )
+          ),
+          SizedBox(
+            height: size.height * 0.03,
+          ),
+          GestureDetector(
+            onTap: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                return debugPage();
+              }));
+            },
+            child: Text(
+              'debug page',
+            )
+          ),
         ],
       ),
     ));

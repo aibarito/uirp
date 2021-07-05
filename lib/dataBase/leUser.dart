@@ -3,8 +3,7 @@ class leUser {
   String _email;
 
 
-  leUser(this._name, this._email) {
-  }
+  leUser(this._name, this._email);
   leUser.fromJson(Map<String, dynamic> json)
       : this._name = json['name'],
         this._email = json['email'];
