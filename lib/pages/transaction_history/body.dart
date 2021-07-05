@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:uirp/constants.dart';
 import 'package:uirp/pages/transaction_history/background.dart';
+import 'package:uirp/pages/transaction_history/transactionCard.dart';
 
 class Body extends StatelessWidget {
   @override
@@ -12,10 +14,23 @@ class Body extends StatelessWidget {
                 children: <Widget>[
           Text(
             "Transaction History",
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
           ),
           SizedBox(
             height: size.height * 0.03,
+          ),
+          TransactionCard(
+            paymentType: "Credit Card",
+            account: "12399481901",
+            amount: "10000",
+          ),
+          SizedBox(
+            height: size.height * 0.03,
+          ),
+          TransactionCard(
+            paymentType: "Student Id",
+            account: "20001000",
+            amount: "1002300",
           ),
         ])));
   }

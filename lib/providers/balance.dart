@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class Balance with ChangeNotifier {
-  int balance = 0;
+  int balance = 700;
 
   void increment(int value) {
     balance = balance + value;

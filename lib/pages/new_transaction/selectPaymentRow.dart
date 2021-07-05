@@ -5,8 +5,10 @@ import 'package:uirp/providers/selectPayment.dart';
 class SelectPaymentRow extends StatelessWidget {
   const SelectPaymentRow({
     Key? key,
+    required this.myController,
   }) : super(key: key);
 
+  final TextEditingController myController;
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -20,6 +22,7 @@ class SelectPaymentRow extends StatelessWidget {
           children: <Widget>[
             GestureDetector(
               onTap: () {
+                myController.clear();
                 payment.changeStateToStudentId();
               },
               child: Container(
@@ -35,6 +38,7 @@ class SelectPaymentRow extends StatelessWidget {
             ),
             GestureDetector(
               onTap: () {
+                myController.clear();
                 payment.changeStateToCreditCard();
               },
               child: Container(

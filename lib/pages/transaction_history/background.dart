@@ -22,7 +22,7 @@ class Background extends StatelessWidget {
             Positioned(
               width: size.width,
               child: child,
-              height: size.height * 0.6,
+              height: size.height * 0.75,
             )
           ],
         ),
