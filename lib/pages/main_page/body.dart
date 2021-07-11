@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:uirp/components/roundedButton.dart';
+import 'package:uirp/pages/bike_manager/bikeManagerPage.dart';
 import 'package:uirp/pages/enable_camera/enableCameraPage.dart';
 import 'package:uirp/pages/home_page/home.dart';
 import 'package:uirp/pages/login_page/loginPage.dart';
@@ -76,6 +77,16 @@ class Body extends StatelessWidget {
           color: lightColor,
           textColor: Colors.black,
         ),
+        RoundedButton(
+            text: "Go to Bike Manager Page",
+            press: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) {
+                return BikeManagerPage();
+              }));
+            },
+          color: Colors.red,
+          textColor: Colors.black,
+        )
       ],
     )));
   }

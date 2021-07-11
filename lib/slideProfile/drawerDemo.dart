@@ -10,7 +10,7 @@ class drawerPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Map<String, dynamic> userMap = jsonDecode("{\"name\":\"Le Putintin\", \"email\":\"putin@unist.ac.kr\"}");
-    var user = leUser.fromJson(userMap);
+    var user = LeUser.fromJson(userMap);
     return Scaffold(
       body: Stack (
         children: [

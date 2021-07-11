@@ -18,7 +18,7 @@ import '../dataBase/leUser.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 class sideProfile extends StatelessWidget {
-  final leUser data;
+  final LeUser data;
   Widget? child;
   sideProfile({
     Key? key,
@@ -44,7 +44,7 @@ class sideProfile extends StatelessWidget {
                 decoration: BoxDecoration(
                   color: Colors.cyan,
                 ),
-                child: leProfile(
+                child: LeProfile(
                   user:data,
                 ),
               ),
