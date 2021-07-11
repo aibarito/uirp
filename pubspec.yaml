@@ -30,6 +30,7 @@ dependencies:
   flutter_svg: ^0.22.0
   provider: ^5.0.0
   moneytextformfield: ^0.3.5+1
+  flutter_rating_bar: ^4.0.0
 
 dev_dependencies:
   flutter_test:
