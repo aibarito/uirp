@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:uirp/dataBase/leBicycle.dart';
@@ -30,23 +32,24 @@ class _BodyBikeManagerState extends State<BodyBikeManager> {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
-            ListTile(
-              leading: Icon(Icons.check),
-              title: Text(bicycleList[i].name),
+            TextField(
+              decoration: InputDecoration(hintText: bicycleList[i].name,
+                  border: InputBorder.none),
+              onChanged: (text) {
+                bicycleList[i].name = text;
+                //print('just change text field: $text');
+              }
             ),
             ButtonBar(
               children: <Widget>[
                 TextButton(
-                  child: const Text('remove'),
+                  child: const Text('remove',
+                      style:TextStyle(color: Colors.red)),
                   onPressed: () {
                     setState( (){
                       bicycleList.removeAt(i);
                     });
                   },
-                ),
-                TextButton(
-                  child: const Text('BTN2'),
-                  onPressed: () {/* ... */},
                 ),
               ],
             ),
@@ -68,11 +71,11 @@ class _BodyBikeManagerState extends State<BodyBikeManager> {
               // Title
               new Padding(padding: const EdgeInsets.only(
                   top: 10.00, left: 10.00),
-                child: new Text("Text 1", style: DungnTextStyle),
+                child: new Text("Demo title", style: DungnTextStyle),
               ),
               // content
               new Container(
-                child: new Text("Text 2", style: DungnTextStyle),
+                child: new Text("Demo list", style: DungnTextStyle),
               ),
               // Comments List will go here
               Column(
@@ -91,7 +94,14 @@ class _BodyBikeManagerState extends State<BodyBikeManager> {
                     child: const Text('Add 1 more bike',  style: DungnTextStyle),
                     onPressed: () {
                       setState( (){
-                        bicycleList.add(demoLeBicycle);
+                        Random rnd = new Random(42);
+                        Map<String, dynamic> jsonNew = {
+                          "id":bicycleList.length + 1,
+                          "name":"bicycle#"+(bicycleList.length + 1).toString(),
+                          "amountEarned":rnd.nextDouble() * (20-1),
+                          "timeTraveled":rnd.nextInt(100),
+                        };
+                        bicycleList.add(new LeBicycle.fromJson(jsonNew));
                       });
                     },
                   ),
