@@ -30,16 +30,82 @@ class _BodyBikeManagerState extends State<BodyBikeManager> {
     for(int i = 0; i < bicycleList.length; ++i) {
       res.add(Card(
         child: Column(
-          mainAxisSize: MainAxisSize.min,
+          //mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             TextField(
-              decoration: InputDecoration(hintText: bicycleList[i].name,
-                  border: InputBorder.none),
+              decoration: InputDecoration(
+                  hintText: bicycleList[i].name,
+                  border: InputBorder.none,
+              ),
+              style: TextStyle(fontSize: 20),
               onChanged: (text) {
                 bicycleList[i].name = text;
                 //print('just change text field: $text');
-              }
+              },
+              textAlign: TextAlign.center,
             ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Container(
+                    padding: const EdgeInsets.all(10),
+                    decoration: new BoxDecoration(
+                        color: Colors.black54,
+                        borderRadius: BorderRadius.all(Radius.circular(4.0))
+                    ),
+                    child: Column(
+                      children: [
+                        Row(
+                          children: [
+                            Text(
+                              "Time traveled: ",
+                              style: TextStyle(color: Colors.white,
+                                  fontSize: 20),
+                            ),
+                            Text(
+                              bicycleList[i].timeTraveled.toString()+" (hours)",
+                              style: TextStyle(color: Colors.yellowAccent,
+                                  fontSize: 20),
+                            )
+                          ],
+                        ),
+                        SizedBox(height: 10),
+                        Row(
+                          children: [
+                            Text(
+                              "Amount Earned ",
+                              style: TextStyle(color: Colors.white,
+                                  fontSize: 20),
+                            ),
+                            Text(
+                              bicycleList[i].amountEarned.toString()+" (coin)",
+                              style: TextStyle(color: Colors.yellowAccent,
+                                  fontSize: 20),
+                            ),
+                          ],
+                        )
+                      ],
+                    )
+                ),
+              ],
+            ),
+            SizedBox(height: 20,),
+            Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  ElevatedButton(
+                      onPressed: (){
+
+                      },
+                      child: Text("Transaction history"),
+                      style: ButtonStyle(
+                          padding: MaterialStateProperty.all(
+                              EdgeInsets.symmetric(vertical: 20, horizontal: 40)),
+                          backgroundColor: MaterialStateProperty.all(Colors.green))
+                  ),
+                ],
+            ),
+
             ButtonBar(
               children: <Widget>[
                 TextButton(
@@ -62,6 +128,7 @@ class _BodyBikeManagerState extends State<BodyBikeManager> {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return sideProfile(
         data: demoUser,
         child: BackGroundBikeManager(
@@ -94,7 +161,7 @@ class _BodyBikeManagerState extends State<BodyBikeManager> {
                     child: const Text('Add 1 more bike',  style: DungnTextStyle),
                     onPressed: () {
                       setState( (){
-                        Random rnd = new Random(42);
+                        Random rnd = new Random();
                         Map<String, dynamic> jsonNew = {
                           "id":bicycleList.length + 1,
                           "name":"bicycle#"+(bicycleList.length + 1).toString(),
