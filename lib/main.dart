@@ -1,14 +1,18 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-
 import 'package:provider/provider.dart';
+import 'package:uirp/dataBase/leUser.dart';
+
 import 'package:uirp/pages/main_page/mainPage.dart';
 import 'package:uirp/providers/balance.dart';
 
 void main() {
   runApp(MyApp());
 }
+
+Map<String, dynamic> userMap = jsonDecode("{\"name\":\"Le Putintin\", \"email\":\"putin@unist.ac.kr\"}");
+LeUser demoUser = LeUser.fromJson(userMap);
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.

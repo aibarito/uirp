@@ -1,10 +1,10 @@
-class leUser {
+class LeUser {
   String _name;
   String _email;
 
 
-  leUser(this._name, this._email);
-  leUser.fromJson(Map<String, dynamic> json)
+  LeUser(this._name, this._email);
+  LeUser.fromJson(Map<String, dynamic> json)
       : this._name = json['name'],
         this._email = json['email'];
 

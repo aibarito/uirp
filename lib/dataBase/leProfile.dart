@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 
 import '../dataBase/leUser.dart';
 
-class leProfile extends StatelessWidget {
-  final leUser user;
-  leProfile({
+class LeProfile extends StatelessWidget {
+  final LeUser user;
+  LeProfile({
     Key?key,
     required this.user,
   }):super(key:key);
