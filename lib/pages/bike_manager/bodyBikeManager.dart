@@ -170,8 +170,9 @@ class _BodyBikeManagerState extends State<BodyBikeManager> {
                 onPressed: () {
                   setState( (){
                     Random rnd = new Random();
+                    int id = (bicycleList.length) + 1;
                     Map<String, dynamic> jsonNew = {
-                      "id":bicycleList.length + 1,
+                      "id":id,
                       "name":"bicycle#"+(bicycleList.length + 1).toString(),
                       "amountEarned":rnd.nextDouble() * (20-1),
                       "timeTraveled":rnd.nextInt(100),

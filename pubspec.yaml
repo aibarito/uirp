@@ -61,7 +61,6 @@ flutter:
   assets:
     - assets/images/bicycle_marker.png
     - assets/
-    - assets/icons/
     - assets/images/
     - assets/images/
     - assets/images/putin.png

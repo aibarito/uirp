@@ -32,12 +32,13 @@ String findName(int id) {
 class BodyBikeLendingHistory extends StatelessWidget {
   final int id;
   BodyBikeLendingHistory({
-      Key? key,
+        Key? key,
         required this.id,
       }): super(key:key);
 
   @override
   Widget build(BuildContext context) {
+    print("in BodyBikeLendingHistory " + this.id.toString());
     Size size = MediaQuery.of(context).size;
     List hist = getTransactionHistory(this.id);
     print(hist[0]);
@@ -73,7 +74,7 @@ List<Widget> displayHist(List hist, BuildContext context) {
     var startDate = DateTime.parse(hist[i]["startDate"]);
     var endDate = DateTime.parse(hist[i]["endDate"]);
     var coin = hist[i]["coin"];
-    var rating = hist[i]["rating"];
+    double rating_ = 1.0*hist[i]["rating"];
     var feedback = hist[i]["feedback"];
     res.add(
         Container(
@@ -91,7 +92,7 @@ List<Widget> displayHist(List hist, BuildContext context) {
               customLine("feedback: ", feedback.toString()),
               SizedBox(height:10),
               RatingBarIndicator(
-                rating: rating,
+                rating: rating_,
                 itemBuilder: (context, index) => Icon(
                   Icons.star,
                   color: Colors.amber,

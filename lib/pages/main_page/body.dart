@@ -88,7 +88,7 @@ class Body extends StatelessWidget {
             },
           color: Colors.red,
           textColor: Colors.black,
-        )
+        ),
         RoundedButton(
           text: "Google Maps",
           press: () {
