@@ -80,12 +80,12 @@ class Body extends StatelessWidget {
           textColor: Colors.black,
         ),
         RoundedButton(
-            text: "Go to Bike Manager Page",
-            press: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) {
-                return BikeManagerPage();
-              }));
-            },
+          text: "Go to Bike Manager Page",
+          press: () {
+            Navigator.push(context, MaterialPageRoute(builder: (context) {
+              return BikeManagerPage();
+            }));
+          },
           color: Colors.red,
           textColor: Colors.black,
         ),
@@ -109,7 +109,6 @@ class Body extends StatelessWidget {
           color: lightColor,
           textColor: Colors.black,
         ),
-
       ],
     )));
   }
