@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:uirp/components/roundedButton.dart';
 import 'package:uirp/pages/bike_manager/bikeManagerPage.dart';
 import 'package:uirp/pages/enable_camera/enableCameraPage.dart';
+import 'package:uirp/pages/google_maps/googleMaps.dart';
 import 'package:uirp/pages/home_page/home.dart';
 import 'package:uirp/pages/login_page/loginPage.dart';
 import 'package:uirp/pages/main_page/background.dart';
+import 'package:uirp/pages/my_bicycle/myBicycle.dart';
 import 'package:uirp/pages/signup_page/signupPage.dart';
 import 'package:uirp/pages/balance/myBalance.dart';
 import '../../constants.dart';
@@ -87,6 +89,27 @@ class Body extends StatelessWidget {
           color: Colors.red,
           textColor: Colors.black,
         )
+        RoundedButton(
+          text: "Google Maps",
+          press: () {
+            Navigator.push(context, MaterialPageRoute(builder: (context) {
+              return GoogleMaps();
+            }));
+          },
+          color: primaryColor,
+          textColor: Colors.white,
+        ),
+        RoundedButton(
+          text: "Bicycle",
+          press: () {
+            Navigator.push(context, MaterialPageRoute(builder: (context) {
+              return MyBicycle();
+            }));
+          },
+          color: lightColor,
+          textColor: Colors.black,
+        ),
+
       ],
     )));
   }

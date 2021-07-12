@@ -1,11 +1,23 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:uirp/components/roundedButton.dart';
 import 'package:uirp/pages/enable_camera/background.dart';
-import 'package:uirp/pages/main_page/mainPage.dart';
+import 'package:image_picker/image_picker.dart';
 
 import '../../constants.dart';
 
 class Body extends StatelessWidget {
+  final _picker = ImagePicker();
+  selectImage() async {
+    final pickedFile;
+    pickedFile = await _picker.getImage(source: ImageSource.gallery);
+    if (pickedFile == null) {
+      return;
+    }
+    // final File file = File(pickedFile?.path);
+  }
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -34,10 +46,7 @@ class Body extends StatelessWidget {
                 RoundedButton(
                   text: "Enable Camera Access",
                   press: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) {
-                      return MainPage();
-                    }));
+                    selectImage();
                   },
                   color: lightColor,
                   textColor: Colors.black,
