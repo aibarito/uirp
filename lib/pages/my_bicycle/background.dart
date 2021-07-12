@@ -12,6 +12,9 @@ class Background extends StatelessWidget {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
+      appBar: AppBar(
+        title: Text("your bicycles"),
+      ),
       body: Container(
         height: size.height,
         width: double.infinity,
