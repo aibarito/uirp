@@ -85,7 +85,8 @@ class _BodyBikeManagerState extends State<BodyBikeManager> {
                               bicycleList[i].amountEarned.toString() +
                                   " (coin)",
                               style: TextStyle(
-                                  color: Colors.yellowAccent, fontSize: 20),
+                                  color: Colors.yellowAccent,
+                              ),
                             ),
                           ],
                         )
