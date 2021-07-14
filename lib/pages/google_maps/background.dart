@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:uirp/components/mainArrow.dart';
+import 'package:uirp/main.dart';
+import 'package:uirp/slideProfile/sideProfile.dart';
 
 class Background extends StatelessWidget {
   final Widget child;
@@ -12,9 +14,6 @@ class Background extends StatelessWidget {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Maps"),
-      ),
       body: Container(
         height: size.height,
         width: double.infinity,

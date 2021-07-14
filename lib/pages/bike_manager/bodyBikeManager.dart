@@ -28,15 +28,15 @@ const DungnTextStyle = TextStyle(fontSize: 20, color: Colors.white);
 class _BodyBikeManagerState extends State<BodyBikeManager> {
   List<Widget> displayBicycleList() {
     var res = <Widget>[];
-    for(int i = 0; i < bicycleList.length; ++i) {
+    for (int i = 0; i < bicycleList.length; ++i) {
       res.add(Card(
         child: Column(
           //mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             TextField(
               decoration: InputDecoration(
-                  hintText: bicycleList[i].name,
-                  border: InputBorder.none,
+                hintText: bicycleList[i].name,
+                border: InputBorder.none,
               ),
               style: TextStyle(fontSize: 20),
               onChanged: (text) {
@@ -52,21 +52,23 @@ class _BodyBikeManagerState extends State<BodyBikeManager> {
                     padding: const EdgeInsets.all(10),
                     decoration: new BoxDecoration(
                         color: Colors.black54,
-                        borderRadius: BorderRadius.all(Radius.circular(4.0))
-                    ),
+                        borderRadius: BorderRadius.all(Radius.circular(4.0))),
                     child: Column(
                       children: [
                         Row(
                           children: [
                             Text(
                               "Time traveled: ",
-                              style: TextStyle(color: Colors.white,
-                                  fontSize: 20),
+                              style: TextStyle(
+                                color: Colors.white,
+                              ),
                             ),
                             Text(
-                              bicycleList[i].timeTraveled.toString()+" (hours)",
-                              style: TextStyle(color: Colors.yellowAccent,
-                                  fontSize: 20),
+                              bicycleList[i].timeTraveled.toString() +
+                                  " (hours)",
+                              style: TextStyle(
+                                color: Colors.yellowAccent,
+                              ),
                             )
                           ],
                         ),
@@ -75,49 +77,50 @@ class _BodyBikeManagerState extends State<BodyBikeManager> {
                           children: [
                             Text(
                               "Amount Earned ",
-                              style: TextStyle(color: Colors.white,
-                                  fontSize: 20),
+                              style: TextStyle(
+                                color: Colors.white,
+                              ),
                             ),
                             Text(
-                              bicycleList[i].amountEarned.toString()+" (coin)",
-                              style: TextStyle(color: Colors.yellowAccent,
-                                  fontSize: 20),
+                              bicycleList[i].amountEarned.toString() +
+                                  " (coin)",
+                              style: TextStyle(
+                                  color: Colors.yellowAccent, fontSize: 20),
                             ),
                           ],
                         )
                       ],
-                    )
-                ),
+                    )),
               ],
             ),
-            SizedBox(height: 25,),
-            Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  ElevatedButton(
-                      onPressed: (){
-                        Navigator.push(context, MaterialPageRoute(builder: (context) {
-                          return BikeLendingHistoryPage(
-                            id: bicycleList[i].id
-                          );
-                        }));
-                      },
-                      child: Text("Transaction history"),
-                      style: ButtonStyle(
-                          padding: MaterialStateProperty.all(
-                              EdgeInsets.symmetric(vertical: 20, horizontal: 40)),
-                          backgroundColor: MaterialStateProperty.all(Colors.green))
-                  ),
-                ],
+            SizedBox(
+              height: 25,
             ),
-
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) {
+                        return BikeLendingHistoryPage(id: bicycleList[i].id);
+                      }));
+                    },
+                    child: Text("Transaction history"),
+                    style: ButtonStyle(
+                        padding: MaterialStateProperty.all(
+                            EdgeInsets.symmetric(vertical: 20, horizontal: 40)),
+                        backgroundColor:
+                            MaterialStateProperty.all(Colors.green))),
+              ],
+            ),
             ButtonBar(
               children: <Widget>[
                 TextButton(
-                  child: const Text('remove',
-                      style:TextStyle(color: Colors.red)),
+                  child:
+                      const Text('remove', style: TextStyle(color: Colors.red)),
                   onPressed: () {
-                    setState( (){
+                    setState(() {
                       bicycleList.removeAt(i);
                     });
                   },
@@ -147,7 +150,8 @@ class _BodyBikeManagerState extends State<BodyBikeManager> {
             children: [
               Text(
                 "List of bicycles",
-                style: TextStyle(fontSize: 40,
+                style: TextStyle(
+                    fontSize: 40,
                     fontWeight: FontWeight.bold,
                     color: Colors.white),
               ),
@@ -158,7 +162,9 @@ class _BodyBikeManagerState extends State<BodyBikeManager> {
               Column(
                 children: displayBicycleList(),
               ),
-              SizedBox(height: 10,),
+              SizedBox(
+                height: 10,
+              ),
               TextButton(
                 style: TextButton.styleFrom(
                   padding: const EdgeInsets.all(30.0),
@@ -166,15 +172,15 @@ class _BodyBikeManagerState extends State<BodyBikeManager> {
                   textStyle: const TextStyle(fontSize: 20),
                   backgroundColor: Colors.lightGreen,
                 ),
-                child: const Text('Add 1 more bike',  style: DungnTextStyle),
+                child: const Text('Add 1 more bike', style: DungnTextStyle),
                 onPressed: () {
-                  setState( (){
+                  setState(() {
                     Random rnd = new Random();
                     Map<String, dynamic> jsonNew = {
-                      "id":bicycleList.length + 1,
-                      "name":"bicycle#"+(bicycleList.length + 1).toString(),
-                      "amountEarned":rnd.nextDouble() * (20-1),
-                      "timeTraveled":rnd.nextInt(100),
+                      "id": bicycleList.length + 1,
+                      "name": "bicycle#" + (bicycleList.length + 1).toString(),
+                      "amountEarned": rnd.nextDouble() * (20 - 1),
+                      "timeTraveled": rnd.nextInt(100),
                     };
                     bicycleList.add(new LeBicycle.fromJson(jsonNew));
                   });
@@ -187,7 +193,3 @@ class _BodyBikeManagerState extends State<BodyBikeManager> {
     );
   }
 }
-
-
-
-
