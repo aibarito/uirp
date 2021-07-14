@@ -17,6 +17,7 @@ class BikeLendingHistoryPage extends StatelessWidget {
       }): super(key:key);
   @override
   Widget build(BuildContext context) {
+    print("in bikeLendingHistoryPage " + this.id.runtimeType.toString());
     return BodyBikeLendingHistory(
       id: this.id,
     );
