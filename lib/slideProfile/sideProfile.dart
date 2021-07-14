@@ -12,6 +12,9 @@
  */
 
 import 'package:uirp/dataBase/leProfile.dart';
+import 'package:uirp/pages/balance/myBalance.dart';
+import 'package:uirp/pages/bike_manager/bikeManagerPage.dart';
+import 'package:uirp/pages/main_page/mainPage.dart';
 
 import '../dataBase/leUser.dart';
 
@@ -84,6 +87,9 @@ class sideProfile extends StatelessWidget {
                 // ...
                 // Then close the drawer
                 Navigator.pop(context);
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return MyBalance();
+                }));
               },
             ),
             ListTile(
@@ -117,6 +123,9 @@ class sideProfile extends StatelessWidget {
                 // ...
                 // Then close the drawer
                 Navigator.pop(context);
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return BikeManagerPage();
+                }));
               },
             ),
             ListTile(
@@ -197,7 +206,7 @@ class sideProfile extends StatelessWidget {
                           shape: BoxShape.circle,
                         ),
                         child: Icon(
-                          Icons.settings_applications,
+                          Icons.home,
                           size: 27,
                           color: Colors.white,
                         )),
@@ -206,7 +215,7 @@ class sideProfile extends StatelessWidget {
                     width: size.width * 0.05,
                   ),
                   Text(
-                    "Setting",
+                    "Main",
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                   ),
                 ],
@@ -216,6 +225,9 @@ class sideProfile extends StatelessWidget {
                 // ...
                 // Then close the drawer
                 Navigator.pop(context);
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return MainPage();
+                }));
               },
             ),
           ],
