@@ -13,7 +13,7 @@ const DungnTextStyle = TextStyle(fontSize: 20, color: Colors.white);
  */
 List getTransactionHistory(int id) {
   List res = [];
-  if(demoTransaction[id.toString()] != null) {
+  if (demoTransaction[id.toString()] != null) {
     return demoTransaction[id.toString()];
   }
   return res;
@@ -21,8 +21,8 @@ List getTransactionHistory(int id) {
 
 String findName(int id) {
   String res = "";
-  for(int i = 0; i < bicycleList.length; ++i) {
-    if(bicycleList[i].id == id) {
+  for (int i = 0; i < bicycleList.length; ++i) {
+    if (bicycleList[i].id == id) {
       return bicycleList[i].name;
     }
   }
@@ -32,79 +32,73 @@ String findName(int id) {
 class BodyBikeLendingHistory extends StatelessWidget {
   final int id;
   BodyBikeLendingHistory({
-      Key? key,
-        required this.id,
-      }): super(key:key);
+    Key? key,
+    required this.id,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    print("in BodyBikeLendingHistory " + this.id.toString());
     Size size = MediaQuery.of(context).size;
     List hist = getTransactionHistory(this.id);
     print(hist[0]);
     // TODO: implement build
     return BackGroundBikeLendingHistory(
-      child: Column(
-        children: [
-          SizedBox(
-            height: size.height * 0.01,
-          ),
-          Text(
-            "for bike: " + findName(id),
-            style: TextStyle(fontSize: 40,
-                fontWeight: FontWeight.bold,
-                color: Colors.white),
-          ),
-          SizedBox(
-            height: size.height * 0.05,
-          ),
-          Column(
-            children: displayHist(hist, context),
-          )
-        ],
-      )
-    );
+        child: Column(
+      children: [
+        SizedBox(
+          height: size.height * 0.01,
+        ),
+        Text(
+          "for bike: " + findName(id),
+          style: TextStyle(
+              fontSize: 40, fontWeight: FontWeight.bold, color: Colors.white),
+        ),
+        SizedBox(
+          height: size.height * 0.05,
+        ),
+        Column(
+          children: displayHist(hist, context),
+        )
+      ],
+    ));
   }
 }
 
 List<Widget> displayHist(List hist, BuildContext context) {
   Size size = MediaQuery.of(context).size;
   var res = <Widget>[];
-  for(int i = 0; i < hist.length; ++i) {
+  for (int i = 0; i < hist.length; ++i) {
     var startDate = DateTime.parse(hist[i]["startDate"]);
     var endDate = DateTime.parse(hist[i]["endDate"]);
     var coin = hist[i]["coin"];
-    var rating = hist[i]["rating"];
-    var feedback = hist[i]["feedback"];
-    res.add(
-        Container(
-          width: size.width,
-          padding: const EdgeInsets.all(10),
-          decoration: new BoxDecoration(
-          color: Colors.white60,
-          borderRadius: BorderRadius.all(Radius.circular(4.0))
-          ),
-          child: Column(
-            children: [
-              customLine("start: ", startDate.toString()),
-              customLine("end: ", endDate.toString()),
-              customLine("coin earned: ", coin.toString()),
-              customLine("feedback: ", feedback.toString()),
-              SizedBox(height:10),
-              RatingBarIndicator(
-                rating: rating,
-                itemBuilder: (context, index) => Icon(
-                  Icons.star,
-                  color: Colors.amber,
-                ),
-                itemCount: 5,
-                itemSize: 30.0,
-                direction: Axis.horizontal,
-              ),
 
-            ],
-          )
-        )
-    );
+    double rating_ = 1.0 * hist[i]["rating"];
+    var feedback = hist[i]["feedback"];
+    res.add(Container(
+      width: size.width,
+      padding: const EdgeInsets.all(10),
+      decoration: new BoxDecoration(
+          color: Colors.white60,
+          borderRadius: BorderRadius.all(Radius.circular(4.0))),
+      child: Column(children: [
+        customLine("start: ", startDate.toString()),
+        customLine("end: ", endDate.toString()),
+        customLine("coin earned: ", coin.toString()),
+        customLine("feedback: ", feedback.toString()),
+        SizedBox(height: 10),
+        RatingBarIndicator(
+          rating: rating_,
+          itemBuilder: (context, index) => Icon(
+            Icons.star,
+            color: Colors.amber,
+          ),
+          itemCount: 5,
+          itemSize: 30.0,
+          direction: Axis.horizontal,
+        ),
+      ]),
+    ));
     res.add(
       SizedBox(height: 10),
     );
@@ -117,13 +111,11 @@ Widget customLine(String text1, String text2) {
     children: [
       Text(
         text1,
-        style: TextStyle(color: Colors.white,
-            fontSize: 20),
+        style: TextStyle(color: Colors.white, fontSize: 20),
       ),
       Text(
         text2,
-        style: TextStyle(color: Colors.yellowAccent,
-            fontSize: 20),
+        style: TextStyle(color: Colors.yellowAccent, fontSize: 20),
       )
     ],
   );

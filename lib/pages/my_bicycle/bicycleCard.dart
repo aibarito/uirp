@@ -26,7 +26,7 @@ class BicycleCard extends StatelessWidget {
             ),
             Image.asset(
               "assets/images/bicycle.png",
-              width: 300,
+              width: size.width * 0.7,
             ),
             Text("Id: 123124412"),
             SizedBox(

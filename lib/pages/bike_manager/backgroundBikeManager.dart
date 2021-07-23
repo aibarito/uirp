@@ -25,17 +25,11 @@ class BackGroundBikeManager extends StatelessWidget {
           body: Container(
             height: size.height,
             width: double.infinity,
-            child: Stack(
-              //alignment: Alignment.center,
-              children: <Widget>[
-                Container(
-                  decoration: BoxDecoration(color: Color.fromRGBO(26, 26, 18, 1)),
-                ),
-                SingleChildScrollView(
-                  child: child,
-                ),
-              ],
-            ),
+              decoration: BoxDecoration(
+                color: Color.fromRGBO(26, 26, 18, 1),
+                border: Border.all(color: Colors.redAccent),
+              ),
+            child: child,
           ),
         )
       )

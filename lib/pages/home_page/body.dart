@@ -54,15 +54,14 @@ class Body extends StatelessWidget {
             height: size.height * 0.03,
           ),
           GestureDetector(
-            onTap: () {
+              onTap: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) {
-                return debugPage();
-              }));
-            },
-            child: Text(
-              'debug page',
-            )
-          ),
+                  return debugPage();
+                }));
+              },
+              child: Text(
+                'debug page',
+              )),
         ],
       ),
     ));

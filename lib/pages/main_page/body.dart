@@ -24,7 +24,7 @@ class Body extends StatelessWidget {
       children: <Widget>[
         Image.asset(
           "assets/images/Latest_UNIST_logo.png",
-          scale: 0.7,
+          scale: 0.9,
         ),
         SizedBox(
           height: size.height * 0.03,
@@ -109,7 +109,6 @@ class Body extends StatelessWidget {
           color: lightColor,
           textColor: Colors.black,
         ),
-
       ],
     )));
   }
