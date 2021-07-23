@@ -6,7 +6,7 @@ import 'package:uirp/components/roundedPasswordField.dart';
 import 'package:uirp/constants.dart';
 import 'package:uirp/pages/login_page/background.dart';
 import 'package:uirp/pages/signup_page/signupPage.dart';
-
+import 'package:uirp/pages/login_page/body.dart';
 class Body extends StatefulWidget {
   const Body({Key? key}) : super(key: key);
 
@@ -41,7 +41,6 @@ class _Body extends State<Body>{
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Background(
-      child: SingleChildScrollView(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -87,7 +86,6 @@ class _Body extends State<Body>{
               }),
         ],
       ),
-    )
     );
   }
 }

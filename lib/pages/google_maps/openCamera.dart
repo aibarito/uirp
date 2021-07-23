@@ -19,7 +19,7 @@ class OpenCamera extends StatelessWidget {
     return Container(
       child: RoundedButton(
         text: "Open camera",
-        press: () {
+        callback: () {
           selectImage();
         },
         color: primaryColor,

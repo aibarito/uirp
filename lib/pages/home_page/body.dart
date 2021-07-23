@@ -32,7 +32,7 @@ class Body extends StatelessWidget {
           ),
           RoundedButton(
             text: "Login",
-            press: () {
+            callback: () {
               Navigator.push(context, MaterialPageRoute(builder: (context) {
                 return LoginPage();
               }));
@@ -41,8 +41,8 @@ class Body extends StatelessWidget {
             textColor: Colors.white,
           ),
           RoundedButton(
-            text: "Sign up",
-            press: () {
+            text: "Sign in",
+            callback: () {
               Navigator.push(context, MaterialPageRoute(builder: (context) {
                 return SignUpPage();
               }));

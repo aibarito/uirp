@@ -45,7 +45,7 @@ class Body extends StatelessWidget {
                 ),
                 RoundedButton(
                   text: "Enable Camera Access",
-                  press: () {
+                  callback: () {
                     selectImage();
                   },
                   color: lightColor,
