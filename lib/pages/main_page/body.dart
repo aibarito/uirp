@@ -31,7 +31,7 @@ class Body extends StatelessWidget {
         ),
         RoundedButton(
           text: "Home",
-          press: () {
+          callback: () {
             Navigator.push(context, MaterialPageRoute(builder: (context) {
               return HomePage();
             }));
@@ -41,7 +41,7 @@ class Body extends StatelessWidget {
         ),
         RoundedButton(
           text: "Login",
-          press: () {
+          callback: () {
             Navigator.push(context, MaterialPageRoute(builder: (context) {
               return LoginPage();
             }));
@@ -51,7 +51,7 @@ class Body extends StatelessWidget {
         ),
         RoundedButton(
           text: "Sign in",
-          press: () {
+          callback: () {
             Navigator.push(context, MaterialPageRoute(builder: (context) {
               return SignUpPage();
             }));
@@ -61,7 +61,7 @@ class Body extends StatelessWidget {
         ),
         RoundedButton(
           text: "Enable Camera Access",
-          press: () {
+          callback: () {
             Navigator.push(context, MaterialPageRoute(builder: (context) {
               return EnableCameraPage();
             }));
@@ -71,7 +71,7 @@ class Body extends StatelessWidget {
         ),
         RoundedButton(
           text: "My balance",
-          press: () {
+          callback: () {
             Navigator.push(context, MaterialPageRoute(builder: (context) {
               return MyBalance();
             }));
@@ -81,17 +81,17 @@ class Body extends StatelessWidget {
         ),
         RoundedButton(
             text: "Go to Bike Manager Page",
-            press: () {
+            callback: () {
               Navigator.push(context, MaterialPageRoute(builder: (context) {
                 return BikeManagerPage();
               }));
             },
           color: Colors.red,
           textColor: Colors.black,
-        )
+        ),
         RoundedButton(
           text: "Google Maps",
-          press: () {
+          callback: () {
             Navigator.push(context, MaterialPageRoute(builder: (context) {
               return GoogleMaps();
             }));
@@ -101,7 +101,7 @@ class Body extends StatelessWidget {
         ),
         RoundedButton(
           text: "Bicycle",
-          press: () {
+          callback: () {
             Navigator.push(context, MaterialPageRoute(builder: (context) {
               return MyBicycle();
             }));
