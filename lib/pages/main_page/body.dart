@@ -50,7 +50,7 @@ class Body extends StatelessWidget {
           textColor: Colors.white,
         ),
         RoundedButton(
-          text: "Sign in",
+          text: "Sign up",
           press: () {
             Navigator.push(context, MaterialPageRoute(builder: (context) {
               return SignUpPage();
