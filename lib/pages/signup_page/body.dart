@@ -39,54 +39,53 @@ class _Body extends State<Body>{
   }
   @override
   void initState() {
-
     super.initState();
     _email_controller.addListener(() {
       final String text = _email_controller.text;
-      _email_controller.value = _email_controller.value.copyWith(
+      /*_email_controller.value = _email_controller.value.copyWith(
         text: text,
         selection:
         TextSelection(baseOffset: text.length, extentOffset: text.length),
         composing: TextRange.empty,
-      );
+      );*/
     });
 
     _ID_controller.addListener(() {
       final String text = _ID_controller.text;
-      _ID_controller.value = _ID_controller.value.copyWith(
+      /*_ID_controller.value = _ID_controller.value.copyWith(
         text: text,
         selection:
         TextSelection(baseOffset: text.length, extentOffset: text.length),
         composing: TextRange.empty,
-      );
+      );*/
     });
 
     _name_controller.addListener(() {
       final String text = _name_controller.text;
-      _name_controller.value = _name_controller.value.copyWith(
+      /*_name_controller.value = _name_controller.value.copyWith(
         text: text,
         selection:
         TextSelection(baseOffset: text.length, extentOffset: text.length),
         composing: TextRange.empty,
-      );
+      );*/
     });
     _surname_controller.addListener(() {
       final String text = _surname_controller.text;
-      _surname_controller.value = _surname_controller.value.copyWith(
+      /*_surname_controller.value = _surname_controller.value.copyWith(
         text: text,
         selection:
         TextSelection(baseOffset: text.length, extentOffset: text.length),
         composing: TextRange.empty,
-      );
+      );*/
     });
     _password_controller.addListener(() {
       final String text = _password_controller.text;
-      _password_controller.value = _password_controller.value.copyWith(
+      /*_password_controller.value = _password_controller.value.copyWith(
         text: text,
         selection:
         TextSelection(baseOffset: text.length, extentOffset: text.length),
         composing: TextRange.empty,
-      );
+      );*/
     });
   }
 
