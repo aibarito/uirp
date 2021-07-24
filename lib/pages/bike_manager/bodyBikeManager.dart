@@ -26,6 +26,7 @@ const DungnTextStyle = TextStyle(fontSize: 20, color: Colors.white);
 
 class _BodyBikeManagerState extends State<BodyBikeManager> {
   List<Widget> displayBicycleList() {
+    Size size = MediaQuery.of(context).size;
     var res = <Widget>[];
     for (int i = 0; i < bicycleList.length; ++i) {
       res.add(Card(
@@ -95,6 +96,10 @@ class _BodyBikeManagerState extends State<BodyBikeManager> {
             ),
             SizedBox(
               height: 25,
+            ),
+            Image.asset(
+              "assets/images/bicycle.png",
+              width: size.width * 0.7,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
