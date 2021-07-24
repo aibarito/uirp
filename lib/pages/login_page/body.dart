@@ -18,23 +18,33 @@ class Body extends StatefulWidget {
 class _Body extends State<Body>{
   bool _validate = false;
   final TextEditingController _controller = TextEditingController();
+  final TextEditingController _username_controller = TextEditingController();
+  final TextEditingController _password_controller = TextEditingController();
   @override
   void initState() {
     super.initState();
     _controller.addListener(() {
-      final String text = _controller.text.toLowerCase();
+      /*final String text = _controller.text.toLowerCase();
       _controller.value = _controller.value.copyWith(
         text: text,
         selection:
         TextSelection(baseOffset: text.length, extentOffset: text.length),
         composing: TextRange.empty,
-      );
+      );*/
+    });
+    _username_controller.addListener(() {
+
+    });
+    _password_controller.addListener(() {
+
     });
   }
 
   @override
   void dispose() {
     _controller.dispose();
+    _username_controller.dispose();
+    _password_controller.dispose();
     super.dispose();
   }
   @override
@@ -61,13 +71,13 @@ class _Body extends State<Body>{
           ),
           RoundedEmailField(
             validate: _validate,
-            controller: _controller,
+            controller: _username_controller,
             hint: "Username",
             icon: Icon(Icons.person, color: primaryColor),
             onChanged: (value) {},
           ),
           RoundedPasswordField(
-            controller: _controller,
+            controller: _password_controller,
             onChanged: (value) {},
           ),
           RoundedButton(

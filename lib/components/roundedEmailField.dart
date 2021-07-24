@@ -18,12 +18,17 @@ class RoundedEmailField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextFieldContainer(
+      return TextFieldContainer(
         child: TextField(
           controller: this.controller,
           decoration:
-            InputDecoration(icon: icon, hintText: hint, border: InputBorder.none,
-            errorText: this.validate ? 'Value can\'t be empty': null,)
-    ));
+            InputDecoration(
+              icon: icon,
+              hintText: hint,
+              border: InputBorder.none,
+              errorText: this.validate ? 'Value can\'t be empty': null,
+            )
+      )
+    );
   }
 }
