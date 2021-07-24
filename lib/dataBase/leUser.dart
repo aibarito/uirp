@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 
-class LeUser extends ChangeNotifier{
+class LeUser with ChangeNotifier{
   String _name = "";
   String _email = "";
 
@@ -8,6 +8,11 @@ class LeUser extends ChangeNotifier{
     this._name = "";
     this._email = "";
   }
+
+  String get name => _name;
+
+  String get email => _email;
+
   LeUser.fromJson(Map<String, dynamic> json)
       : this._name = json['name'],
         this._email = json['email'];
@@ -17,18 +22,13 @@ class LeUser extends ChangeNotifier{
     'email': this._email,
   };
 
-  String getName() {
-    return this._name;
-  }
-  String getEmail() {
-    return this._email;
-  }
-  void setName(String name) {
-    this._name = name;
+  set name(String value) {
+    _name = value;
     notifyListeners();
   }
-  void setEmail(String email) {
-    this._email = email;
+
+  set email(String value) {
+    _email = value;
     notifyListeners();
   }
 }

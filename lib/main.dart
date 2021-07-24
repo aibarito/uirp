@@ -35,9 +35,16 @@ EthereumAddress.fromHex('0x070aE2b66a63De8b4Cd352e725CA81Ed663611F0');
 
 late final client;
 late final ethClient;
+//TODO: make _login = true after successfully signin
+bool _global_login = true;
 
+bool checkIfLogin() {
+  return _global_login;
+}
 
-
+void setLogin(bool val) {
+  _global_login = val;
+}
 
 void main() {
   // establish a connection to the ethereum rpc node. The socketConnector
@@ -53,15 +60,11 @@ void main() {
 }
 
 
-
-
 Future<String> SignUp(String _username, String _password) async {
   String password = _username + _password;
   // Or generate a new key randomly
   var rng = new Random.secure();
   EthPrivateKey credentials = EthPrivateKey.createRandom(rng);
-
-
 
   var address = await credentials.extractAddress();
   print(address.hex);
@@ -95,8 +98,13 @@ void LogIn(String _username, String _password) async {
   futureContent.then((c) => wallet = Wallet.fromJson(c, password));
 }
 
+/*
+Example of what an user should look like:
+ */
 
-Map<String, dynamic> userMap = jsonDecode("{\"name\":\"Le Putintin\", \"email\":\"putin@unist.ac.kr\"}");
+Map<String, dynamic> userMap = {"name": "Le Putintin",
+  "email":"putin@unist.ac.kr"};
+//jsonDecode("{\"name\":\"Le Putintin\", \"email\":\"putin@unist.ac.kr\"}");
 LeUser demoUser = LeUser.fromJson(userMap);
 
 class MyApp extends StatelessWidget {

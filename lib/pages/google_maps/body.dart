@@ -8,7 +8,7 @@ import 'package:geolocator/geolocator.dart';
 import 'package:uirp/pages/google_maps/background.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:uirp/pages/google_maps/zoomButton.dart';
-import 'package:uirp/slideProfile/sideProfile.dart';
+import 'package:uirp/slideProfile/sideProfileRemake.dart';
 
 import '../../constants.dart';
 import '../../main.dart';
@@ -86,9 +86,8 @@ class BodyState extends State<Body> {
     Size size = MediaQuery.of(context).size;
 
     return Background(
-        child: sideProfile(
-      data: demoUser,
-      child: MaterialApp(
+        child: SideProfileRemake(
+        customChild: MaterialApp(
           home: Scaffold(
               body: Stack(children: [
         GoogleMap(

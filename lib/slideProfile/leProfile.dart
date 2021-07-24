@@ -28,7 +28,7 @@ class LeProfile extends StatelessWidget {
                     SizedBox(height: constraints.maxHeight * 0.05),
                     Container(
                       child: Text(
-                        user.getName(),
+                        user.name,
                         style: TextStyle(fontSize: constraints.maxHeight * 0.14),
                       ),
                     )

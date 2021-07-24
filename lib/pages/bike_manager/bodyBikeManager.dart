@@ -8,7 +8,6 @@ import 'package:uirp/dataBase/leBicycle.dart';
 import 'package:uirp/main.dart';
 import 'package:uirp/pages/bike_lending_history/bikeLendingHistoryPage.dart';
 import 'package:uirp/pages/bike_manager/backgroundBikeManager.dart';
-import 'package:uirp/slideProfile/sideProfile.dart';
 
 class BodyBikeManager extends StatefulWidget {
   BodyBikeManager({

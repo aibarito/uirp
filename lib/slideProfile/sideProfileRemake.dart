@@ -12,7 +12,7 @@
  */
 
 import 'package:provider/provider.dart';
-import 'package:uirp/dataBase/leProfile.dart';
+import 'package:uirp/slideProfile/leProfile.dart';
 import 'package:uirp/pages/balance/myBalance.dart';
 import 'package:uirp/pages/bike_manager/bikeManagerPage.dart';
 import 'package:uirp/pages/main_page/mainPage.dart';
@@ -22,21 +22,35 @@ import '../dataBase/leUser.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '../main.dart';
+import 'getLeUserInfo.dart';
+
 class SideProfileRemake extends StatelessWidget {
   Widget? customChild;
+  String? customText;
   SideProfileRemake ({
     Key? key,
     this.customChild,
+    this.customText,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    String str = "";
+    if(this.customText != null)
+      str = this.customText!;
     Size size = MediaQuery.of(context).size;
     return Consumer<LeUser>(
       builder: (context, LeUser, child) {
+        if(checkIfLogin() == true)
+          {
+            LeUser = getLeUserInfo();
+          }
         return Scaffold(
           appBar: AppBar(
-            title: Text("Title"),
+            title: Text(str),
+            backgroundColor: Colors.black,
+            elevation: 0.0,
           ),
           body: Center(
             child: this.customChild == null ? Text('empty child in Scaffold') : customChild,

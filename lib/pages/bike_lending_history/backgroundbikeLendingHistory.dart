@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:uirp/components/mainArrow.dart';
-import 'package:uirp/slideProfile/sideProfile.dart';
+import 'package:uirp/slideProfile/sideProfileRemake.dart';
 
 import '../../main.dart';
 
@@ -15,9 +14,8 @@ class BackGroundBikeLendingHistory extends StatelessWidget {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
-        body: sideProfile(
-          data: demoUser,
-          child: Scaffold(
+        body: SideProfileRemake(
+          customChild: Scaffold(
             appBar: AppBar(
               backgroundColor: Color.fromRGBO(26, 26, 18, 1),
             ),
