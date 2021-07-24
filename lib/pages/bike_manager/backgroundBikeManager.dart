@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:uirp/components/mainArrow.dart';
 import 'package:uirp/slideProfile/sideProfile.dart';
+import 'package:uirp/slideProfile/sideProfileRemake.dart';
 
 import '../../main.dart';
 
@@ -11,14 +12,13 @@ class BackGroundBikeManager extends StatelessWidget {
     Key? key,
   }) : super(key: key);
 
-
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
-        body: sideProfile(
-        data: demoUser,
-        child: Scaffold(
+        body: SideProfileRemake(
+        //data: demoUser,
+        customChild: Scaffold(
           appBar: AppBar(
             backgroundColor: Color.fromRGBO(26, 26, 18, 1),
           ),

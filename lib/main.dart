@@ -96,8 +96,6 @@ void LogIn(String _username, String _password) async {
 }
 
 
-
-
 Map<String, dynamic> userMap = jsonDecode("{\"name\":\"Le Putintin\", \"email\":\"putin@unist.ac.kr\"}");
 LeUser demoUser = LeUser.fromJson(userMap);
 
@@ -105,15 +103,20 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider<Balance>(
-        create: (context) => Balance(),
-        child: MaterialApp(
-          title: 'Flutter Demo',
-          theme: ThemeData(
-            primarySwatch: Colors.blue,
-            // scaffoldBackgroundColor: Colors.blue[10],
-          ),
-          home: MainPage(),
-        ));
+    return
+      MultiProvider(
+          providers: [
+            ChangeNotifierProvider(create: (context) => Balance()),
+            ChangeNotifierProvider(create: (context) => LeUser())
+          ],
+          child: MaterialApp(
+            title: 'Flutter Demo',
+            theme: ThemeData(
+              primarySwatch: Colors.blue,
+              // scaffoldBackgroundColor: Colors.blue[10],
+            ),
+            home: MainPage(),
+          )
+      );
   }
 }
