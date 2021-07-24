@@ -51,7 +51,7 @@ void updateBicycleInfoViaHistory()
   {
     List hist = getTransactionHistory(arr[i].id);
     double totalCoin = 0;
-    DateTime totalTime = 0;
+    Duration totalTime = Duration(days: 0, hours: 0, minutes: 0, seconds: 0);
     for(int j = 0; j < hist.length; ++ j)
     {
       DateTime startDate = DateTime.parse(hist[j]["startDate"]);
@@ -62,12 +62,12 @@ void updateBicycleInfoViaHistory()
         minutes: startDate.minute,
         seconds: startDate.minute,
       ));
-      totalTime.add(Duration(
+      totalTime += Duration(
           days: elapse.day,
           hours: elapse.hour,
           minutes: elapse.minute,
           seconds: elapse.second,
-      ));
+      );
       double coin = hist[j]["coin"];
       totalCoin += coin;
     }
