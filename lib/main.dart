@@ -36,14 +36,12 @@ EthereumAddress.fromHex('0x070aE2b66a63De8b4Cd352e725CA81Ed663611F0');
 late final client;
 late final ethClient;
 //TODO: make _login = true after successfully signin
-bool _global_login = true;
-
+bool _globalLogin = true;
 bool checkIfLogin() {
-  return _global_login;
+  return _globalLogin;
 }
-
 void setLogin(bool val) {
-  _global_login = val;
+  _globalLogin = val;
 }
 
 void main() {

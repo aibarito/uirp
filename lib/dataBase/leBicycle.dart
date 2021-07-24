@@ -2,7 +2,7 @@ import 'dart:convert';
 
 class LeBicycle {
   double _amountEarned;
-  int _timeTraveled;
+  DateTime _timeTraveled;
   int _id;
   String _name;
   LeBicycle.fromJson(Map<String, dynamic> json)
@@ -27,7 +27,7 @@ class LeBicycle {
     _id = value;
   }
 
-  set timeTraveled(int value) {
+  set timeTraveled(DateTime value) {
     _timeTraveled = value;
   }
 
@@ -35,7 +35,7 @@ class LeBicycle {
     _amountEarned = value;
   }
 
-  int get timeTraveled => _timeTraveled;
+  DateTime get timeTraveled => _timeTraveled;
 
   int get id => _id;
 
