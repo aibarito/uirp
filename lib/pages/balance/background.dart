@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:uirp/components/mainArrow.dart';
 import 'package:uirp/main.dart';
 import 'package:uirp/slideProfile/sideProfile.dart';
+import 'package:uirp/slideProfile/sideProfileRemake.dart';
 
 class Background extends StatelessWidget {
   final Widget child;
@@ -17,9 +18,8 @@ class Background extends StatelessWidget {
       body: Container(
         height: size.height,
         width: double.infinity,
-        child: sideProfile(
-          data: demoUser,
-          child: Stack(
+        child: SideProfileRemake(
+          customChild: Stack(
             alignment: Alignment.center,
             children: <Widget>[
               HomeArrow(),

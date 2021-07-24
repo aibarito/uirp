@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:uirp/components/mainArrow.dart';
-import 'package:uirp/slideProfile/sideProfile.dart';
+import 'package:uirp/slideProfile/sideProfileRemake.dart';
 
 import '../../main.dart';
 
@@ -21,9 +20,8 @@ class BackGroundBikeLending extends StatelessWidget {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
-            body: sideProfile(
-          data: demoUser,
-          child: Container(
+        body: SideProfileRemake(
+          customChild: Container(
             height: size.height,
             width: double.infinity,
             child: Stack(
@@ -41,6 +39,6 @@ class BackGroundBikeLending extends StatelessWidget {
             ),
           ),
         )
-        );
+    );
   }
 }
