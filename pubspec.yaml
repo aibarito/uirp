@@ -48,6 +48,9 @@ dependencies:
   hex: ^0.2.0
   http: ^0.13.3
   web3dart: ^2.1.4
+  email_auth: ^0.0.1+4
+  qr_flutter: ^4.0.0
+  barcode_scan: ^2.0.2
 
 dev_dependencies:
   flutter_test:

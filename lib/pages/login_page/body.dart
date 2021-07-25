@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:uirp/components/alreadyHaveAnAccount.dart';
 import 'package:uirp/components/roundedButton.dart';
-import 'package:uirp/components/roundedEmailField.dart';
+import 'package:uirp/components/roundedField.dart';
 import 'package:uirp/components/roundedPasswordField.dart';
 import 'package:uirp/constants.dart';
 import 'package:uirp/pages/login_page/background.dart';
@@ -14,9 +14,7 @@ class Body extends StatefulWidget {
   State<Body> createState() => _Body();
 }
 
-
-class _Body extends State<Body>{
-  bool _validate = false;
+class _Body extends State<Body> {
   final TextEditingController _controller = TextEditingController();
   final TextEditingController _username_controller = TextEditingController();
   final TextEditingController _password_controller = TextEditingController();
@@ -32,12 +30,8 @@ class _Body extends State<Body>{
         composing: TextRange.empty,
       );*/
     });
-    _username_controller.addListener(() {
-
-    });
-    _password_controller.addListener(() {
-
-    });
+    _username_controller.addListener(() {});
+    _password_controller.addListener(() {});
   }
 
   @override
@@ -47,11 +41,12 @@ class _Body extends State<Body>{
     _password_controller.dispose();
     super.dispose();
   }
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Background(
-      child: SingleChildScrollView(
+        child: SingleChildScrollView(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -69,8 +64,7 @@ class _Body extends State<Body>{
           SizedBox(
             height: size.height * 0.03,
           ),
-          RoundedEmailField(
-            validate: _validate,
+          RoundedField(
             controller: _username_controller,
             hint: "Username",
             icon: Icon(Icons.person, color: primaryColor),
@@ -97,7 +91,6 @@ class _Body extends State<Body>{
               }),
         ],
       ),
-    )
-    );
+    ));
   }
 }

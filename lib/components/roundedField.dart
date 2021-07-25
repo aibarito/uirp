@@ -1,34 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:uirp/components/textField.dart';
 
-class RoundedEmailField extends StatelessWidget {
+class RoundedField extends StatelessWidget {
   final String hint;
   final ValueChanged<String> onChanged;
   final Icon icon;
   final TextEditingController controller;
-  final bool validate;
-  const RoundedEmailField({
+
+  const RoundedField({
     Key? key,
     required this.hint,
     required this.onChanged,
     required this.icon,
     required this.controller,
-    required this.validate,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-      return TextFieldContainer(
+    return TextFieldContainer(
         child: TextField(
-          controller: this.controller,
-          decoration:
-            InputDecoration(
+            controller: this.controller,
+            decoration: InputDecoration(
               icon: icon,
               hintText: hint,
               border: InputBorder.none,
-              errorText: this.validate ? 'Value can\'t be empty': null,
-            )
-      )
-    );
+              // errorText: this.validate ? 'Value can\'t be empty' : null,
+            )));
   }
 }

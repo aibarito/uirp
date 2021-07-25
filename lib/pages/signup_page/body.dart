@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:uirp/components/alreadyHaveAnAccount.dart';
 import 'package:uirp/components/roundedButton.dart';
-import 'package:uirp/components/roundedEmailField.dart';
+import 'package:uirp/components/roundedField.dart';
 import 'package:uirp/components/roundedPasswordField.dart';
 import 'package:uirp/pages/login_page/loginPage.dart';
 import 'package:uirp/pages/signup_page/background.dart';
 import 'package:uirp/dataBase/BlockchainIntegration.dart';
 import '../../constants.dart';
 import 'package:uirp/pages/loading/loading.dart';
+import 'package:email_auth/email_auth.dart';
 
 class Body extends StatefulWidget {
   const Body({Key? key}) : super(key: key);
@@ -16,19 +17,26 @@ class Body extends StatefulWidget {
   State<Body> createState() => _Body();
 }
 
-class _Body extends State<Body>{
+class _Body extends State<Body> {
   final BlockchainIntegration solidity = BlockchainIntegration();
   final TextEditingController _email_controller = TextEditingController();
   final TextEditingController _ID_controller = TextEditingController();
   final TextEditingController _name_controller = TextEditingController();
   final TextEditingController _surname_controller = TextEditingController();
   final TextEditingController _password_controller = TextEditingController();
-  bool _validate = false;
 
-  void _onPressed(){
+  void _onPressed() {
+    sendOTP();
     Navigator.push(context, MaterialPageRoute(builder: (context) {
       return LoadingPage(
-          callback: solidity.SignUp(_name_controller.text, _surname_controller.text, _password_controller.text, _ID_controller.text, _email_controller.text));
+        callback: solidity.SignUp(
+            _name_controller.text,
+            _surname_controller.text,
+            _password_controller.text,
+            _ID_controller.text,
+            _email_controller.text),
+        email: _email_controller.text,
+      );
     }));
 
     print(Text(_email_controller.text));
@@ -37,6 +45,7 @@ class _Body extends State<Body>{
     print(Text(_surname_controller.text));
     print(Text(_password_controller.text));
   }
+
   @override
   void initState() {
     super.initState();
@@ -98,13 +107,23 @@ class _Body extends State<Body>{
     super.dispose();
   }
 
+  void sendOTP() async {
+    EmailAuth.sessionName = "Session x";
+    var res = await EmailAuth.sendOtp(receiverMail: _email_controller.text);
+    if (res) {
+      print("sent");
+    } else {
+      print("unable to send otp to the email");
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
 
     return Background(
-      child: SingleChildScrollView(
-        child: Column(
+        child: SingleChildScrollView(
+            child: Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
         Text(
@@ -121,29 +140,25 @@ class _Body extends State<Body>{
         SizedBox(
           height: size.height * 0.03,
         ),
-        RoundedEmailField(
-          validate: _validate,
+        RoundedField(
           hint: "e-mail",
           icon: Icon(Icons.email_rounded, color: primaryColor),
           controller: _email_controller,
           onChanged: (value) {},
         ),
-        RoundedEmailField(
-          validate: _validate,
+        RoundedField(
           hint: "Student ID",
           icon: Icon(Icons.grid_3x3_sharp, color: primaryColor),
           controller: _ID_controller,
           onChanged: (value) {},
         ),
-        RoundedEmailField(
-          validate: _validate,
+        RoundedField(
           hint: "Name",
           icon: Icon(Icons.person, color: primaryColor),
           controller: _name_controller,
           onChanged: (value) {},
         ),
-        RoundedEmailField(
-          validate: _validate,
+        RoundedField(
           hint: "Surname",
           icon: Icon(Icons.person, color: primaryColor),
           controller: _surname_controller,
@@ -169,8 +184,6 @@ class _Body extends State<Body>{
               }));
             }),
       ],
-    ))
-    );
-
+    )));
   }
 }
