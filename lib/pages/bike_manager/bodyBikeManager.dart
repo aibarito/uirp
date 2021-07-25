@@ -181,11 +181,17 @@ class _BodyBikeManagerState extends State<BodyBikeManager> {
                   setState(() {
                     Random rnd = new Random();
                     int id = (bicycleList.length) + 1;
+                    var duration = {
+                      "days": 0,
+                      "hours": 0,
+                      "minutes": 0,
+                      "seconds": 0,
+                    };
                     Map<String, dynamic> jsonNew = {
                       "id": id,
                       "name": "bicycle#" + (bicycleList.length + 1).toString(),
-                      "amountEarned": 0,
-                      "timeTraveled": 0,
+                      "amountEarned": 0.0,
+                      "timeTraveled": duration,
                     };
                     bicycleList.add(new LeBicycle.fromJson(jsonNew));
                   });

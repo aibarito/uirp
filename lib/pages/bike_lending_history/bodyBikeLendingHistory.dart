@@ -32,6 +32,7 @@ class BodyBikeLendingHistory extends StatelessWidget {
   Widget build(BuildContext context) {
     print("in BodyBikeLendingHistory " + this.id.toString());
     Size size = MediaQuery.of(context).size;
+    loadTransactionHistory(); // demo purposes
     List hist = getTransactionHistory(this.id);
     //print(hist[0]);
     // TODO: implement build
