@@ -23,7 +23,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../main.dart';
-import 'getLeUserInfo.dart';
+import '../dataBase/getLeUserInfo.dart';
 
 class SideProfileRemake extends StatelessWidget {
   Widget? customChild;

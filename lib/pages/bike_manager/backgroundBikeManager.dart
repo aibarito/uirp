@@ -17,7 +17,6 @@ class BackGroundBikeManager extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
         body: SideProfileRemake(
-        //data: demoUser,
         customChild: Scaffold(
           appBar: AppBar(
             backgroundColor: Color.fromRGBO(26, 26, 18, 1),
@@ -27,7 +26,7 @@ class BackGroundBikeManager extends StatelessWidget {
             width: double.infinity,
               decoration: BoxDecoration(
                 color: Color.fromRGBO(26, 26, 18, 1),
-                border: Border.all(color: Colors.redAccent),
+                border: Border.all(color: Color.fromRGBO(123, 22, 344, 1)),
               ),
             child: child,
           ),
