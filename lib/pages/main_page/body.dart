@@ -7,6 +7,8 @@ import 'package:uirp/pages/home_page/home.dart';
 import 'package:uirp/pages/login_page/loginPage.dart';
 import 'package:uirp/pages/main_page/background.dart';
 import 'package:uirp/pages/my_bicycle/myBicycle.dart';
+import 'package:uirp/pages/qr_generator/qrGenerator.dart';
+import 'package:uirp/pages/qr_scanner/qrScanner.dart';
 import 'package:uirp/pages/signup_page/signupPage.dart';
 import 'package:uirp/pages/balance/myBalance.dart';
 import '../../constants.dart';
@@ -22,10 +24,10 @@ class Body extends StatelessWidget {
       // crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
-        Image.asset(
-          "assets/images/Latest_UNIST_logo.png",
-          scale: 0.9,
-        ),
+        // Image.asset(
+        //   "assets/images/Latest_UNIST_logo.png",
+        //   scale: 0.9,
+        // ),
         SizedBox(
           height: size.height * 0.03,
         ),
@@ -109,6 +111,25 @@ class Body extends StatelessWidget {
           color: lightColor,
           textColor: Colors.black,
         ),
+        RoundedButton(
+          text: "qrGenerator",
+          callback: () {
+            Navigator.push(context, MaterialPageRoute(builder: (context) {
+              return qrGenerator();
+            }));
+          },
+          color: primaryColor,
+          textColor: Colors.white,
+        ),
+        RoundedButton(
+            text: "qrScanner",
+            callback: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) {
+                return qrScanner();
+              }));
+            },
+            color: lightColor,
+            textColor: Colors.black),
       ],
     )));
   }

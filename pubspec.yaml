@@ -51,6 +51,7 @@ dependencies:
   email_auth: ^0.0.1+4
   qr_flutter: ^4.0.0
   barcode_scan: ^2.0.2
+  qr_code_scanner: ^0.5.2
 
 dev_dependencies:
   flutter_test:
