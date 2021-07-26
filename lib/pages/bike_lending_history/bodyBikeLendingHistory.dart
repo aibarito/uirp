@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:uirp/dataBase/bicycleList.dart';
-import 'package:uirp/dataBase/demoTransaction.dart';
+import 'package:uirp/dataBase/AllBicycleInfo.dart';
+import 'package:uirp/dataBase/getBicycleInfos.dart';
 import 'backgroundbikeLendingHistory.dart';
 
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
@@ -11,14 +11,6 @@ const DungnTextStyle = TextStyle(fontSize: 20, color: Colors.white);
 /**
  * DEMO ONLY
  */
-List getTransactionHistory(int id) {
-  List res = [];
-  if (demoTransaction[id.toString()] != null) {
-    return demoTransaction[id.toString()];
-  }
-  return res;
-}
-
 String findName(int id) {
   String res = "";
   for (int i = 0; i < bicycleList.length; ++i) {
@@ -40,8 +32,9 @@ class BodyBikeLendingHistory extends StatelessWidget {
   Widget build(BuildContext context) {
     print("in BodyBikeLendingHistory " + this.id.toString());
     Size size = MediaQuery.of(context).size;
+    loadTransactionHistory(); // demo purposes
     List hist = getTransactionHistory(this.id);
-    print(hist[0]);
+    //print(hist[0]);
     // TODO: implement build
     return BackGroundBikeLendingHistory(
         child: Column(

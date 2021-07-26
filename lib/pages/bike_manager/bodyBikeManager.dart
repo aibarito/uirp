@@ -3,9 +3,8 @@ import 'dart:math';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:uirp/dataBase/bicycleList.dart';
+import 'package:uirp/dataBase/AllBicycleInfo.dart';
 import 'package:uirp/dataBase/leBicycle.dart';
-import 'package:uirp/main.dart';
 import 'package:uirp/pages/bike_lending_history/bikeLendingHistoryPage.dart';
 import 'package:uirp/pages/bike_manager/backgroundBikeManager.dart';
 
@@ -182,11 +181,17 @@ class _BodyBikeManagerState extends State<BodyBikeManager> {
                   setState(() {
                     Random rnd = new Random();
                     int id = (bicycleList.length) + 1;
+                    var duration = {
+                      "days": 0,
+                      "hours": 0,
+                      "minutes": 0,
+                      "seconds": 0,
+                    };
                     Map<String, dynamic> jsonNew = {
                       "id": id,
                       "name": "bicycle#" + (bicycleList.length + 1).toString(),
-                      "amountEarned": rnd.nextDouble() * (20 - 1),
-                      "timeTraveled": rnd.nextInt(100),
+                      "amountEarned": 0.0,
+                      "timeTraveled": duration,
                     };
                     bicycleList.add(new LeBicycle.fromJson(jsonNew));
                   });

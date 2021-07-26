@@ -3,8 +3,8 @@ import 'package:uirp/dataBase/leUser.dart';
 
 LeUser getLeUserInfo() {
  /*
-  Do actual solidity work here.
-  */
+ * must get user info right after sign-in.
+ */
   /* Demo only: */
   Map<String, dynamic> userMap =
   {
