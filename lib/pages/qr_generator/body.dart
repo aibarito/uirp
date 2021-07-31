@@ -36,7 +36,7 @@ class _BodyState extends State<Body> {
               onPressed: () {
                 if (_qrController.text.isEmpty) {
                   setState(() {
-                    qrData = "https://flutter.dev";
+                    qrData = "Shttps://flutter.dev";
                   });
                 } else {
                   setState(() {

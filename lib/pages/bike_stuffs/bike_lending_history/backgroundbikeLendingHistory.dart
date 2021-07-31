@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:uirp/slideProfile/sideProfileRemake.dart';
 
-import '../../main.dart';
-
 class BackGroundBikeLendingHistory extends StatelessWidget {
   final Widget child;
   const BackGroundBikeLendingHistory({

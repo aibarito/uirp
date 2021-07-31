@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:uirp/components/commentField.dart';
-import 'package:uirp/pages/bike_lending_page/backgroundBikeLending.dart';
+import 'package:uirp/pages/bike_stuffs/bike_lending_page/backgroundBikeLending.dart';
 
 /**
  * MAY NEED THESE REQUIRED VARIABLES:

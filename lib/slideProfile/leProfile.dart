@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:uirp/pages/setting_page/settingPage.dart';
 
 import '../dataBase/leUser.dart';
 
@@ -20,10 +21,18 @@ class LeProfile extends StatelessWidget {
                 Column(
                   children: [
                     SizedBox(height: constraints.maxHeight * 0.1),
-                    CircleAvatar(
-                      radius: constraints.maxHeight * 0.3,
-                      backgroundColor: Colors.white,
-                      backgroundImage:AssetImage("assets/images/putin.png"),
+                    MaterialButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                        Navigator.push(context, MaterialPageRoute(builder: (context) {
+                          return SettingPage();
+                        }));
+                      },
+                      child: CircleAvatar(
+                        radius: constraints.maxHeight * 0.3,
+                        backgroundColor: Colors.white,
+                        backgroundImage:AssetImage("assets/images/putin.png"),
+                      ),
                     ),
                     SizedBox(height: constraints.maxHeight * 0.05),
                     Container(

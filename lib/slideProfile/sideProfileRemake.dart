@@ -14,7 +14,7 @@
 import 'package:provider/provider.dart';
 import 'package:uirp/slideProfile/leProfile.dart';
 import 'package:uirp/pages/balance/myBalance.dart';
-import 'package:uirp/pages/bike_manager/bikeManagerPage.dart';
+import 'package:uirp/pages/bike_stuffs/bike_manager/bikeManagerPage.dart';
 import 'package:uirp/pages/main_page/mainPage.dart';
 
 import '../dataBase/leUser.dart';
@@ -40,15 +40,22 @@ class SideProfileRemake extends StatelessWidget {
     if(this.customText != null)
       str = this.customText!;
     Size size = MediaQuery.of(context).size;
-    return Consumer<LeUser>(
-      builder: (context, LeUser, child) {
+    Consumer<LeUser>(
+      builder: (context, leUser, child) {
         if(checkIfLogin() == true)
-          {
-            LeUser = getLeUserInfo();
-          }
+        {
+          LeUser x = getLeUserInfo();
+          leUser.name = x.name;
+          leUser.email = x.email;
+        }
+        return Container();
+      }
+    );
+    return Consumer<LeUser>(
+      builder: (context, leUser, child) {
         return Scaffold(
           appBar: AppBar(
-            title: Text(str),
+            title: Text(str, style: TextStyle(color: Colors.white),),
             backgroundColor: Colors.black,
             elevation: 0.0,
           ),
@@ -67,7 +74,7 @@ class SideProfileRemake extends StatelessWidget {
                       color: Colors.cyan,
                     ),
                     child: LeProfile(
-                      user: LeUser,
+                      user: leUser,
                     ),
                   ),
                 ),
@@ -98,9 +105,6 @@ class SideProfileRemake extends StatelessWidget {
                     ],
                   ),
                   onTap: () {
-                    // Update the state of the app
-                    // ...
-                    // Then close the drawer
                     Navigator.pop(context);
                     Navigator.push(context, MaterialPageRoute(builder: (context) {
                       return MyBalance();
@@ -203,9 +207,6 @@ class SideProfileRemake extends StatelessWidget {
                     ],
                   ),
                   onTap: () {
-                    // Update the state of the app
-                    // ...
-                    // Then close the drawer
                     Navigator.pop(context);
                   },
                 ),

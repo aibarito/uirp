@@ -3,7 +3,6 @@ import 'package:uirp/components/mainArrow.dart';
 import 'package:uirp/slideProfile/sideProfile.dart';
 import 'package:uirp/slideProfile/sideProfileRemake.dart';
 
-import '../../main.dart';
 
 class BackGroundBikeManager extends StatelessWidget {
   final Widget child;
