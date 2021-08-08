@@ -11,5 +11,6 @@ LeUser getLeUserInfo() {
     "name": "Le Putintin",
     "email":"putin@unist.ac.kr"
   };
-  return LeUser.fromJson(userMap);
+  LeUser x = LeUser.fromJson(userMap);
+  return x;
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:uirp/components/roundedButton.dart';
-import 'package:uirp/pages/bike_manager/bikeManagerPage.dart';
+import 'package:uirp/pages/bike_stuffs/bike_manager/bikeManagerPage.dart';
+import 'package:uirp/pages/bike_stuffs/lend_or_borrow_page/lendOrBorrowPage.dart';
 import 'package:uirp/pages/enable_camera/enableCameraPage.dart';
 import 'package:uirp/pages/google_maps/googleMaps.dart';
 import 'package:uirp/pages/home_page/home.dart';
@@ -86,6 +87,16 @@ class Body extends StatelessWidget {
           callback: () {
             Navigator.push(context, MaterialPageRoute(builder: (context) {
               return BikeManagerPage();
+            }));
+          },
+          color: Colors.red,
+          textColor: Colors.black,
+        ),
+        RoundedButton(
+          text: "Go to lending or borrowing selection",
+          callback: () {
+            Navigator.push(context, MaterialPageRoute(builder: (context) {
+              return LendOrBorrowPage();
             }));
           },
           color: Colors.red,

@@ -102,7 +102,6 @@ Example of what an user should look like:
 
 Map<String, dynamic> userMap = {"name": "Le Putintin",
   "email":"putin@unist.ac.kr"};
-//jsonDecode("{\"name\":\"Le Putintin\", \"email\":\"putin@unist.ac.kr\"}");
 LeUser demoUser = LeUser.fromJson(userMap);
 
 class MyApp extends StatelessWidget {

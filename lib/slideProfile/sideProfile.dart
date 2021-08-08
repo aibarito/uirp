@@ -13,7 +13,7 @@
 
 import 'package:uirp/slideProfile/leProfile.dart';
 import 'package:uirp/pages/balance/myBalance.dart';
-import 'package:uirp/pages/bike_manager/bikeManagerPage.dart';
+import 'package:uirp/pages/bike_stuffs/bike_manager/bikeManagerPage.dart';
 import 'package:uirp/pages/main_page/mainPage.dart';
 
 import '../dataBase/leUser.dart';

@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:uirp/slideProfile/sideProfileRemake.dart';
 
-import '../../main.dart';
-
 /**
  * MAY NEED THESE REQUIRED VARIABLES:
  * - History of the bike lending.
