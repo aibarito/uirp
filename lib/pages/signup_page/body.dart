@@ -28,6 +28,7 @@ class _Body extends State<Body>{
   void _onPressed(){
     Navigator.push(context, MaterialPageRoute(builder: (context) {
       return LoadingPage(
+          goToPage: LoginPage(),
           callback: solidity.SignUp(_name_controller.text, _surname_controller.text, _password_controller.text, _ID_controller.text, _email_controller.text));
     }));
 

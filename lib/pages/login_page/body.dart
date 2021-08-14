@@ -6,7 +6,9 @@ import 'package:uirp/components/roundedPasswordField.dart';
 import 'package:uirp/constants.dart';
 import 'package:uirp/pages/login_page/background.dart';
 import 'package:uirp/pages/signup_page/signupPage.dart';
-
+import 'package:uirp/dataBase/BlockchainIntegration.dart';
+import 'package:uirp/pages/loading/loading.dart';
+import 'package:uirp/pages/bike_manager/bikeManagerPage.dart';
 class Body extends StatefulWidget {
   const Body({Key? key}) : super(key: key);
 
@@ -16,14 +18,44 @@ class Body extends StatefulWidget {
 
 
 class _Body extends State<Body>{
-  bool _validate = false;
-  final TextEditingController _controller = TextEditingController();
+  final _validate = true;
+  final BlockchainIntegration solidity = BlockchainIntegration();
+  final TextEditingController _email_controller = TextEditingController();
+  final TextEditingController _ID_controller = TextEditingController();
+  final TextEditingController _name_controller = TextEditingController();
+  final TextEditingController _surname_controller = TextEditingController();
+  final TextEditingController _password_controller = TextEditingController();
+  void _onPressed(){
+    Navigator.push(context, MaterialPageRoute(builder: (context) {
+      return LoadingPage(
+          goToPage: BikeManagerPage(),
+          callback: solidity.LogIn(_email_controller.text, _password_controller.text));
+    }));
+
+    print(Text(_email_controller.text));
+    print(Text(_ID_controller.text));
+    print(Text(_name_controller.text));
+    print(Text(_surname_controller.text));
+    print(Text(_password_controller.text));
+  }
+
   @override
   void initState() {
     super.initState();
-    _controller.addListener(() {
-      final String text = _controller.text.toLowerCase();
-      _controller.value = _controller.value.copyWith(
+
+    _email_controller.addListener(() {
+      final String text = _email_controller.text.toLowerCase();
+      _email_controller.value = _email_controller.value.copyWith(
+        text: text,
+        selection:
+        TextSelection(baseOffset: text.length, extentOffset: text.length),
+        composing: TextRange.empty,
+      );
+    });
+
+    _password_controller.addListener(() {
+      final String text = _password_controller.text.toLowerCase();
+      _password_controller.value = _password_controller.value.copyWith(
         text: text,
         selection:
         TextSelection(baseOffset: text.length, extentOffset: text.length),
@@ -34,11 +66,13 @@ class _Body extends State<Body>{
 
   @override
   void dispose() {
-    _controller.dispose();
+    _email_controller.dispose();
     super.dispose();
   }
   @override
   Widget build(BuildContext context) {
+
+
     Size size = MediaQuery.of(context).size;
     return Background(
       child: SingleChildScrollView(
@@ -61,18 +95,18 @@ class _Body extends State<Body>{
           ),
           RoundedEmailField(
             validate: _validate,
-            controller: _controller,
+            controller: _email_controller,
             hint: "Username",
             icon: Icon(Icons.person, color: primaryColor),
             onChanged: (value) {},
           ),
           RoundedPasswordField(
-            controller: _controller,
+            controller: _password_controller,
             onChanged: (value) {},
           ),
           RoundedButton(
               text: "Login",
-              callback: () {},
+              callback: _onPressed,
               color: primaryColor,
               textColor: Colors.white),
           SizedBox(

@@ -9,6 +9,8 @@ import 'package:uirp/main.dart';
 import 'package:uirp/pages/bike_lending_history/bikeLendingHistoryPage.dart';
 import 'package:uirp/pages/bike_manager/backgroundBikeManager.dart';
 import 'package:uirp/slideProfile/sideProfile.dart';
+import 'package:uirp/dataBase/BlockchainIntegration.dart';
+
 
 class BodyBikeManager extends StatefulWidget {
   BodyBikeManager({
@@ -26,6 +28,7 @@ const DungnTextStyle = TextStyle(fontSize: 20, color: Colors.white);
 //var bicycleList = <LeBicycle>[];
 
 class _BodyBikeManagerState extends State<BodyBikeManager> {
+  final BlockchainIntegration solidity = BlockchainIntegration();
   List<Widget> displayBicycleList() {
     var res = <Widget>[];
     for(int i = 0; i < bicycleList.length; ++i) {
@@ -177,6 +180,7 @@ class _BodyBikeManagerState extends State<BodyBikeManager> {
                       "timeTraveled":rnd.nextInt(100),
                     };
                     bicycleList.add(new LeBicycle.fromJson(jsonNew));
+                    solidity.NewBicycle();
                   });
                 },
               ),

@@ -6,8 +6,11 @@ import '../../constants.dart';
 import 'package:uirp/pages/login_page/loginPage.dart';
 class LoadingPage extends StatefulWidget {
   final callback;
+  final goToPage;
+
   const LoadingPage({
     Key? key,
+    required this.goToPage,
     required this.callback,
   }) : super(key: key);
 
@@ -16,22 +19,24 @@ class LoadingPage extends StatefulWidget {
 }
 class _LoadingState extends State<LoadingPage> {
 
-  void setupWorldTime() async{
+  void setupWorldTime(goToPage) async{
       await widget.callback;
       Navigator.push(context, MaterialPageRoute(builder: (context) {
-        return LoginPage();
+        return goToPage;
       }));
   }
 
 
   @override
   void initState() {
+    var goToPage = widget.goToPage;
     super.initState();
-    setupWorldTime();
+    setupWorldTime(goToPage);
   }
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       backgroundColor: primaryColor,
       body: Center(

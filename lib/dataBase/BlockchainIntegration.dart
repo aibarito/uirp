@@ -23,18 +23,21 @@ class BlockchainIntegration {
 
   static const String rpcUrl = 'https://ropsten.infura.io/v3/f0bfb8e77bc548f5b2b5ca71b4f86953';
   static const String wsUrl = 'wss://ropsten.infura.io/ws/v3/f0bfb8e77bc548f5b2b5ca71b4f86953';
-
+  var globalPathway;
   static const String privateKey =
       '7ae4495b934af72e8ce1d5792f98c119f1d831690ee27dcfeee4c077d7f4f7b3';
 
   final EthereumAddress contractAddr =
-  EthereumAddress.fromHex('0xC2C762f92EbC7ca0DeB11d70df87aF431C12C1e3');
+  EthereumAddress.fromHex('0x8e35d2AF40Fbac43A7624910bBDC5FB477C08d13');
   final EthereumAddress receiver =
   EthereumAddress.fromHex('0x070aE2b66a63De8b4Cd352e725CA81Ed663611F0');
 
   final client = Web3Client(rpcUrl, Client(), socketConnector: () {
     return IOWebSocketChannel.connect(wsUrl).cast<String>();
   });
+
+
+
 
   Future<String> SignUp(String _name, String _surname, String _password, String _id, String _email) async {
     String password = _email + _password;
@@ -53,6 +56,7 @@ class BlockchainIntegration {
     new Directory(appDocDirectory.path+'/'+'dir').create(recursive: true).then((Directory directory) {
       print('Path of New Dir: '+ directory.path);
       pathway = directory.path;
+      globalPathway = pathway;
     });
     var file = new File(pathway+'/file.txt');
     var sink = file.openWrite();
@@ -66,29 +70,50 @@ class BlockchainIntegration {
     final genesis_credentials = await client.credentialsFromPrivateKey(privateKey);
     final genesis_ownAddress = await genesis_credentials.extractAddress();
 
-    await everything.enrollUser(_name, _surname, BigInt.from(int.parse(_id)), address, true, credentials: genesis_credentials);
+    await everything.enrollUser(_name, _surname, _email, BigInt.from(int.parse(_id)), address, true, credentials: genesis_credentials);
     print(wallet.toJson());
     await client.dispose();
     return "Ding";
   }
 
-  void LogIn(String _username, String _password) async {
-    String password = _username + _password;
-    late Wallet wallet;
 
+
+
+  var GlobalAddress;
+  void setGlobalAddress(Credentials unlocked) async {
+    GlobalAddress = await unlocked.extractAddress();
+  }
+  Future<String> LogIn(String _username, String _password) async {
+    String password = _username + _password;
+    //late Wallet wallet;
     Directory appDocDirectory = await getApplicationDocumentsDirectory();
     String pathway =  "/data/user/0/com.example.uirp/app_flutter/dir";
-    new Directory(appDocDirectory.path+'/'+'dir').create(recursive: true)
+  String content = "2";
+
+    late Credentials unlocked;
+    new Directory(pathway).create(recursive: true)
 // The created directory is returned as a Future.
         .then((Directory directory) {
       print('Path of New Dir: '+ directory.path);
       pathway = directory.path;
-    });
+      File file = File(pathway+'/file.txt'); // (1)
+      //print(file);
+      content = file.readAsStringSync();
+      Wallet wallet = Wallet.fromJson(content, password);
+      print("Wallet is: ");
+      print(wallet);
+      unlocked = wallet.privateKey;
+      setGlobalAddress(unlocked);
+    }
+    );
+    print(GlobalAddress);
+    return "Ding";
+  }
 
-    File file = File(pathway); // (1)
-    Future<String> futureContent = file.readAsString();
-
-    futureContent.then((c) => wallet = Wallet.fromJson(c, password));
+  void NewBicycle() async {
+    final genesis_credentials = await client.credentialsFromPrivateKey(privateKey);
+    final everything = await Everything(address: contractAddr, client: client);
+    await everything.enrollBicycle(GlobalAddress, credentials: genesis_credentials);
   }
 
 
