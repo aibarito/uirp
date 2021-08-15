@@ -110,7 +110,8 @@ class BodyState extends State<Body> {
             left: size.width * 0.025,
             bottom: size.height * 0.12,
             width: size.width * 0.95,
-            child: OpenCamera()),
+            child: OpenCamera()
+        ),
         Positioned(
             bottom: size.height * 0.2,
             right: size.width * 0.025,
