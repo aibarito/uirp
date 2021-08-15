@@ -29,7 +29,7 @@ class bodyDebug extends StatelessWidget {
                     title: Text("to login page"),
                     onTap: () {
                       Navigator.push(context, MaterialPageRoute(builder: (context) {
-                        return LoginPage();
+                        return LoginPage(text: "");
                       }));
                     }
                 ),

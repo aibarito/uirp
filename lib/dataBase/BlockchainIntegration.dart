@@ -13,7 +13,8 @@ import './Everything.g.dart';
 
 class BlockchainIntegration {
   // Making it a singleton
-  static final BlockchainIntegration _singleton = BlockchainIntegration._internal();
+  static final BlockchainIntegration _singleton = BlockchainIntegration
+      ._internal();
 
   factory BlockchainIntegration() {
     return _singleton;
@@ -37,77 +38,94 @@ class BlockchainIntegration {
   });
 
 
+  Future<String> SignUp(String _name, String _surname, String _password,
+      String _id, String _email) async {
+    try {
+      String password = _email + _password;
+      // Or generate a new key randomly
+      var rng = new Random.secure();
+      EthPrivateKey credentials = EthPrivateKey.createRandom(rng);
 
+      var address = await credentials.extractAddress();
+      print(address.hex);
 
-  Future<String> SignUp(String _name, String _surname, String _password, String _id, String _email) async {
-    String password = _email + _password;
-    // Or generate a new key randomly
-    var rng = new Random.secure();
-    EthPrivateKey credentials = EthPrivateKey.createRandom(rng);
+      Wallet wallet = await Wallet.createNew(credentials, password, rng);
+      // print(wallet.toJson());
+      String pathway = "/data/user/0/com.example.uirp/app_flutter/dir";
 
-    var address = await credentials.extractAddress();
-    print(address.hex);
+      Directory appDocDirectory = await getApplicationDocumentsDirectory();
+      new Directory(appDocDirectory.path + '/' + 'dir')
+          .create(recursive: true)
+          .then((Directory directory) {
+        print('Path of New Dir: ' + directory.path);
+        pathway = directory.path;
+        globalPathway = pathway;
+      });
+      var file = new File(pathway + '/file.txt');
+      var sink = file.openWrite();
+      sink.write(wallet.toJson());
 
-    Wallet wallet = await Wallet.createNew(credentials, password, rng);
-    // print(wallet.toJson());
-    String pathway = "/data/user/0/com.example.uirp/app_flutter/dir";
+      // Close the IOSink to free system resources.
+      sink.close();
 
-    Directory appDocDirectory = await getApplicationDocumentsDirectory();
-    new Directory(appDocDirectory.path+'/'+'dir').create(recursive: true).then((Directory directory) {
-      print('Path of New Dir: '+ directory.path);
-      pathway = directory.path;
-      globalPathway = pathway;
-    });
-    var file = new File(pathway+'/file.txt');
-    var sink = file.openWrite();
-    sink.write(wallet.toJson());
+      final everything = await Everything(
+          address: contractAddr, client: client);
 
-    // Close the IOSink to free system resources.
-    sink.close();
+      final genesis_credentials = await client.credentialsFromPrivateKey(
+          privateKey);
+      final genesis_ownAddress = await genesis_credentials.extractAddress();
 
-    final everything = await Everything(address: contractAddr, client: client);
-
-    final genesis_credentials = await client.credentialsFromPrivateKey(privateKey);
-    final genesis_ownAddress = await genesis_credentials.extractAddress();
-
-    await everything.enrollUser(_name, _surname, _email, BigInt.from(int.parse(_id)), address, true, credentials: genesis_credentials);
-    print(wallet.toJson());
-    await client.dispose();
-    return "Ding";
+      await everything.enrollUser(
+          _name, _surname, _email, BigInt.from(int.parse(_id)), address, true,
+          credentials: genesis_credentials);
+      print(wallet.toJson());
+      await client.dispose();
+      return "Yes";
+    } on Exception catch (_) {
+      return "No";
+    }
   }
-
-
 
 
   var GlobalAddress;
+  var success = false;
+
   void setGlobalAddress(Credentials unlocked) async {
+    success = true;
     GlobalAddress = await unlocked.extractAddress();
   }
-  Future<String> LogIn(String _username, String _password) async {
-    String password = _username + _password;
-    //late Wallet wallet;
-    Directory appDocDirectory = await getApplicationDocumentsDirectory();
-    String pathway =  "/data/user/0/com.example.uirp/app_flutter/dir";
-    String content = "2";
 
-    late Credentials unlocked;
-    new Directory(pathway).create(recursive: true)
+  Future<String> LogIn(String _username, String _password) async {
+    try {
+      String password = _username + _password;
+      //late Wallet wallet;
+      Directory appDocDirectory = await getApplicationDocumentsDirectory();
+      String pathway = "/data/user/0/com.example.uirp/app_flutter/dir";
+      String content = "2";
+
+      late Credentials unlocked;
+      new Directory(pathway).create(recursive: true)
 // The created directory is returned as a Future.
-        .then((Directory directory) {
-      print('Path of New Dir: '+ directory.path);
-      pathway = directory.path;
-      File file = File(pathway+'/file.txt'); // (1)
-      //print(file);
-      content = file.readAsStringSync();
-      Wallet wallet = Wallet.fromJson(content, password);
-      print("Wallet is: ");
-      print(wallet);
-      unlocked = wallet.privateKey;
-      setGlobalAddress(unlocked);
+          .then((Directory directory) {
+        print('Path of New Dir: ' + directory.path);
+        pathway = directory.path;
+        File file = File(pathway + '/file.txt'); // (1)
+        //print(file);
+        content = file.readAsStringSync();
+        Wallet wallet = Wallet.fromJson(content, password);
+        print("Wallet is: ");
+        print(wallet);
+        unlocked = wallet.privateKey;
+        setGlobalAddress(unlocked);
+      }
+      );
+      if (success == false){
+        throw("Oh my god!");
+      }
+      return "Yes";
+    } catch (e) {
+      return "No";
     }
-    );
-    print(GlobalAddress);
-    return "Ding";
   }
 
   void NewBicycle() async {
@@ -115,6 +133,5 @@ class BlockchainIntegration {
     final everything = await Everything(address: contractAddr, client: client);
     await everything.enrollBicycle(GlobalAddress, credentials: genesis_credentials);
   }
-
 
 }
