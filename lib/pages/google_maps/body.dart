@@ -12,7 +12,7 @@ import 'package:uirp/slideProfile/sideProfileRemake.dart';
 
 import '../../constants.dart';
 import '../../main.dart';
-import 'openCamera.dart';
+import 'scanQR.dart';
 
 class Body extends StatefulWidget {
   @override
@@ -87,7 +87,7 @@ class BodyState extends State<Body> {
 
     return Background(
         child: SideProfileRemake(
-        customChild: MaterialApp(
+      customChild: MaterialApp(
           home: Scaffold(
               body: Stack(children: [
         GoogleMap(
@@ -110,7 +110,7 @@ class BodyState extends State<Body> {
             left: size.width * 0.025,
             bottom: size.height * 0.12,
             width: size.width * 0.95,
-            child: OpenCamera()),
+            child: ScanQR()),
         Positioned(
             bottom: size.height * 0.2,
             right: size.width * 0.025,
