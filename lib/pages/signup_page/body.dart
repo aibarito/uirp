@@ -35,7 +35,7 @@ class _Body extends State<Body> {
             _password_controller.text,
             _ID_controller.text,
             _email_controller.text),
-        email: _email_controller.text,
+        goToPage: LoginPage(),
       );
     }));
 

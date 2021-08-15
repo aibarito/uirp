@@ -7,6 +7,10 @@ import 'package:uirp/constants.dart';
 import 'package:uirp/pages/login_page/background.dart';
 import 'package:uirp/pages/signup_page/signupPage.dart';
 
+import 'package:uirp/dataBase/BlockchainIntegration.dart';
+import 'package:uirp/pages/loading/loading.dart';
+import 'package:uirp/pages/bike_stuffs/bike_manager/bikeManagerPage.dart';
+
 class Body extends StatefulWidget {
   const Body({Key? key}) : super(key: key);
 
@@ -15,29 +19,38 @@ class Body extends StatefulWidget {
 }
 
 class _Body extends State<Body> {
-  final TextEditingController _controller = TextEditingController();
-  final TextEditingController _username_controller = TextEditingController();
+  final _validate = true;
+  final BlockchainIntegration solidity = BlockchainIntegration();
+  final TextEditingController _email_controller = TextEditingController();
+  final TextEditingController _ID_controller = TextEditingController();
+  final TextEditingController _name_controller = TextEditingController();
+  final TextEditingController _surname_controller = TextEditingController();
   final TextEditingController _password_controller = TextEditingController();
+  void _onPressed(){
+    Navigator.push(context, MaterialPageRoute(builder: (context) {
+      return LoadingPage(
+          goToPage: BikeManagerPage(),
+          callback: solidity.LogIn(_email_controller.text, _password_controller.text));
+    }));
+
+    print(Text(_email_controller.text));
+    print(Text(_ID_controller.text));
+    print(Text(_name_controller.text));
+    print(Text(_surname_controller.text));
+    print(Text(_password_controller.text));
+  }
   @override
   void initState() {
     super.initState();
-    _controller.addListener(() {
-      /*final String text = _controller.text.toLowerCase();
-      _controller.value = _controller.value.copyWith(
-        text: text,
-        selection:
-        TextSelection(baseOffset: text.length, extentOffset: text.length),
-        composing: TextRange.empty,
-      );*/
-    });
-    _username_controller.addListener(() {});
+    _email_controller.addListener(() {});
+    _name_controller.addListener(() {});
     _password_controller.addListener(() {});
   }
 
   @override
   void dispose() {
-    _controller.dispose();
-    _username_controller.dispose();
+    _email_controller.dispose();
+    _name_controller.addListener(() {});
     _password_controller.dispose();
     super.dispose();
   }
@@ -65,7 +78,7 @@ class _Body extends State<Body> {
             height: size.height * 0.03,
           ),
           RoundedField(
-            controller: _username_controller,
+            controller: _email_controller,
             hint: "Username",
             icon: Icon(Icons.person, color: primaryColor),
             onChanged: (value) {},
@@ -76,7 +89,7 @@ class _Body extends State<Body> {
           ),
           RoundedButton(
               text: "Login",
-              callback: () {},
+              callback: _onPressed,
               color: primaryColor,
               textColor: Colors.white),
           SizedBox(
