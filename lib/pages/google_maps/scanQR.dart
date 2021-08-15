@@ -19,15 +19,15 @@ class ScanQR extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
         child: ElevatedButton(
-      onPressed: () async {
-        String scanning = await BarcodeScanner.scan();
-        print(scanning);
-      },
-      child: Text("Scan QR code"),
-      style: ButtonStyle(
-          padding: MaterialStateProperty.all(
-              EdgeInsets.symmetric(vertical: 20, horizontal: 40)),
-          backgroundColor: MaterialStateProperty.all(primaryColor)),
-    ));
+          onPressed: () async {
+            String scanning = await BarcodeScanner.scan();
+            print(scanning);
+          },
+          child: Text("Scan QR code"),
+          style: ButtonStyle(
+              padding: MaterialStateProperty.all(
+                  EdgeInsets.symmetric(vertical: 20, horizontal: 40)),
+              backgroundColor: MaterialStateProperty.all(primaryColor)),
+        ));
   }
 }

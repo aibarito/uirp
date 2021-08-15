@@ -6,6 +6,7 @@ import 'package:uirp/components/roundedPasswordField.dart';
 import 'package:uirp/pages/login_page/loginPage.dart';
 import 'package:uirp/pages/signup_page/background.dart';
 import 'package:uirp/dataBase/BlockchainIntegration.dart';
+import 'package:uirp/pages/signup_page/signupPage.dart';
 import '../../constants.dart';
 import 'package:uirp/pages/loading/loading.dart';
 import 'package:email_auth/email_auth.dart';
@@ -29,13 +30,14 @@ class _Body extends State<Body> {
     sendOTP();
     Navigator.push(context, MaterialPageRoute(builder: (context) {
       return LoadingPage(
-        callback: solidity.SignUp(
-            _name_controller.text,
-            _surname_controller.text,
-            _password_controller.text,
-            _ID_controller.text,
-            _email_controller.text),
-        email: _email_controller.text,
+          callback: solidity.SignUp(
+              _name_controller.text,
+              _surname_controller.text,
+              _password_controller.text,
+              _ID_controller.text,
+              _email_controller.text),
+          goToPage: LoginPage(text: ""),
+          backPage: SignUpPage()
       );
     }));
 
@@ -124,66 +126,66 @@ class _Body extends State<Body> {
     return Background(
         child: SingleChildScrollView(
             child: Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: <Widget>[
-        Text(
-          "Sign up",
-          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-        ),
-        SizedBox(
-          height: size.height * 0.03,
-        ),
-        Image.asset(
-          "assets/images/Latest_UNIST_logo.png",
-          scale: 0.7,
-        ),
-        SizedBox(
-          height: size.height * 0.03,
-        ),
-        RoundedField(
-          hint: "e-mail",
-          icon: Icon(Icons.email_rounded, color: primaryColor),
-          controller: _email_controller,
-          onChanged: (value) {},
-        ),
-        RoundedField(
-          hint: "Student ID",
-          icon: Icon(Icons.grid_3x3_sharp, color: primaryColor),
-          controller: _ID_controller,
-          onChanged: (value) {},
-        ),
-        RoundedField(
-          hint: "Name",
-          icon: Icon(Icons.person, color: primaryColor),
-          controller: _name_controller,
-          onChanged: (value) {},
-        ),
-        RoundedField(
-          hint: "Surname",
-          icon: Icon(Icons.person, color: primaryColor),
-          controller: _surname_controller,
-          onChanged: (value) {},
-        ),
-        RoundedPasswordField(
-          controller: _password_controller,
-          onChanged: (value) {},
-        ),
-        RoundedButton(
-            text: "Sign up",
-            callback: _onPressed,
-            color: primaryColor,
-            textColor: Colors.white),
-        SizedBox(
-          height: size.height * 0.03,
-        ),
-        AlreadyHaveAnAccount(
-            login: false,
-            press: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) {
-                return LoginPage();
-              }));
-            }),
-      ],
-    )));
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Text(
+                  "Sign up",
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                ),
+                SizedBox(
+                  height: size.height * 0.03,
+                ),
+                Image.asset(
+                  "assets/images/Latest_UNIST_logo.png",
+                  scale: 0.7,
+                ),
+                SizedBox(
+                  height: size.height * 0.03,
+                ),
+                RoundedField(
+                  hint: "e-mail",
+                  icon: Icon(Icons.email_rounded, color: primaryColor),
+                  controller: _email_controller,
+                  onChanged: (value) {},
+                ),
+                RoundedField(
+                  hint: "Student ID",
+                  icon: Icon(Icons.grid_3x3_sharp, color: primaryColor),
+                  controller: _ID_controller,
+                  onChanged: (value) {},
+                ),
+                RoundedField(
+                  hint: "Name",
+                  icon: Icon(Icons.person, color: primaryColor),
+                  controller: _name_controller,
+                  onChanged: (value) {},
+                ),
+                RoundedField(
+                  hint: "Surname",
+                  icon: Icon(Icons.person, color: primaryColor),
+                  controller: _surname_controller,
+                  onChanged: (value) {},
+                ),
+                RoundedPasswordField(
+                  controller: _password_controller,
+                  onChanged: (value) {},
+                ),
+                RoundedButton(
+                    text: "Sign up",
+                    callback: _onPressed,
+                    color: primaryColor,
+                    textColor: Colors.white),
+                SizedBox(
+                  height: size.height * 0.03,
+                ),
+                AlreadyHaveAnAccount(
+                    login: false,
+                    press: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) {
+                        return LoginPage(text: "");
+                      }));
+                    }),
+              ],
+            )));
   }
 }

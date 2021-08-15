@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:uirp/components/roundedButton.dart';
 import 'package:uirp/pages/bike_stuffs/bike_manager/bikeManagerPage.dart';
 import 'package:uirp/pages/bike_stuffs/lend_or_borrow_page/lendOrBorrowPage.dart';
+import 'package:uirp/pages/bike_stuffs/startRiding/ridingPage.dart';
 import 'package:uirp/pages/enable_camera/enableCameraPage.dart';
 import 'package:uirp/pages/google_maps/googleMaps.dart';
 import 'package:uirp/pages/home_page/home.dart';
@@ -46,7 +47,7 @@ class Body extends StatelessWidget {
           text: "Login",
           callback: () {
             Navigator.push(context, MaterialPageRoute(builder: (context) {
-              return LoginPage();
+              return LoginPage(text: "");
             }));
           },
           color: primaryColor,
@@ -99,6 +100,16 @@ class Body extends StatelessWidget {
               return LendOrBorrowPage();
             }));
           },
+          color: Colors.red,
+          textColor: Colors.black,
+        ),
+        RoundedButton(
+            text: "check the timer thing",
+            callback: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) {
+                return StartRidingPage();
+              }));
+            },
           color: Colors.red,
           textColor: Colors.black,
         ),

@@ -5,12 +5,14 @@ import 'package:uirp/pages/email_verification/emailVerification.dart';
 import '../../constants.dart';
 
 class LoadingPage extends StatefulWidget {
-  final String email;
   final callback;
+  final goToPage;
+  final backPage;
   const LoadingPage({
     Key? key,
     required this.callback,
-    required this.email,
+    required this.goToPage,
+    required this.backPage,
   }) : super(key: key);
 
   @override
@@ -18,17 +20,27 @@ class LoadingPage extends StatefulWidget {
 }
 
 class _LoadingState extends State<LoadingPage> {
-  void setupWorldTime() async {
-    await widget.callback;
+  void setupWorldTime(goToPage, backPage) async{
+    var reply = await widget.callback;
+    if (reply=="Yes"){
+      print("Yes");
+      goToPage = goToPage;
+    }
+    if (reply=="No"){
+      print("No");
+      goToPage = backPage;
+    }
     Navigator.push(context, MaterialPageRoute(builder: (context) {
-      return EmailVerification(email: widget.email);
+      return goToPage;
     }));
   }
 
   @override
   void initState() {
+    var goToPage = widget.goToPage;
+    var backPage = widget.backPage;
     super.initState();
-    setupWorldTime();
+    setupWorldTime(goToPage, backPage);
   }
 
   @override
