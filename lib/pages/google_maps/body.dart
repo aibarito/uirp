@@ -8,8 +8,10 @@ import 'package:geolocator/geolocator.dart';
 import 'package:uirp/pages/google_maps/background.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:uirp/pages/google_maps/zoomButton.dart';
+import 'package:uirp/slideProfile/sideProfileRemake.dart';
 
 import '../../constants.dart';
+import '../../main.dart';
 import 'openCamera.dart';
 
 class Body extends StatefulWidget {
@@ -84,47 +86,49 @@ class BodyState extends State<Body> {
     Size size = MediaQuery.of(context).size;
 
     return Background(
-        child: MaterialApp(
-            home: Scaffold(
-                body: Stack(children: [
-      GoogleMap(
-        zoomGesturesEnabled: true,
-        zoomControlsEnabled: true,
-        myLocationButtonEnabled: true,
-        myLocationEnabled: true,
-        onMapCreated: _onMapCreated,
-        initialCameraPosition: CameraPosition(
-          target: _center,
-          zoom: 11.0,
+        child: SideProfileRemake(
+        customChild: MaterialApp(
+          home: Scaffold(
+              body: Stack(children: [
+        GoogleMap(
+          zoomGesturesEnabled: true,
+          zoomControlsEnabled: true,
+          myLocationButtonEnabled: true,
+          myLocationEnabled: true,
+          onMapCreated: _onMapCreated,
+          initialCameraPosition: CameraPosition(
+            target: _center,
+            zoom: 11.0,
+          ),
+          markers: markers.toSet(),
+          onTap: (cordinate) {
+            mapController.animateCamera(CameraUpdate.newLatLng(cordinate));
+            addMarker(cordinate);
+          },
         ),
-        markers: markers.toSet(),
-        onTap: (cordinate) {
-          mapController.animateCamera(CameraUpdate.newLatLng(cordinate));
-          addMarker(cordinate);
-        },
-      ),
-      Positioned(
-          left: size.width * 0.025,
-          bottom: size.height * 0.12,
-          width: size.width * 0.95,
-          child: OpenCamera()),
-      Positioned(
-          bottom: size.height * 0.2,
-          right: size.width * 0.025,
-          child: ZoomButton(
+        Positioned(
+            left: size.width * 0.025,
+            bottom: size.height * 0.12,
+            width: size.width * 0.95,
+            child: OpenCamera()),
+        Positioned(
+            bottom: size.height * 0.2,
+            right: size.width * 0.025,
+            child: ZoomButton(
+                onPressed: () {
+                  mapController.animateCamera(CameraUpdate.zoomOut());
+                },
+                text: Text("-"))),
+        Positioned(
+            bottom: size.height * 0.27,
+            right: size.width * 0.025,
+            child: ZoomButton(
               onPressed: () {
-                mapController.animateCamera(CameraUpdate.zoomOut());
+                mapController.animateCamera(CameraUpdate.zoomIn());
               },
-              text: Text("-"))),
-      Positioned(
-          bottom: size.height * 0.27,
-          right: size.width * 0.025,
-          child: ZoomButton(
-            onPressed: () {
-              mapController.animateCamera(CameraUpdate.zoomIn());
-            },
-            text: Text("+"),
-          ))
-    ]))));
+              text: Text("+"),
+            ))
+      ]))),
+    ));
   }
 }

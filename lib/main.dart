@@ -35,9 +35,14 @@ EthereumAddress.fromHex('0x070aE2b66a63De8b4Cd352e725CA81Ed663611F0');
 
 late final client;
 late final ethClient;
-
-
-
+//TODO: make _login = true after successfully signin
+bool _globalLogin = true;
+bool checkIfLogin() {
+  return _globalLogin;
+}
+void setLogin(bool val) {
+  _globalLogin = val;
+}
 
 void main() {
   // establish a connection to the ethereum rpc node. The socketConnector
@@ -53,15 +58,11 @@ void main() {
 }
 
 
-
-
 Future<String> SignUp(String _username, String _password) async {
   String password = _username + _password;
   // Or generate a new key randomly
   var rng = new Random.secure();
   EthPrivateKey credentials = EthPrivateKey.createRandom(rng);
-
-
 
   var address = await credentials.extractAddress();
   print(address.hex);
@@ -95,25 +96,32 @@ void LogIn(String _username, String _password) async {
   futureContent.then((c) => wallet = Wallet.fromJson(c, password));
 }
 
+/*
+Example of what an user should look like:
+ */
 
-
-
-Map<String, dynamic> userMap = jsonDecode("{\"name\":\"Le Putintin\", \"email\":\"putin@unist.ac.kr\"}");
+Map<String, dynamic> userMap = {"name": "Le Putintin",
+  "email":"putin@unist.ac.kr"};
 LeUser demoUser = LeUser.fromJson(userMap);
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider<Balance>(
-        create: (context) => Balance(),
-        child: MaterialApp(
-          title: 'Flutter Demo',
-          theme: ThemeData(
-            primarySwatch: Colors.blue,
-            // scaffoldBackgroundColor: Colors.blue[10],
-          ),
-          home: MainPage(),
-        ));
+    return
+      MultiProvider(
+          providers: [
+            ChangeNotifierProvider(create: (context) => Balance()),
+            ChangeNotifierProvider(create: (context) => LeUser())
+          ],
+          child: MaterialApp(
+            title: 'Flutter Demo',
+            theme: ThemeData(
+              primarySwatch: Colors.blue,
+              // scaffoldBackgroundColor: Colors.blue[10],
+            ),
+            home: MainPage(),
+          )
+      );
   }
 }

@@ -1,13 +1,23 @@
 import 'dart:convert';
 
+Duration parseTimeTraveled(Map<String, dynamic> json)
+{
+  return Duration(
+    days: json["days"],
+    hours: json["hours"],
+    minutes: json["minutes"],
+    seconds: json["seconds"],
+  );
+}
+
 class LeBicycle {
   double _amountEarned;
-  int _timeTraveled;
+  Duration _timeTraveled;
   int _id;
   String _name;
   LeBicycle.fromJson(Map<String, dynamic> json)
       : this._amountEarned = json["amountEarned"],
-        this._timeTraveled = json["timeTraveled"],
+        this._timeTraveled = parseTimeTraveled(json["timeTraveled"]),
         this._id = json["id"],
         this._name = json["name"] != null ? json["name"] : "no name";
   Map<String, dynamic> toJson() => {
@@ -27,7 +37,7 @@ class LeBicycle {
     _id = value;
   }
 
-  set timeTraveled(int value) {
+  set timeTraveled(Duration value) {
     _timeTraveled = value;
   }
 
@@ -35,7 +45,7 @@ class LeBicycle {
     _amountEarned = value;
   }
 
-  int get timeTraveled => _timeTraveled;
+  Duration get timeTraveled => _timeTraveled;
 
   int get id => _id;
 

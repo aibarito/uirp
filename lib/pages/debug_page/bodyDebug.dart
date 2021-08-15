@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:uirp/pages/bike_lending_page/bikeLendingPage.dart';
+import 'package:uirp/pages/bike_stuffs/bike_lending_page/bikeLendingPage.dart';
 import 'package:uirp/pages/debug_page/backgroundDebug.dart';
 import 'package:uirp/pages/login_page/loginPage.dart';
 import 'package:uirp/pages/signup_page/signupPage.dart';
@@ -29,7 +29,7 @@ class bodyDebug extends StatelessWidget {
                     title: Text("to login page"),
                     onTap: () {
                       Navigator.push(context, MaterialPageRoute(builder: (context) {
-                        return LoginPage();
+                        return LoginPage(text: "");
                       }));
                     }
                 ),

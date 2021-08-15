@@ -12,13 +12,13 @@ class Background extends StatelessWidget {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
+      appBar: AppBar(),
       body: Container(
         height: size.height,
         width: double.infinity,
         child: Stack(
           alignment: Alignment.center,
           children: <Widget>[
-            HomeArrow(),
             Positioned(
               width: size.width,
               child: child,
