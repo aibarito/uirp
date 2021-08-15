@@ -85,13 +85,14 @@ class BodyState extends State<Body> {
 
     return Background(
         child: SideProfileRemake(
-        customChild: MaterialApp(
+      customChild: MaterialApp(
           home: Scaffold(
               body: Stack(children: [
         GoogleMap(
           zoomGesturesEnabled: true,
           zoomControlsEnabled: true,
-          myLocationButtonEnabled: true,
+          myLocationButtonEnabled: false,
+          mapType: MapType.normal,
           myLocationEnabled: true,
           onMapCreated: _onMapCreated,
           initialCameraPosition: CameraPosition(
@@ -106,12 +107,11 @@ class BodyState extends State<Body> {
         ),
         Positioned(
             left: size.width * 0.025,
-            bottom: size.height * 0.12,
+            bottom: size.height * 0.08,
             width: size.width * 0.95,
-            child: ScanQR()
-        ),
+            child: ScanQR()),
         Positioned(
-            bottom: size.height * 0.2,
+            bottom: size.height * 0.18,
             right: size.width * 0.025,
             child: ZoomButton(
                 onPressed: () {
@@ -119,13 +119,22 @@ class BodyState extends State<Body> {
                 },
                 text: Text("-"))),
         Positioned(
-            bottom: size.height * 0.27,
+            bottom: size.height * 0.26,
             right: size.width * 0.025,
             child: ZoomButton(
               onPressed: () {
                 mapController.animateCamera(CameraUpdate.zoomIn());
               },
               text: Text("+"),
+            )),
+        Positioned(
+            bottom: size.height * 0.34,
+            right: size.width * 0.025,
+            child: ZoomButton(
+              onPressed: () {
+                locatePosition();
+              },
+              text: Icon(Icons.location_searching),
             ))
       ]))),
     ));

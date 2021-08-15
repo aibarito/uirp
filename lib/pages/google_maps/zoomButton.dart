@@ -8,17 +8,19 @@ class ZoomButton extends StatelessWidget {
   }) : super(key: key);
 
   final Function() onPressed;
-  final Text text;
+  final Widget text;
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Container(
-      width: 60,
-      height: 60,
+      width: size.height * 0.07,
+      height: size.height * 0.07,
       child: ElevatedButton(
         onPressed: onPressed,
         child: text,
         style: ElevatedButton.styleFrom(
+          padding: EdgeInsets.all(0),
           shape: CircleBorder(),
         ),
       ),

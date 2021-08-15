@@ -15,24 +15,25 @@ class AccountBallance extends StatelessWidget {
       builder: (context, balance, child) {
         return Container(
           color: lightColor,
-          padding: EdgeInsets.symmetric(horizontal: 20),
+          padding: EdgeInsets.symmetric(horizontal: size.width * 0.04),
           alignment: Alignment.centerLeft,
           width: size.width,
           height: size.height * 0.07,
           child: Row(children: <Widget>[
             Icon(
               Icons.account_balance_wallet_rounded,
-              size: 25,
+              size: size.width * 0.07,
             ),
             SizedBox(
-              width: 8,
+              width: size.width * 0.02,
             ),
             Text(
               "Account Balance",
-              style: TextStyle(fontSize: 15),
+              style: TextStyle(fontSize: size.height * 0.025),
             ),
             Spacer(),
-            Text(balance.balance.toString(), style: TextStyle(fontSize: 20)),
+            Text(balance.balance.toString(),
+                style: TextStyle(fontSize: size.height * 0.025)),
           ]),
         );
       },

@@ -22,7 +22,6 @@ class Background extends StatelessWidget {
           customChild: Stack(
             alignment: Alignment.center,
             children: <Widget>[
-              HomeArrow(),
               Positioned(
                 width: size.width,
                 child: child,

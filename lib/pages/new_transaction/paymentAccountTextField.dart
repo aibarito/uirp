@@ -18,10 +18,10 @@ class PaymentAccountTextField extends StatelessWidget {
     return Consumer<SelectPayment>(builder: (context, payment, child) {
       return Container(
           color: lightColor,
-          padding: EdgeInsets.symmetric(horizontal: 20),
+          padding: EdgeInsets.symmetric(horizontal: size.width * 0.04),
           alignment: Alignment.centerLeft,
           width: size.width,
-          height: size.height * 0.07,
+          height: size.height * 0.09,
           child: TextField(
               controller: myController,
               inputFormatters: [

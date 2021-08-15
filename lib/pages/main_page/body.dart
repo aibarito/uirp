@@ -63,16 +63,7 @@ class Body extends StatelessWidget {
           color: lightColor,
           textColor: Colors.black,
         ),
-        RoundedButton(
-          text: "Enable Camera Access",
-          callback: () {
-            Navigator.push(context, MaterialPageRoute(builder: (context) {
-              return EnableCameraPage();
-            }));
-          },
-          color: primaryColor,
-          textColor: Colors.white,
-        ),
+
         RoundedButton(
           text: "My balance",
           callback: () {
@@ -104,12 +95,12 @@ class Body extends StatelessWidget {
           textColor: Colors.black,
         ),
         RoundedButton(
-            text: "check the timer thing",
-            callback: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) {
-                return StartRidingPage();
-              }));
-            },
+          text: "check the timer thing",
+          callback: () {
+            Navigator.push(context, MaterialPageRoute(builder: (context) {
+              return StartRidingPage();
+            }));
+          },
           color: Colors.red,
           textColor: Colors.black,
         ),
@@ -143,15 +134,6 @@ class Body extends StatelessWidget {
           color: primaryColor,
           textColor: Colors.white,
         ),
-        RoundedButton(
-            text: "qrScanner",
-            callback: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) {
-                return qrScanner();
-              }));
-            },
-            color: lightColor,
-            textColor: Colors.black),
       ],
     )));
   }
