@@ -27,25 +27,38 @@ class _Body extends State<Body> {
   final TextEditingController _password_controller = TextEditingController();
 
   void _onPressed() {
-    sendOTP();
-    Navigator.push(context, MaterialPageRoute(builder: (context) {
-      return LoadingPage(
-          callback: solidity.SignUp(
-              _name_controller.text,
-              _surname_controller.text,
-              _password_controller.text,
-              _ID_controller.text,
-              _email_controller.text),
-          goToPage: LoginPage(text: ""),
-          backPage: SignUpPage()
-      );
-    }));
+    if (!checkMail()) {
+      showDialog<String>(
+          context: context,
+          builder: (BuildContext context) => AlertDialog(
+                title: const Text("Email is not unist"),
+                actions: <Widget>[
+                  TextButton(
+                    onPressed: () => Navigator.pop(context, 'OK'),
+                    child: const Text('OK'),
+                  ),
+                ],
+              ));
+    } else {
+      sendOTP();
+      Navigator.push(context, MaterialPageRoute(builder: (context) {
+        return LoadingPage(
+            callback: solidity.SignUp(
+                _name_controller.text,
+                _surname_controller.text,
+                _password_controller.text,
+                _ID_controller.text,
+                _email_controller.text),
+            goToPage: LoginPage(text: ""),
+            backPage: SignUpPage());
+      }));
 
-    print(Text(_email_controller.text));
-    print(Text(_ID_controller.text));
-    print(Text(_name_controller.text));
-    print(Text(_surname_controller.text));
-    print(Text(_password_controller.text));
+      print(Text(_email_controller.text));
+      print(Text(_ID_controller.text));
+      print(Text(_name_controller.text));
+      print(Text(_surname_controller.text));
+      print(Text(_password_controller.text));
+    }
   }
 
   @override
@@ -119,6 +132,14 @@ class _Body extends State<Body> {
     }
   }
 
+  bool checkMail() {
+    String mail = _email_controller.text;
+    if (mail.length < 13) return false;
+    String end = mail.substring(mail.length - 12);
+    if (end != "@unist.ac.kr") return false;
+    return true;
+  }
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -126,66 +147,69 @@ class _Body extends State<Body> {
     return Background(
         child: SingleChildScrollView(
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Text(
-                  "Sign up",
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-                ),
-                SizedBox(
-                  height: size.height * 0.03,
-                ),
-                Image.asset(
-                  "assets/images/Latest_UNIST_logo.png",
-                  scale: 0.7,
-                ),
-                SizedBox(
-                  height: size.height * 0.03,
-                ),
-                RoundedField(
-                  hint: "e-mail",
-                  icon: Icon(Icons.email_rounded, color: primaryColor),
-                  controller: _email_controller,
-                  onChanged: (value) {},
-                ),
-                RoundedField(
-                  hint: "Student ID",
-                  icon: Icon(Icons.grid_3x3_sharp, color: primaryColor),
-                  controller: _ID_controller,
-                  onChanged: (value) {},
-                ),
-                RoundedField(
-                  hint: "Name",
-                  icon: Icon(Icons.person, color: primaryColor),
-                  controller: _name_controller,
-                  onChanged: (value) {},
-                ),
-                RoundedField(
-                  hint: "Surname",
-                  icon: Icon(Icons.person, color: primaryColor),
-                  controller: _surname_controller,
-                  onChanged: (value) {},
-                ),
-                RoundedPasswordField(
-                  controller: _password_controller,
-                  onChanged: (value) {},
-                ),
-                RoundedButton(
-                    text: "Sign up",
-                    callback: _onPressed,
-                    color: primaryColor,
-                    textColor: Colors.white),
-                SizedBox(
-                  height: size.height * 0.03,
-                ),
-                AlreadyHaveAnAccount(
-                    login: false,
-                    press: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) {
-                        return LoginPage(text: "");
-                      }));
-                    }),
-              ],
-            )));
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: <Widget>[
+        SizedBox(
+          height: size.height * 0.1,
+        ),
+        Text(
+          "Sign up",
+          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+        ),
+        SizedBox(
+          height: size.height * 0.03,
+        ),
+        Image.asset(
+          "assets/images/Latest_UNIST_logo.png",
+          scale: 0.9,
+        ),
+        SizedBox(
+          height: size.height * 0.03,
+        ),
+        RoundedField(
+          hint: "e-mail",
+          icon: Icon(Icons.email_rounded, color: primaryColor),
+          controller: _email_controller,
+          onChanged: (value) {},
+        ),
+        RoundedField(
+          hint: "Student ID",
+          icon: Icon(Icons.grid_3x3_sharp, color: primaryColor),
+          controller: _ID_controller,
+          onChanged: (value) {},
+        ),
+        RoundedField(
+          hint: "Name",
+          icon: Icon(Icons.person, color: primaryColor),
+          controller: _name_controller,
+          onChanged: (value) {},
+        ),
+        RoundedField(
+          hint: "Surname",
+          icon: Icon(Icons.person, color: primaryColor),
+          controller: _surname_controller,
+          onChanged: (value) {},
+        ),
+        RoundedPasswordField(
+          controller: _password_controller,
+          onChanged: (value) {},
+        ),
+        RoundedButton(
+            text: "Sign up",
+            callback: _onPressed,
+            color: primaryColor,
+            textColor: Colors.white),
+        SizedBox(
+          height: size.height * 0.03,
+        ),
+        AlreadyHaveAnAccount(
+            login: false,
+            press: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) {
+                return LoginPage(text: "");
+              }));
+            }),
+      ],
+    )));
   }
 }

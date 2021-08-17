@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:qr_flutter/qr_flutter.dart';
 
-class InfoPopUpCard extends StatelessWidget {
+class QrPopUpCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -15,14 +16,7 @@ class InfoPopUpCard extends StatelessWidget {
                 border: Border.all(color: Colors.blueAccent, width: 1)),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  "Used: 100 miled",
-                  style: TextStyle(fontSize: 30, color: Colors.blue),
-                ),
-                Text("earned: 100 tokens",
-                    style: TextStyle(fontSize: 30, color: Colors.blue))
-              ],
+              children: [],
             )),
       ),
     );

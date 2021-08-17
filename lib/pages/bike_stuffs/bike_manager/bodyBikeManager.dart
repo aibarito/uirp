@@ -8,6 +8,11 @@ import 'package:uirp/dataBase/leBicycle.dart';
 import 'package:uirp/pages/bike_stuffs/bike_lending_history/bikeLendingHistoryPage.dart';
 import 'package:uirp/pages/bike_stuffs/bike_manager/backgroundBikeManager.dart';
 import 'package:uirp/dataBase/BlockchainIntegration.dart';
+import 'package:uirp/pages/bike_stuffs/bike_manager/bicycleCardButton.dart';
+import 'package:uirp/pages/bike_stuffs/bike_manager/dialogRoute.dart';
+import 'package:uirp/pages/bike_stuffs/bike_manager/QrPopUpCard.dart';
+
+import '../../../constants.dart';
 
 class BodyBikeManager extends StatefulWidget {
   BodyBikeManager({
@@ -86,7 +91,7 @@ class _BodyBikeManagerState extends State<BodyBikeManager> {
                               bicycleList[i].amountEarned.toString() +
                                   " (coin)",
                               style: TextStyle(
-                                  color: Colors.yellowAccent,
+                                color: Colors.yellowAccent,
                               ),
                             ),
                           ],
@@ -100,7 +105,7 @@ class _BodyBikeManagerState extends State<BodyBikeManager> {
             ),
             Image.asset(
               "assets/images/bicycle.png",
-              width: size.width * 0.7,
+              width: size.width * 0.6,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -119,6 +124,16 @@ class _BodyBikeManagerState extends State<BodyBikeManager> {
                         backgroundColor:
                             MaterialStateProperty.all(Colors.green))),
               ],
+            ),
+            BicycleCardButton(
+              text: Text("Get the qr",
+                  style: TextStyle(
+                      color: Colors.black, fontWeight: FontWeight.bold)),
+              onPressed: () {
+                Navigator.of(context).push(MyDialogRoute(builder: (context) {
+                  return QrPopUpCard(bicycleList[i].id.toString());
+                }));
+              },
             ),
             ButtonBar(
               children: <Widget>[
