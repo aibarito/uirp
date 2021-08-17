@@ -1,6 +1,7 @@
 import 'package:barcode_scan/barcode_scan.dart';
 import 'package:flutter/material.dart';
 import 'package:uirp/pages/bike_stuffs/startRiding/ridingPage.dart';
+import 'package:uirp/pages/bike_stuffs/stopRiding/stopRidingPage.dart';
 import 'package:uirp/pages/qr_scanner/background.dart';
 
 class Body extends StatefulWidget {
@@ -17,6 +18,7 @@ class _BodyState extends State<Body> {
 
   @override
   Widget build(BuildContext context) {
+    bool toggled = false;
     Size size = MediaQuery.of(context).size;
     return Background(
       child: SingleChildScrollView(
@@ -36,7 +38,15 @@ class _BodyState extends State<Body> {
                   qrState = scanning;
                 });
                 Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  return StartRidingPage(); // fix this
+                  if(!toggled){
+                    toggled = true;
+                    return StartRidingPage(); // fix this
+                  } else {
+                    toggled = false;
+                    return StopRidingPage(
+                      runTime: Duration(hours: 0, minutes: 0, seconds: 0),
+                    );
+                  }
                 }));
               },
               child: Text("Scan QR code"),

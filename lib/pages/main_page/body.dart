@@ -3,6 +3,7 @@ import 'package:uirp/components/roundedButton.dart';
 import 'package:uirp/pages/bike_stuffs/bike_manager/bikeManagerPage.dart';
 import 'package:uirp/pages/bike_stuffs/lend_or_borrow_page/lendOrBorrowPage.dart';
 import 'package:uirp/pages/bike_stuffs/startRiding/ridingPage.dart';
+import 'package:uirp/pages/bike_stuffs/stopRiding/stopRidingPage.dart';
 import 'package:uirp/pages/enable_camera/enableCameraPage.dart';
 import 'package:uirp/pages/google_maps/googleMaps.dart';
 import 'package:uirp/pages/home_page/home.dart';
@@ -99,6 +100,16 @@ class Body extends StatelessWidget {
           callback: () {
             Navigator.push(context, MaterialPageRoute(builder: (context) {
               return StartRidingPage();
+            }));
+          },
+          color: Colors.red,
+          textColor: Colors.black,
+        ),
+        RoundedButton(
+          text: "check the ending thing thing thing",
+          callback: () {
+            Navigator.push(context, MaterialPageRoute(builder: (context) {
+              return StopRidingPage(runTime: Duration(hours: 0, minutes: 4, seconds: 30));
             }));
           },
           color: Colors.red,
