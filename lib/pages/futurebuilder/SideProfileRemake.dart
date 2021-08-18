@@ -47,9 +47,12 @@ class _SideProfileRemakeState extends State<SideProfileRemake> {
     super.initState();
     _value = getLeUserInfo();
   }
+
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     print("The widget is being built!");
+
     return FutureBuilder<LeUser>(
       future: _value,
       builder: (

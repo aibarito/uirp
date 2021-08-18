@@ -17,13 +17,13 @@ import 'package:uirp/pages/balance/myBalance.dart';
 import 'package:uirp/pages/bike_stuffs/bike_manager/bikeManagerPage.dart';
 import 'package:uirp/pages/main_page/mainPage.dart';
 
-import '../dataBase/leUser.dart';
+import '../../dataBase/leUser.dart';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../main.dart';
-import '../dataBase/getLeUserInfo.dart';
+import '../../main.dart';
+import '../../dataBase/getLeUserInfo.dart';
 
 
 
@@ -41,32 +41,243 @@ class SideProfileRemake extends StatefulWidget {
 }
 
 class _SideProfileRemakeState extends State<SideProfileRemake> {
-
+  late Future<LeUser> _value;
   @override
   void initState(){
     super.initState();
-
+    _value = getLeUserInfo();
   }
 
   @override
   Widget build(BuildContext context) {
-
-    String str = "";
-    if(widget.customText != null)
-      str = widget.customText!;
     Size size = MediaQuery.of(context).size;
+    print("The widget is being built!");
+
     return FutureBuilder<LeUser>(
-      future: getLeUserInfo(),
-      builder: (BuildContext context, AsyncSnapshot<LeUser> leUser) {
-        if (leUser.connectionState == ConnectionState.waiting) {
-          return new Center(child: new CircularProgressIndicator(),);
-        } else if (leUser.connectionState == ConnectionState.done) {
-            return new Text('Error: ${leUser.error}');
-        } else if (leUser.hasData){
-            final data = leUser.data as LeUser;
-            return new Text(data.name);
+      future: _value,
+      builder: (
+          BuildContext context,
+          AsyncSnapshot<LeUser> snapshot,
+          ) {
+        print(snapshot.connectionState);
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return CircularProgressIndicator();
+        } else if (snapshot.connectionState == ConnectionState.done) {
+          if (snapshot.hasError) {
+            return const Text('Error');
+          } else if (snapshot.hasData) {
+            return Consumer<LeUser>(
+              builder: (context, leUser, child) {
+                if(checkIfLogin() == true)
+                {
+                  print("The goddamn promise in LeUser");
+                  leUser.name = snapshot.data!.name;
+                  leUser.email = snapshot.data!.name;
+                }
+                return Scaffold(
+                  appBar: AppBar(
+                    title: Text("Stuff", style: TextStyle(color: Colors.white),),
+                    backgroundColor: Colors.black,
+                    elevation: 0.0,
+                  ),
+                  body: Center(
+                    child: widget.customChild == null ? Text('empty child in Scaffold') : widget.customChild,
+                  ),
+                  drawer: Drawer(
+                    child: ListView(
+                      // Important: Remove any padding from the ListView.
+                      padding: EdgeInsets.zero,
+                      children: <Widget>[
+                        Container(
+                          height: size.height * 0.2,
+                          child: DrawerHeader(
+                            decoration: BoxDecoration(
+                              color: Colors.cyan,
+                            ),
+                            child: LeProfile(
+                              user: leUser,
+                            ),
+                          ),
+                        ),
+                        ListTile(
+                          title: Row(
+                            children: [
+                              Center(
+                                child: Container(
+                                    width: 35,
+                                    height: 35,
+                                    decoration: BoxDecoration(
+                                      color: Colors.black,
+                                      shape: BoxShape.circle,
+                                    ),
+                                    child: Icon(
+                                      Icons.attach_money_rounded,
+                                      size: 27,
+                                      color: Colors.white,
+                                    )),
+                              ),
+                              SizedBox(
+                                width: size.width * 0.05,
+                              ),
+                              Text(
+                                "My balance",
+                                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                              ),
+                            ],
+                          ),
+                          onTap: () {
+                            Navigator.pop(context);
+                            Navigator.push(context, MaterialPageRoute(builder: (context) {
+                              return MyBalance();
+                            }));
+                          },
+                        ),
+                        ListTile(
+                          title: Row(
+                            children: [
+                              Center(
+                                child: Container(
+                                    width: 35,
+                                    height: 35,
+                                    decoration: BoxDecoration(
+                                      color: Colors.black,
+                                      shape: BoxShape.circle,
+                                    ),
+                                    child: Icon(
+                                      Icons.directions_bike,
+                                      size: 27,
+                                      color: Colors.white,
+                                    )),
+                              ),
+                              SizedBox(
+                                width: size.width * 0.05,
+                              ),
+                              Text(
+                                "History",
+                                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                              ),
+                            ],
+                          ),
+                          onTap: () {
+                            // Update the state of the app
+                            // ...
+                            // Then close the drawer
+                            Navigator.pop(context);
+                            Navigator.push(context, MaterialPageRoute(builder: (context) {
+                              return BikeManagerPage();
+                            }));
+                          },
+                        ),
+                        ListTile(
+                          title: Row(
+                            children: [
+                              Center(
+                                child: Container(
+                                    width: 35,
+                                    height: 35,
+                                    decoration: BoxDecoration(
+                                      color: Colors.black,
+                                      shape: BoxShape.circle,
+                                    ),
+                                    child: Icon(
+                                      Icons.wallet_giftcard_rounded,
+                                      size: 27,
+                                      color: Colors.white,
+                                    )),
+                              ),
+                              SizedBox(
+                                width: size.width * 0.05,
+                              ),
+                              Text(
+                                "Reward",
+                                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                              ),
+                            ],
+                          ),
+                          onTap: () {
+                            // Update the state of the app
+                            // ...
+                            // Then close the drawer
+                            Navigator.pop(context);
+                          },
+                        ),
+                        ListTile(
+                          title: Row(
+                            children: [
+                              Center(
+                                child: Container(
+                                    width: 35,
+                                    height: 35,
+                                    decoration: BoxDecoration(
+                                      color: Colors.black,
+                                      shape: BoxShape.circle,
+                                    ),
+                                    child: Icon(
+                                      Icons.help_sharp,
+                                      size: 27,
+                                      color: Colors.white,
+                                    )),
+                              ),
+                              SizedBox(
+                                width: size.width * 0.05,
+                              ),
+                              Text(
+                                "Help",
+                                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                              ),
+                            ],
+                          ),
+                          onTap: () {
+                            Navigator.pop(context);
+                          },
+                        ),
+                        ListTile(
+                          title: Row(
+                            children: [
+                              Center(
+                                child: Container(
+                                    width: 35,
+                                    height: 35,
+                                    decoration: BoxDecoration(
+                                      color: Colors.black,
+                                      shape: BoxShape.circle,
+                                    ),
+                                    child: Icon(
+                                      Icons.home,
+                                      size: 27,
+                                      color: Colors.white,
+                                    )),
+                              ),
+                              SizedBox(
+                                width: size.width * 0.05,
+                              ),
+                              Text(
+                                "Main",
+                                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                              ),
+                            ],
+                          ),
+                          onTap: () {
+                            // Update the state of the app
+                            // ...
+                            // Then close the drawer
+                            Navigator.pop(context);
+                            Navigator.push(context, MaterialPageRoute(builder: (context) {
+                              return MainPage();
+                            }));
+                          },
+                        ),
+                      ],
+                    ),
+                  ),
+                );
+              },
+            );;
+          } else {
+            return const Text('Empty data');
+          }
         } else {
-          return new Text("nothing!");
+          return Text('State: ${snapshot.connectionState}');
         }
       },
     );
