@@ -48,7 +48,7 @@ class _Body extends State<Body> {
       print(Text(_surname_controller.text));
       print(Text(_password_controller.text));
     }
-  }
+
 
   @override
   void initState() {
