@@ -25,7 +25,10 @@ import 'package:flutter/material.dart';
 import '../main.dart';
 import '../dataBase/getLeUserInfo.dart';
 
-class SideProfileRemake extends StatelessWidget {
+
+
+class SideProfileRemake extends StatefulWidget {
+  //const SideProfileRemake({Key? key}) : super(key: key);
   Widget? customChild;
   String? customText;
   SideProfileRemake ({
@@ -33,230 +36,51 @@ class SideProfileRemake extends StatelessWidget {
     this.customChild,
     this.customText,
   }) : super(key: key);
+  @override
+  _SideProfileRemakeState createState() => _SideProfileRemakeState();
+}
+
+class _SideProfileRemakeState extends State<SideProfileRemake> {
+  Future<LeUser> SSS;
+
+  void initializeLeUser() async{
+    SSS = await getLeUserInfo();
+}
+  @override
+  void initState(){
+    super.initState();
+    SSS = new LeUser();
+  }
+
+  void refreshLeUser() {
+    setState(() {
+      SSS = getLeUserInfo();
+    })
+  }
 
   @override
   Widget build(BuildContext context) {
+
     String str = "";
-    if(this.customText != null)
-      str = this.customText!;
+    if(widget.customText != null)
+      str = widget.customText!;
     Size size = MediaQuery.of(context).size;
-    Consumer<LeUser>(
-      builder: (context, leUser, child) {
-        print("At least before log in");
-        if(checkIfLogin() == true)
-        {
-          late LeUser x;
-          getLeUserInfo().then((LeUser y){
-            x = y;
-          });
-          print("The goddamn promise in LeUser");
-          print(x.name);
-          leUser.name = x.name;
-          leUser.email = x.email;
+    return FutureBuilder<LeUser>(
+      future: SSS,
+      builder: (BuildContext context, AsyncSnapshot<LeUser> leUser) {
+        if (leUser.connectionState == ConnectionState.waiting) {
+          return new Center(
+            child: new CircularProgressIndicator(),
+          );
+        } else if (leUser.hasError) {
+          return new Text('Error: ${leUser.error}');
+        } else {
+          final items = leUser.data ?? <LeUser>[]; // handle the case that data is null
+
+
         }
-        return Container();
-      }
-    );
-    return Consumer<LeUser>(
-      builder: (context, leUser, child) {
-        return Scaffold(
-          appBar: AppBar(
-            title: Text(str, style: TextStyle(color: Colors.white),),
-            backgroundColor: Colors.black,
-            elevation: 0.0,
-          ),
-          body: Center(
-            child: this.customChild == null ? Text('empty child in Scaffold') : customChild,
-          ),
-          drawer: Drawer(
-            child: ListView(
-              // Important: Remove any padding from the ListView.
-              padding: EdgeInsets.zero,
-              children: <Widget>[
-                Container(
-                  height: size.height * 0.2,
-                  child: DrawerHeader(
-                    decoration: BoxDecoration(
-                      color: Colors.cyan,
-                    ),
-                    child: LeProfile(
-                      user: leUser,
-                    ),
-                  ),
-                ),
-                ListTile(
-                  title: Row(
-                    children: [
-                      Center(
-                        child: Container(
-                            width: 35,
-                            height: 35,
-                            decoration: BoxDecoration(
-                              color: Colors.black,
-                              shape: BoxShape.circle,
-                            ),
-                            child: Icon(
-                              Icons.attach_money_rounded,
-                              size: 27,
-                              color: Colors.white,
-                            )),
-                      ),
-                      SizedBox(
-                        width: size.width * 0.05,
-                      ),
-                      Text(
-                        "My balance",
-                        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-                      ),
-                    ],
-                  ),
-                  onTap: () {
-                    Navigator.pop(context);
-                    Navigator.push(context, MaterialPageRoute(builder: (context) {
-                      return MyBalance();
-                    }));
-                  },
-                ),
-                ListTile(
-                  title: Row(
-                    children: [
-                      Center(
-                        child: Container(
-                            width: 35,
-                            height: 35,
-                            decoration: BoxDecoration(
-                              color: Colors.black,
-                              shape: BoxShape.circle,
-                            ),
-                            child: Icon(
-                              Icons.directions_bike,
-                              size: 27,
-                              color: Colors.white,
-                            )),
-                      ),
-                      SizedBox(
-                        width: size.width * 0.05,
-                      ),
-                      Text(
-                        "History",
-                        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-                      ),
-                    ],
-                  ),
-                  onTap: () {
-                    // Update the state of the app
-                    // ...
-                    // Then close the drawer
-                    Navigator.pop(context);
-                    Navigator.push(context, MaterialPageRoute(builder: (context) {
-                      return BikeManagerPage();
-                    }));
-                  },
-                ),
-                ListTile(
-                  title: Row(
-                    children: [
-                      Center(
-                        child: Container(
-                            width: 35,
-                            height: 35,
-                            decoration: BoxDecoration(
-                              color: Colors.black,
-                              shape: BoxShape.circle,
-                            ),
-                            child: Icon(
-                              Icons.wallet_giftcard_rounded,
-                              size: 27,
-                              color: Colors.white,
-                            )),
-                      ),
-                      SizedBox(
-                        width: size.width * 0.05,
-                      ),
-                      Text(
-                        "Reward",
-                        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-                      ),
-                    ],
-                  ),
-                  onTap: () {
-                    // Update the state of the app
-                    // ...
-                    // Then close the drawer
-                    Navigator.pop(context);
-                  },
-                ),
-                ListTile(
-                  title: Row(
-                    children: [
-                      Center(
-                        child: Container(
-                            width: 35,
-                            height: 35,
-                            decoration: BoxDecoration(
-                              color: Colors.black,
-                              shape: BoxShape.circle,
-                            ),
-                            child: Icon(
-                              Icons.help_sharp,
-                              size: 27,
-                              color: Colors.white,
-                            )),
-                      ),
-                      SizedBox(
-                        width: size.width * 0.05,
-                      ),
-                      Text(
-                        "Help",
-                        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-                      ),
-                    ],
-                  ),
-                  onTap: () {
-                    Navigator.pop(context);
-                  },
-                ),
-                ListTile(
-                  title: Row(
-                    children: [
-                      Center(
-                        child: Container(
-                            width: 35,
-                            height: 35,
-                            decoration: BoxDecoration(
-                              color: Colors.black,
-                              shape: BoxShape.circle,
-                            ),
-                            child: Icon(
-                              Icons.home,
-                              size: 27,
-                              color: Colors.white,
-                            )),
-                      ),
-                      SizedBox(
-                        width: size.width * 0.05,
-                      ),
-                      Text(
-                        "Main",
-                        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-                      ),
-                    ],
-                  ),
-                  onTap: () {
-                    // Update the state of the app
-                    // ...
-                    // Then close the drawer
-                    Navigator.pop(context);
-                    Navigator.push(context, MaterialPageRoute(builder: (context) {
-                      return MainPage();
-                    }));
-                  },
-                ),
-              ],
-            ),
-          ),
-        );
       },
     );
   }
 }
+

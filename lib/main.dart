@@ -17,7 +17,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:uirp/dataBase/leUser.dart';
-
+import 'package:uirp/dataBase/BlockchainIntegration.dart';
 import 'package:uirp/pages/main_page/mainPage.dart';
 import 'package:uirp/providers/balance.dart';
 
@@ -75,7 +75,8 @@ class MyApp extends StatelessWidget {
       MultiProvider(
           providers: [
             ChangeNotifierProvider(create: (context) => Balance()),
-            ChangeNotifierProvider(create: (context) => LeUser())
+            ChangeNotifierProvider(create: (context) => LeUser()),
+            ChangeNotifierProvider(create: (context) => BlockchainIntegration()),
           ],
           child: MaterialApp(
             title: 'Flutter Demo',
