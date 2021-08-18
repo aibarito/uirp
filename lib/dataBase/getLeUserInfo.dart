@@ -36,6 +36,6 @@ Future<LeUser> getLeUserInfo() async{
     "email": myList["users"][0]["email"]
   };
   LeUser x = LeUser.fromJson(userMap);
-  print(LeUser);
+  print("Name is"+x.name);
   return x;
 }

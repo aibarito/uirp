@@ -41,21 +41,11 @@ class SideProfileRemake extends StatefulWidget {
 }
 
 class _SideProfileRemakeState extends State<SideProfileRemake> {
-  Future<LeUser> SSS;
 
-  void initializeLeUser() async{
-    SSS = await getLeUserInfo();
-}
   @override
   void initState(){
     super.initState();
-    SSS = new LeUser();
-  }
 
-  void refreshLeUser() {
-    setState(() {
-      SSS = getLeUserInfo();
-    })
   }
 
   @override
@@ -66,21 +56,19 @@ class _SideProfileRemakeState extends State<SideProfileRemake> {
       str = widget.customText!;
     Size size = MediaQuery.of(context).size;
     return FutureBuilder<LeUser>(
-      future: SSS,
+      future: getLeUserInfo(),
       builder: (BuildContext context, AsyncSnapshot<LeUser> leUser) {
         if (leUser.connectionState == ConnectionState.waiting) {
-          return new Center(
-            child: new CircularProgressIndicator(),
-          );
-        } else if (leUser.hasError) {
-          return new Text('Error: ${leUser.error}');
+          return new Center(child: new CircularProgressIndicator(),);
+        } else if (leUser.connectionState == ConnectionState.done) {
+            return new Text('Error: ${leUser.error}');
+        } else if (leUser.hasData){
+            final data = leUser.data as LeUser;
+            return new Text(data.name);
         } else {
-          final items = leUser.data ?? <LeUser>[]; // handle the case that data is null
-
-
+          return new Text("nothing!");
         }
       },
     );
   }
 }
-
