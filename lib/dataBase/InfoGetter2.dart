@@ -33,19 +33,10 @@ Future<GraphQLClient> getClient() async {
 }
 
 class InfoGetter2 {
-  Future<List> get2() async {
+  Future<List> get2(String query) async {
     final client = await getClient();
 
-    const String readRepositories = r'''
-  {
-    users(first: 5) {
-      id
-      name
-      timeRegistration
-      surname
-    }
-  }
-  ''';
+    String readRepositories = query;
     const int nRepositories = 5;
 
     final QueryOptions options = QueryOptions(
@@ -63,9 +54,13 @@ class InfoGetter2 {
     }
 
     final List<dynamic> repositories =
-    result.data!['users'] as List<dynamic>;
+    result.data! as List<dynamic>;
     print(repositories);
     return repositories;
   // ...
   }
+
+  // List<dynamic> myBike = InfoGetter2.readRepositories();
+ // id = myBike['bikes']['id']
+ // amountEarned = myBike['bikes']['']
 }
