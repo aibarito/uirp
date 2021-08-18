@@ -52,49 +52,12 @@ void main() {
     return IOWebSocketChannel.connect(wsUrl).cast<String>();
   });
 
-  SignUp('ollie041114@gmail.com', '12345678910');
   //LogIn('ollie041114@gmail.com', '12345678910');
   runApp(MyApp());
 }
 
 
-Future<String> SignUp(String _username, String _password) async {
-  String password = _username + _password;
-  // Or generate a new key randomly
-  var rng = new Random.secure();
-  EthPrivateKey credentials = EthPrivateKey.createRandom(rng);
 
-  var address = await credentials.extractAddress();
-  print(address.hex);
-
-  Wallet wallet = await Wallet.createNew(credentials, password, rng);
-  // print(wallet.toJson());
- // var file = File('file.txt');
- // var sink = file.openWrite();
- // sink.write(wallet.toJson());
-
-  // Close the IOSink to free system resources.
-  //sink.close();
-
-  final everything = await Everything(address: contractAddr, client: client);
-
-  final genesis_credentials = await client.credentialsFromPrivateKey(privateKey);
-  final genesis_ownAddress = await genesis_credentials.extractAddress();
-
-  await everything.enrollUser("Olzhas", "Yessenbayev", BigInt.from(20182027), address, true, credentials: genesis_credentials);
-  print(wallet.toJson());
-  await client.dispose();
-  return "Ding";
-}
-
-void LogIn(String _username, String _password) async {
-  String password = _username + _password;
-  late Wallet wallet;
-  File file = new File('./file.txt'); // (1)
-  Future<String> futureContent = file.readAsString();
-
-  futureContent.then((c) => wallet = Wallet.fromJson(c, password));
-}
 
 /*
 Example of what an user should look like:

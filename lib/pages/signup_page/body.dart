@@ -6,6 +6,7 @@ import 'package:uirp/components/roundedPasswordField.dart';
 import 'package:uirp/pages/login_page/loginPage.dart';
 import 'package:uirp/pages/signup_page/background.dart';
 import 'package:uirp/dataBase/BlockchainIntegration.dart';
+import 'package:uirp/pages/signup_page/signupPage.dart';
 import '../../constants.dart';
 import 'package:uirp/pages/loading/loading.dart';
 import 'package:email_auth/email_auth.dart';
@@ -35,7 +36,8 @@ class _Body extends State<Body> {
             _password_controller.text,
             _ID_controller.text,
             _email_controller.text),
-        goToPage: LoginPage(),
+        goToPage: LoginPage(text: ""),
+        backPage: SignUpPage()
       );
     }));
 
@@ -180,7 +182,7 @@ class _Body extends State<Body> {
             login: false,
             press: () {
               Navigator.push(context, MaterialPageRoute(builder: (context) {
-                return LoginPage();
+                return LoginPage(text: "");
               }));
             }),
       ],

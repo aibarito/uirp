@@ -46,7 +46,7 @@ class Body extends StatelessWidget {
           text: "Login",
           callback: () {
             Navigator.push(context, MaterialPageRoute(builder: (context) {
-              return LoginPage();
+              return LoginPage(text: "");
             }));
           },
           color: primaryColor,
