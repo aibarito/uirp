@@ -42,12 +42,15 @@ class SideProfileRemake extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
     Consumer<LeUser>(
       builder: (context, leUser, child) {
+        print("At least before log in");
         if(checkIfLogin() == true)
         {
           late LeUser x;
           getLeUserInfo().then((LeUser y){
             x = y;
           });
+          print("The goddamn promise in LeUser");
+          print(x.name);
           leUser.name = x.name;
           leUser.email = x.email;
         }
