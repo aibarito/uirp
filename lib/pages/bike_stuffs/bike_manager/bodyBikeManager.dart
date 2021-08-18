@@ -5,9 +5,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:uirp/dataBase/AllBicycleInfo.dart';
 import 'package:uirp/dataBase/leBicycle.dart';
+import './bicycleCardButton.dart';
 import 'package:uirp/pages/bike_stuffs/bike_lending_history/bikeLendingHistoryPage.dart';
 import 'package:uirp/pages/bike_stuffs/bike_manager/backgroundBikeManager.dart';
 import 'package:uirp/dataBase/BlockchainIntegration.dart';
+
+import 'QrPopUpCard.dart';
+import 'dialogRoute.dart';
 
 class BodyBikeManager extends StatefulWidget {
   BodyBikeManager({

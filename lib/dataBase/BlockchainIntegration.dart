@@ -105,6 +105,7 @@ class BlockchainIntegration {
 
   var GlobalAddress;
   var success = false;
+  var GlobalEmail;
 
 
   void setGlobalAddress(Credentials unlocked) async {
@@ -112,7 +113,12 @@ class BlockchainIntegration {
     GlobalAddress = await unlocked.extractAddress();
   }
 
+  String getEmail() {
+    return GlobalEmail;
+  }
+
   Future<String> LogIn(String _username, String _password) async {
+    GlobalEmail = _username;
     try {
       String password = _username + _password;
       //late Wallet wallet;
