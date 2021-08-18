@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:uirp/components/dialogPopup.dart';
 import 'package:uirp/pages/bike_stuffs/stopRiding/stopRidingPage.dart';
 import 'package:uirp/pages/google_maps/scanQR.dart';
+import 'package:uirp/pages/main_page/mainPage.dart';
 import 'backgroundStartRiding.dart';
 
 var debugDecor = BoxDecoration(
@@ -17,6 +18,7 @@ TextStyle DungnTextStyle(BoxConstraints constraints) {
 }
 
 class BodyStartRiding extends StatefulWidget {
+
   const BodyStartRiding({Key? key}) : super(key: key);
 
   @override
@@ -53,6 +55,10 @@ class _BodyStartRidingState extends State<BodyStartRiding> {
             }
         ),
     );
+  }
+  @override
+  void initState() {
+
   }
   @override
   void dispose() {

@@ -44,9 +44,13 @@ class StopRidingPage extends StatelessWidget {
                   SizedBox(height: constraints.maxWidth * 0.1,),
                   ElevatedButton(
                     onPressed: () {
-                      Navigator.of(context).push(MaterialPageRoute(builder: (context){
-                        return MainPage();
-                      }));
+                      Navigator.pushAndRemoveUntil(
+                        context,
+                        MaterialPageRoute(
+                          builder: (BuildContext context) => MainPage(),
+                        ),
+                            (route) => false,
+                      );
                     },
                     child: Text(
                       "OK",

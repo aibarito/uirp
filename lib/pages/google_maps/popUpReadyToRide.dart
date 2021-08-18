@@ -76,7 +76,6 @@ class PopUpReadyToRide extends StatelessWidget {
                 ),
                 OutlinedButton(
                   onPressed: (){
-                    Navigator.of(context).pop(context);
                     Navigator.of(context).push(MaterialPageRoute(builder: (context){
                       return StartRidingPage();
                     }));

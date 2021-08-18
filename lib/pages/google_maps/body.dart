@@ -85,9 +85,7 @@ class BodyState extends State<Body> {
 
     return Background(
         child: SideProfileRemake(
-      customChild: MaterialApp(
-          home: Scaffold(
-              body: Stack(children: [
+      customChild: Stack(children: [
         GoogleMap(
           zoomGesturesEnabled: true,
           zoomControlsEnabled: true,
@@ -136,7 +134,7 @@ class BodyState extends State<Body> {
               },
               text: Icon(Icons.location_searching),
             ))
-      ]))),
+      ]),
     ));
   }
 }

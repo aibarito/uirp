@@ -22,130 +22,133 @@ class Body extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
 
     return Background(
-        child: SingleChildScrollView(
-            child: Column(
+        child: WillPopScope(
+          onWillPop: () async => false,
+          child: SingleChildScrollView(
+              child: Column(
       // crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
-        // Image.asset(
-        //   "assets/images/Latest_UNIST_logo.png",
-        //   scale: 0.9,
-        // ),
-        SizedBox(
-          height: size.height * 0.03,
-        ),
-        RoundedButton(
-          text: "Home",
-          callback: () {
-            Navigator.push(context, MaterialPageRoute(builder: (context) {
-              return HomePage();
-            }));
-          },
-          color: lightColor,
-          textColor: Colors.black,
-        ),
-        RoundedButton(
-          text: "Login",
-          callback: () {
-            Navigator.push(context, MaterialPageRoute(builder: (context) {
-              return LoginPage(text: "");
-            }));
-          },
-          color: primaryColor,
-          textColor: Colors.white,
-        ),
-        RoundedButton(
-          text: "Sign up",
-          callback: () {
-            Navigator.push(context, MaterialPageRoute(builder: (context) {
-              return SignUpPage();
-            }));
-          },
-          color: lightColor,
-          textColor: Colors.black,
-        ),
+          // Image.asset(
+          //   "assets/images/Latest_UNIST_logo.png",
+          //   scale: 0.9,
+          // ),
+          SizedBox(
+            height: size.height * 0.03,
+          ),
+          RoundedButton(
+            text: "Home",
+            callback: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) {
+                return HomePage();
+              }));
+            },
+            color: lightColor,
+            textColor: Colors.black,
+          ),
+          RoundedButton(
+            text: "Login",
+            callback: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) {
+                return LoginPage(text: "");
+              }));
+            },
+            color: primaryColor,
+            textColor: Colors.white,
+          ),
+          RoundedButton(
+            text: "Sign up",
+            callback: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) {
+                return SignUpPage();
+              }));
+            },
+            color: lightColor,
+            textColor: Colors.black,
+          ),
 
-        RoundedButton(
-          text: "My balance",
-          callback: () {
-            Navigator.push(context, MaterialPageRoute(builder: (context) {
-              return MyBalance();
-            }));
-          },
-          color: lightColor,
-          textColor: Colors.black,
-        ),
-        RoundedButton(
-          text: "Go to Bike Manager Page",
-          callback: () {
-            Navigator.push(context, MaterialPageRoute(builder: (context) {
-              return BikeManagerPage();
-            }));
-          },
-          color: Colors.red,
-          textColor: Colors.black,
-        ),
-        RoundedButton(
-          text: "Go to lending or borrowing selection",
-          callback: () {
-            Navigator.push(context, MaterialPageRoute(builder: (context) {
-              return LendOrBorrowPage();
-            }));
-          },
-          color: Colors.red,
-          textColor: Colors.black,
-        ),
-        RoundedButton(
-          text: "check the timer thing",
-          callback: () {
-            Navigator.push(context, MaterialPageRoute(builder: (context) {
-              return StartRidingPage();
-            }));
-          },
-          color: Colors.red,
-          textColor: Colors.black,
-        ),
-        RoundedButton(
-          text: "check the ending thing thing thing",
-          callback: () {
-            Navigator.push(context, MaterialPageRoute(builder: (context) {
-              return StopRidingPage(runTime: Duration(hours: 0, minutes: 4, seconds: 30));
-            }));
-          },
-          color: Colors.red,
-          textColor: Colors.black,
-        ),
-        RoundedButton(
-          text: "Google Maps",
-          callback: () {
-            Navigator.push(context, MaterialPageRoute(builder: (context) {
-              return GoogleMaps();
-            }));
-          },
-          color: primaryColor,
-          textColor: Colors.white,
-        ),
-        RoundedButton(
-          text: "Bicycle",
-          callback: () {
-            Navigator.push(context, MaterialPageRoute(builder: (context) {
-              return MyBicycle();
-            }));
-          },
-          color: lightColor,
-          textColor: Colors.black,
-        ),
-        RoundedButton(
-          text: "qrGenerator",
-          callback: () {
-            Navigator.push(context, MaterialPageRoute(builder: (context) {
-              return qrGenerator();
-            }));
-          },
-          color: primaryColor,
-          textColor: Colors.white,
-        ),
+          RoundedButton(
+            text: "My balance",
+            callback: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) {
+                return MyBalance();
+              }));
+            },
+            color: lightColor,
+            textColor: Colors.black,
+          ),
+          RoundedButton(
+            text: "Go to Bike Manager Page",
+            callback: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) {
+                return BikeManagerPage();
+              }));
+            },
+            color: Colors.red,
+            textColor: Colors.black,
+          ),
+          RoundedButton(
+            text: "Go to lending or borrowing selection",
+            callback: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) {
+                return LendOrBorrowPage();
+              }));
+            },
+            color: Colors.red,
+            textColor: Colors.black,
+          ),
+          RoundedButton(
+            text: "check the timer thing",
+            callback: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) {
+                return StartRidingPage();
+              }));
+            },
+            color: Colors.red,
+            textColor: Colors.black,
+          ),
+          RoundedButton(
+            text: "check the ending thing thing thing",
+            callback: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) {
+                return StopRidingPage(runTime: Duration(hours: 0, minutes: 4, seconds: 30));
+              }));
+            },
+            color: Colors.red,
+            textColor: Colors.black,
+          ),
+          RoundedButton(
+            text: "Google Maps",
+            callback: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) {
+                return GoogleMaps();
+              }));
+            },
+            color: primaryColor,
+            textColor: Colors.white,
+          ),
+          RoundedButton(
+            text: "Bicycle",
+            callback: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) {
+                return MyBicycle();
+              }));
+            },
+            color: lightColor,
+            textColor: Colors.black,
+          ),
+          RoundedButton(
+            text: "qrGenerator",
+            callback: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) {
+                return qrGenerator();
+              }));
+            },
+            color: primaryColor,
+            textColor: Colors.white,
+          ),
       ],
-    )));
+    )),
+        ));
   }
 }

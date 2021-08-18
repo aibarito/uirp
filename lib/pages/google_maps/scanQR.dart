@@ -42,11 +42,10 @@ class ScanQR extends StatelessWidget {
         child: ElevatedButton(
       onPressed: () async {
         String scanning = await BarcodeScanner.scan();
+        print(scanning);
         Navigator.push(context, DialogPopup(builder: (context){
           return PopUpReadyToRide();
         }));
-
-
         /*showDialog<String>(
             context: context,
             builder: (BuildContext context) => AlertDialog(
