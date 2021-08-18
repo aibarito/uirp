@@ -58,7 +58,8 @@ class _Body extends State<Body> {
                 children: <Widget>[
               Text(
                 "Transaction",
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
+                style: TextStyle(
+                    fontWeight: FontWeight.bold, fontSize: size.height * 0.04),
               ),
               SizedBox(
                 height: size.height * 0.03,
@@ -71,7 +72,7 @@ class _Body extends State<Body> {
               ),
               MoneyInputField(myController: controllerAmount),
               SizedBox(
-                height: size.height * 0.2,
+                height: size.height * 0.18,
               ),
               SendMoneyButton(
                   amount: amount,

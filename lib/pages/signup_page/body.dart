@@ -27,6 +27,7 @@ class _Body extends State<Body> {
   final TextEditingController _password_controller = TextEditingController();
 
   void _onPressed() {
+
     sendOTP();
     Navigator.push(context, MaterialPageRoute(builder: (context) {
       return LoadingPage(
@@ -41,11 +42,12 @@ class _Body extends State<Body> {
       );
     }));
 
-    print(Text(_email_controller.text));
-    print(Text(_ID_controller.text));
-    print(Text(_name_controller.text));
-    print(Text(_surname_controller.text));
-    print(Text(_password_controller.text));
+      print(Text(_email_controller.text));
+      print(Text(_ID_controller.text));
+      print(Text(_name_controller.text));
+      print(Text(_surname_controller.text));
+      print(Text(_password_controller.text));
+    }
   }
 
   @override
@@ -119,6 +121,14 @@ class _Body extends State<Body> {
     }
   }
 
+  bool checkMail() {
+    String mail = _email_controller.text;
+    if (mail.length < 13) return false;
+    String end = mail.substring(mail.length - 12);
+    if (end != "@unist.ac.kr") return false;
+    return true;
+  }
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -128,6 +138,9 @@ class _Body extends State<Body> {
             child: Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
+        SizedBox(
+          height: size.height * 0.1,
+        ),
         Text(
           "Sign up",
           style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
@@ -137,7 +150,7 @@ class _Body extends State<Body> {
         ),
         Image.asset(
           "assets/images/Latest_UNIST_logo.png",
-          scale: 0.7,
+          scale: 0.9,
         ),
         SizedBox(
           height: size.height * 0.03,

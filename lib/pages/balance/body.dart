@@ -16,7 +16,8 @@ class Body extends StatelessWidget {
               children: <Widget>[
             Text(
               "Olzhas' Wallet",
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
+              style: TextStyle(
+                  fontWeight: FontWeight.bold, fontSize: size.height * 0.04),
             ),
             SizedBox(
               height: size.height * 0.03,

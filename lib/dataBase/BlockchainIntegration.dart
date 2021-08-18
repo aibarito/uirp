@@ -44,7 +44,6 @@ class BlockchainIntegration {
   });
 
 
-
   Future<String> SignUp(String _name, String _surname, String _password,
       String _id, String _email) async {
     try {
@@ -107,6 +106,7 @@ class BlockchainIntegration {
   var GlobalAddress;
   var success = false;
 
+
   void setGlobalAddress(Credentials unlocked) async {
     success = true;
     GlobalAddress = await unlocked.extractAddress();
@@ -158,6 +158,5 @@ class BlockchainIntegration {
     await everything.enrollBicycle(GlobalAddress, BigInt.from(DateTime.now().microsecondsSinceEpoch),
         credentials: genesis_credentials);
   }
-
 
 }

@@ -15,14 +15,14 @@ class BalanceCard extends StatelessWidget {
       builder: (context, balance, child) {
         return Card(
           color: lightColor,
-          margin: EdgeInsets.symmetric(horizontal: 15.0),
+          margin: EdgeInsets.symmetric(horizontal: size.width * 0.04),
           elevation: 2.0,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(30),
           ),
           child: Container(
               height: size.height * 0.16,
-              padding: EdgeInsets.all(20.0),
+              padding: EdgeInsets.all(size.height * 0.03),
               // color: Color(0xFF015FFF),
               child: Column(
                 children: <Widget>[
@@ -30,19 +30,20 @@ class BalanceCard extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
                       Text("Balance",
-                          style:
-                              TextStyle(color: Colors.black, fontSize: 20.0)),
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontSize: size.height * 0.03)),
                     ],
                   ),
                   Center(
                     child: Padding(
                       padding: EdgeInsets.all(5.0),
                       child: Text(r"$" + balance.balance.toString(),
-                          style:
-                              TextStyle(color: Colors.black, fontSize: 24.0)),
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontSize: size.height * 0.04)),
                     ),
                   ),
-                  SizedBox(height: 10.0),
                 ],
               )),
         );

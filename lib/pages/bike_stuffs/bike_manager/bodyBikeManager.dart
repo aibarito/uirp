@@ -86,7 +86,7 @@ class _BodyBikeManagerState extends State<BodyBikeManager> {
                               bicycleList[i].amountEarned.toString() +
                                   " (coin)",
                               style: TextStyle(
-                                  color: Colors.yellowAccent,
+                                color: Colors.yellowAccent,
                               ),
                             ),
                           ],
@@ -100,7 +100,7 @@ class _BodyBikeManagerState extends State<BodyBikeManager> {
             ),
             Image.asset(
               "assets/images/bicycle.png",
-              width: size.width * 0.7,
+              width: size.width * 0.6,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -119,6 +119,16 @@ class _BodyBikeManagerState extends State<BodyBikeManager> {
                         backgroundColor:
                             MaterialStateProperty.all(Colors.green))),
               ],
+            ),
+            BicycleCardButton(
+              text: Text("Get the qr",
+                  style: TextStyle(
+                      color: Colors.black, fontWeight: FontWeight.bold)),
+              onPressed: () {
+                Navigator.of(context).push(MyDialogRoute(builder: (context) {
+                  return QrPopUpCard(bicycleList[i].id.toString());
+                }));
+              },
             ),
             ButtonBar(
               children: <Widget>[

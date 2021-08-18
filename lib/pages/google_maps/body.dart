@@ -10,9 +10,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:uirp/pages/google_maps/zoomButton.dart';
 import 'package:uirp/slideProfile/sideProfileRemake.dart';
 
-import '../../constants.dart';
-import '../../main.dart';
-import 'openCamera.dart';
+import 'scanQR.dart';
 
 class Body extends StatefulWidget {
   @override
@@ -87,13 +85,12 @@ class BodyState extends State<Body> {
 
     return Background(
         child: SideProfileRemake(
-        customChild: MaterialApp(
-          home: Scaffold(
-              body: Stack(children: [
+      customChild: Stack(children: [
         GoogleMap(
           zoomGesturesEnabled: true,
           zoomControlsEnabled: true,
-          myLocationButtonEnabled: true,
+          myLocationButtonEnabled: false,
+          mapType: MapType.normal,
           myLocationEnabled: true,
           onMapCreated: _onMapCreated,
           initialCameraPosition: CameraPosition(
@@ -108,11 +105,11 @@ class BodyState extends State<Body> {
         ),
         Positioned(
             left: size.width * 0.025,
-            bottom: size.height * 0.12,
+            bottom: size.height * 0.08,
             width: size.width * 0.95,
-            child: OpenCamera()),
+            child: ScanQR()),
         Positioned(
-            bottom: size.height * 0.2,
+            bottom: size.height * 0.18,
             right: size.width * 0.025,
             child: ZoomButton(
                 onPressed: () {
@@ -120,15 +117,24 @@ class BodyState extends State<Body> {
                 },
                 text: Text("-"))),
         Positioned(
-            bottom: size.height * 0.27,
+            bottom: size.height * 0.26,
             right: size.width * 0.025,
             child: ZoomButton(
               onPressed: () {
                 mapController.animateCamera(CameraUpdate.zoomIn());
               },
               text: Text("+"),
+            )),
+        Positioned(
+            bottom: size.height * 0.34,
+            right: size.width * 0.025,
+            child: ZoomButton(
+              onPressed: () {
+                locatePosition();
+              },
+              text: Icon(Icons.location_searching),
             ))
-      ]))),
+      ]),
     ));
   }
 }

@@ -18,7 +18,6 @@ class Background extends StatelessWidget {
         child: Stack(
           alignment: Alignment.center,
           children: <Widget>[
-            HomeArrow(),
             child,
           ],
         ),

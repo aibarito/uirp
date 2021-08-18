@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:uirp/constants.dart';
 import 'package:uirp/pages/my_bicycle/blockPopUpCard.dart';
 import 'package:uirp/pages/my_bicycle/dialogRoute.dart';
-import 'package:uirp/pages/my_bicycle/infoPopUpCard.dart';
+import 'package:uirp/pages/my_bicycle/QrPopUpCard.dart';
 
 import 'bicycleCardButton.dart';
 
@@ -37,7 +37,7 @@ class BicycleCard extends StatelessWidget {
                   style: TextStyle(color: Colors.white)),
               onPressed: () {
                 Navigator.of(context).push(MyDialogRoute(builder: (context) {
-                  return InfoPopUpCard();
+                  return QrPopUpCard();
                 }));
               },
               backgroundColor: lightColor,
