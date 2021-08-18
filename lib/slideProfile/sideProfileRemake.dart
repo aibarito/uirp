@@ -44,7 +44,10 @@ class SideProfileRemake extends StatelessWidget {
       builder: (context, leUser, child) {
         if(checkIfLogin() == true)
         {
-          LeUser x = getLeUserInfo();
+          late LeUser x;
+          getLeUserInfo().then((LeUser y){
+            x = y;
+          });
           leUser.name = x.name;
           leUser.email = x.email;
         }

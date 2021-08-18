@@ -6,12 +6,20 @@ import "dart:io";
 import'dart:math';//Random
 import'dart:typed_data';//Uint8List
 import'package:web3dart/crypto.dart';
+import 'dart:convert';
 
 import 'package:web3dart/web3dart.dart' as _i1;
-import './Everything.g.dart';
-
+import '../Everything.g.dart';
+import 'package:flutter/services.dart' show rootBundle;
 
 class BlockchainIntegration {
+  Future<String> getContractAddress() async{
+    var info = json.decode(await rootBundle.loadString('./assets/Everything.json'));
+    return info['networks']['3']['address'].toString();
+  }
+
+
+
   // Making it a singleton
   static final BlockchainIntegration _singleton = BlockchainIntegration
       ._internal();
@@ -28,8 +36,6 @@ class BlockchainIntegration {
   static const String privateKey =
       '7ae4495b934af72e8ce1d5792f98c119f1d831690ee27dcfeee4c077d7f4f7b3';
 
-  final EthereumAddress contractAddr =
-  EthereumAddress.fromHex('0x8e35d2AF40Fbac43A7624910bBDC5FB477C08d13');
   final EthereumAddress receiver =
   EthereumAddress.fromHex('0x070aE2b66a63De8b4Cd352e725CA81Ed663611F0');
 
@@ -41,6 +47,14 @@ class BlockchainIntegration {
   Future<String> SignUp(String _name, String _surname, String _password,
       String _id, String _email) async {
     try {
+      print("Starting the goddamn promise");
+      final EthereumAddress contractAddr = await EthereumAddress.fromHex(await getContractAddress());
+
+      print("Contract address is "+contractAddr.toString());
+
+
+
+
       String password = _email + _password;
       // Or generate a new key randomly
       var rng = new Random.secure();
@@ -74,9 +88,11 @@ class BlockchainIntegration {
       final genesis_credentials = await client.credentialsFromPrivateKey(
           privateKey);
       final genesis_ownAddress = await genesis_credentials.extractAddress();
-
+      var now = DateTime.now().microsecondsSinceEpoch;
+      BigInt hey = BigInt.from(now);
       await everything.enrollUser(
-          _name, _surname, _email, BigInt.from(int.parse(_id)), address, true,
+          _name, hey,
+          _surname, _email, BigInt.from(int.parse(_id)), address, true,
           credentials: genesis_credentials);
       print(wallet.toJson());
       await client.dispose();
@@ -89,6 +105,7 @@ class BlockchainIntegration {
 
   var GlobalAddress;
   var success = false;
+
 
   void setGlobalAddress(Credentials unlocked) async {
     success = true;
@@ -129,9 +146,17 @@ class BlockchainIntegration {
   }
 
   void NewBicycle() async {
+    print("Starting the goddamn promise");
+    final EthereumAddress contractAddr = await EthereumAddress.fromHex(await getContractAddress());
+
+    print("Contract address is "+contractAddr.toString());
+
+
+
     final genesis_credentials = await client.credentialsFromPrivateKey(privateKey);
     final everything = await Everything(address: contractAddr, client: client);
-    await everything.enrollBicycle(GlobalAddress, credentials: genesis_credentials);
+    await everything.enrollBicycle(GlobalAddress, BigInt.from(DateTime.now().microsecondsSinceEpoch),
+        credentials: genesis_credentials);
   }
 
 }

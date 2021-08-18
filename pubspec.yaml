@@ -21,6 +21,8 @@ environment:
   sdk: '>=2.12.0 <3.0.0'
 
 dependencies:
+  graphql: ^4.0.0-beta
+  gql: ^0.13.0
   flutter:
     sdk: flutter
 
@@ -70,11 +72,13 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
+    - assets/Everything.json
     - assets/images/bicycle_marker.png
     - assets/
     - assets/images/
     - assets/images/
     - assets/images/putin.png
+
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
   # For details regarding adding assets from package dependencies, see

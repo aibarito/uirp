@@ -27,31 +27,20 @@ class _Body extends State<Body> {
   final TextEditingController _password_controller = TextEditingController();
 
   void _onPressed() {
-    if (!checkMail()) {
-      showDialog<String>(
-          context: context,
-          builder: (BuildContext context) => AlertDialog(
-                title: const Text("Email is not unist"),
-                actions: <Widget>[
-                  TextButton(
-                    onPressed: () => Navigator.pop(context, 'OK'),
-                    child: const Text('OK'),
-                  ),
-                ],
-              ));
-    } else {
-      sendOTP();
-      Navigator.push(context, MaterialPageRoute(builder: (context) {
-        return LoadingPage(
-            callback: solidity.SignUp(
-                _name_controller.text,
-                _surname_controller.text,
-                _password_controller.text,
-                _ID_controller.text,
-                _email_controller.text),
-            goToPage: LoginPage(text: ""),
-            backPage: SignUpPage());
-      }));
+
+    sendOTP();
+    Navigator.push(context, MaterialPageRoute(builder: (context) {
+      return LoadingPage(
+        callback: solidity.SignUp(
+            _name_controller.text,
+            _surname_controller.text,
+            _password_controller.text,
+            _ID_controller.text,
+            _email_controller.text),
+        goToPage: LoginPage(text: ""),
+        backPage: SignUpPage()
+      );
+    }));
 
       print(Text(_email_controller.text));
       print(Text(_ID_controller.text));

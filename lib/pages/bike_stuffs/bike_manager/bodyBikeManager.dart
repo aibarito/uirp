@@ -8,11 +8,6 @@ import 'package:uirp/dataBase/leBicycle.dart';
 import 'package:uirp/pages/bike_stuffs/bike_lending_history/bikeLendingHistoryPage.dart';
 import 'package:uirp/pages/bike_stuffs/bike_manager/backgroundBikeManager.dart';
 import 'package:uirp/dataBase/BlockchainIntegration.dart';
-import 'package:uirp/pages/bike_stuffs/bike_manager/bicycleCardButton.dart';
-import 'package:uirp/pages/bike_stuffs/bike_manager/dialogRoute.dart';
-import 'package:uirp/pages/bike_stuffs/bike_manager/QrPopUpCard.dart';
-
-import '../../../constants.dart';
 
 class BodyBikeManager extends StatefulWidget {
   BodyBikeManager({
