@@ -15,7 +15,7 @@ class SelectPaymentRow extends StatelessWidget {
 
     return Consumer<SelectPayment>(builder: (context, payment, child) {
       return Container(
-        margin: EdgeInsets.symmetric(vertical: 12),
+        margin: EdgeInsets.symmetric(vertical: size.height * 0.019),
         height: size.height * 0.03,
         width: size.width * 0.9,
         child: Row(
@@ -30,7 +30,7 @@ class SelectPaymentRow extends StatelessWidget {
                 alignment: Alignment.center,
                 decoration: BoxDecoration(
                     color: payment.studentId ? Colors.blue : Colors.transparent,
-                    border: Border.all(color: Colors.blueAccent, width: 0.6)),
+                    border: Border.all(color: Colors.blueAccent, width: 0)),
                 child: Text(
                   "Student id",
                 ),
@@ -46,7 +46,7 @@ class SelectPaymentRow extends StatelessWidget {
                 decoration: BoxDecoration(
                     color:
                         !payment.studentId ? Colors.blue : Colors.transparent,
-                    border: Border.all(color: Colors.blueAccent, width: 0.6)),
+                    border: Border.all(color: Colors.blueAccent, width: 0)),
                 alignment: Alignment.center,
                 child: Text(
                   "Credit card",

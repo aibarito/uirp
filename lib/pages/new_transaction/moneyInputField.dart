@@ -18,7 +18,7 @@ class MoneyInputField extends StatelessWidget {
 
     return Container(
         color: lightColor,
-        padding: EdgeInsets.symmetric(horizontal: 20),
+        padding: EdgeInsets.symmetric(horizontal: size.width * 0.04),
         alignment: Alignment.center,
         width: size.width,
         // height: size.height * 0.08,
@@ -36,9 +36,9 @@ class MoneyInputField extends StatelessWidget {
           ),
           appearanceSettings: AppearanceSettings(
               labelText: "Amount",
-              inputStyle: TextStyle(fontSize: 21),
-              formattedStyle: TextStyle(fontSize: 18),
-              padding: EdgeInsets.symmetric(vertical: 7)),
+              inputStyle: TextStyle(fontSize: size.height * 0.025),
+              formattedStyle: TextStyle(fontSize: size.height * 0.025),
+              padding: EdgeInsets.symmetric(vertical: size.height * 0.01)),
         )));
   }
 }

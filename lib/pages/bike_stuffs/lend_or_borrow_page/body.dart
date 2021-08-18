@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:uirp/pages/bike_stuffs/bike_manager/bikeManagerPage.dart';
 import 'package:uirp/pages/bike_stuffs/lend_or_borrow_page/background.dart';
+import 'package:uirp/pages/google_maps/googleMaps.dart';
 
 var debugDecor = BoxDecoration(
   border: Border.all(color: Colors.green),
@@ -25,7 +26,11 @@ class Body extends StatelessWidget {
                       minWidth: double.infinity,
                       height: constraints.maxHeight/2.03,
                       child: MaterialButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.push(context, MaterialPageRoute(builder: (context) {
+                            return GoogleMaps();
+                          }));
+                        },
                         child: Text('Lend a bike rn',
                           style: TextStyle(
                             color: Colors.white,

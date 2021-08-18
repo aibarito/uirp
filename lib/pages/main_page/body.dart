@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:uirp/components/roundedButton.dart';
 import 'package:uirp/pages/bike_stuffs/bike_manager/bikeManagerPage.dart';
 import 'package:uirp/pages/bike_stuffs/lend_or_borrow_page/lendOrBorrowPage.dart';
+import 'package:uirp/pages/bike_stuffs/startRiding/ridingPage.dart';
+import 'package:uirp/pages/bike_stuffs/stopRiding/stopRidingPage.dart';
 import 'package:uirp/pages/enable_camera/enableCameraPage.dart';
 import 'package:uirp/pages/google_maps/googleMaps.dart';
 import 'package:uirp/pages/home_page/home.dart';
@@ -20,8 +22,10 @@ class Body extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
 
     return Background(
-        child: SingleChildScrollView(
-            child: Column(
+        child: WillPopScope(
+          onWillPop: () async => false,
+          child: SingleChildScrollView(
+              child: Column(
       // crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
@@ -134,14 +138,118 @@ class Body extends StatelessWidget {
         ),
         RoundedButton(
             text: "qrScanner",
+
             callback: () {
               Navigator.push(context, MaterialPageRoute(builder: (context) {
-                return qrScanner();
+                return HomePage();
               }));
             },
             color: lightColor,
-            textColor: Colors.black),
+            textColor: Colors.black,
+          ),
+          RoundedButton(
+            text: "Login",
+            callback: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) {
+                return LoginPage(text: "");
+              }));
+            },
+            color: primaryColor,
+            textColor: Colors.white,
+          ),
+          RoundedButton(
+            text: "Sign up",
+            callback: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) {
+                return SignUpPage();
+              }));
+            },
+            color: lightColor,
+            textColor: Colors.black,
+          ),
+
+          RoundedButton(
+            text: "My balance",
+            callback: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) {
+                return MyBalance();
+              }));
+            },
+            color: lightColor,
+            textColor: Colors.black,
+          ),
+          RoundedButton(
+            text: "Go to Bike Manager Page",
+            callback: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) {
+                return BikeManagerPage();
+              }));
+            },
+            color: Colors.red,
+            textColor: Colors.black,
+          ),
+          RoundedButton(
+            text: "Go to lending or borrowing selection",
+            callback: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) {
+                return LendOrBorrowPage();
+              }));
+            },
+            color: Colors.red,
+            textColor: Colors.black,
+          ),
+          RoundedButton(
+            text: "check the timer thing",
+            callback: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) {
+                return StartRidingPage();
+              }));
+            },
+            color: Colors.red,
+            textColor: Colors.black,
+          ),
+          RoundedButton(
+            text: "check the ending thing thing thing",
+            callback: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) {
+                return StopRidingPage(runTime: Duration(hours: 0, minutes: 4, seconds: 30));
+              }));
+            },
+            color: Colors.red,
+            textColor: Colors.black,
+          ),
+          RoundedButton(
+            text: "Google Maps",
+            callback: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) {
+                return GoogleMaps();
+              }));
+            },
+            color: primaryColor,
+            textColor: Colors.white,
+          ),
+          RoundedButton(
+            text: "Bicycle",
+            callback: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) {
+                return MyBicycle();
+              }));
+            },
+            color: lightColor,
+            textColor: Colors.black,
+          ),
+          RoundedButton(
+            text: "qrGenerator",
+            callback: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) {
+                return qrGenerator();
+              }));
+            },
+            color: primaryColor,
+            textColor: Colors.white,
+          ),
       ],
-    )));
+    )),
+        ));
   }
 }

@@ -20,14 +20,15 @@ class BorderedLink extends StatelessWidget {
       child: InkWell(
         onTap: () {},
         child: Container(
-          padding: EdgeInsets.symmetric(vertical: 20),
+          padding: EdgeInsets.symmetric(vertical: size.height * 0.03),
           child: Row(
             children: <Widget>[
               GestureDetector(
                 onTap: press,
                 child: Text(
                   text,
-                  style: TextStyle(color: primaryColor, fontSize: 25),
+                  style: TextStyle(
+                      color: primaryColor, fontSize: size.height * 0.03),
                 ),
               ),
             ],

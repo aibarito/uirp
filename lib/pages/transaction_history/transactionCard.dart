@@ -19,47 +19,46 @@ class TransactionCard extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
     return Container(
         width: size.width,
-        height: size.height * 0.12,
+        height: size.height * 0.15,
         color: lightColor,
         child: Stack(
           children: <Widget>[
             Positioned(
               child: Icon(
                 Icons.person_rounded,
-                size: 40,
+                size: size.height * 0.05,
               ),
-              height: size.height * 0.12,
+              height: size.height * 0.15,
               width: size.width * 0.2,
             ),
             Positioned(
-                left: 80,
-                top: 23,
+                left: size.width * 0.2,
+                top: size.height * 0.025,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     Text(
                       paymentType,
-                      style: TextStyle(fontSize: 25),
+                      style: TextStyle(fontSize: size.height * 0.03),
                     ),
                     SizedBox(
-                      height: 10,
+                      height: size.height * 0.02,
                     ),
                     Row(children: [
                       Icon(Icons.arrow_forward),
-                      SizedBox(
-                        width: 10,
-                      ),
-                      Text(account, style: TextStyle(fontSize: 20))
+                      SizedBox(width: size.width * 0.02),
+                      Text(account,
+                          style: TextStyle(fontSize: size.height * 0.03))
                     ]),
                   ],
                 )),
             Positioned(
               child: Text(
                 amount + " W",
-                style: TextStyle(fontSize: 20),
+                style: TextStyle(fontSize: size.height * 0.03),
               ),
-              top: 15,
-              right: 15,
+              top: size.height * 0.025,
+              right: size.width * 0.02,
             )
           ],
         ));

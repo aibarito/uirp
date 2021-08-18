@@ -56,18 +56,7 @@ void updateBicycleInfoViaHistory()
     {
       DateTime startDate = DateTime.parse(hist[j]["startDate"]);
       DateTime endDate = DateTime.parse(hist[j]["endDate"]);
-      DateTime elapse = endDate.subtract(Duration(
-        days: startDate.day,
-        hours: startDate.hour,
-        minutes: startDate.minute,
-        seconds: startDate.minute,
-      ));
-      totalTime += Duration(
-          days: elapse.day,
-          hours: elapse.hour,
-          minutes: elapse.minute,
-          seconds: elapse.second,
-      );
+      totalTime = totalTime + endDate.difference(startDate);
       double coin = hist[j]["coin"];
       totalCoin += coin;
     }

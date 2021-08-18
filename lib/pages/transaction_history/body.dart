@@ -14,7 +14,8 @@ class Body extends StatelessWidget {
                 children: <Widget>[
           Text(
             "Transaction History",
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
+            style: TextStyle(
+                fontWeight: FontWeight.bold, fontSize: size.height * 0.04),
           ),
           SizedBox(
             height: size.height * 0.03,
