@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:web3dart/web3dart.dart';
@@ -12,10 +13,11 @@ import 'package:web3dart/web3dart.dart' as _i1;
 import '../Everything.g.dart';
 import 'package:flutter/services.dart' show rootBundle;
 
-class BlockchainIntegration {
+class BlockchainIntegration with ChangeNotifier{
   Future<String> getContractAddress() async{
     var info = json.decode(await rootBundle.loadString('./assets/Everything.json'));
     return info['networks']['3']['address'].toString();
+    notifyListeners();
   }
 
 
@@ -96,8 +98,10 @@ class BlockchainIntegration {
           credentials: genesis_credentials);
       print(wallet.toJson());
       await client.dispose();
+      notifyListeners();
       return "Yes";
     } on Exception catch (_) {
+      notifyListeners();
       return "No";
     }
   }
@@ -111,9 +115,11 @@ class BlockchainIntegration {
   void setGlobalAddress(Credentials unlocked) async {
     success = true;
     GlobalAddress = await unlocked.extractAddress();
+    notifyListeners();
   }
 
   String getEmail() {
+    notifyListeners();
     return GlobalEmail;
   }
 
@@ -145,8 +151,11 @@ class BlockchainIntegration {
       if (success == false){
         throw("Oh my god!");
       }
+      notifyListeners();
       return "Yes";
+
     } catch (e) {
+      notifyListeners();
       return "No";
     }
   }
@@ -163,6 +172,6 @@ class BlockchainIntegration {
     final everything = await Everything(address: contractAddr, client: client);
     await everything.enrollBicycle(GlobalAddress, BigInt.from(DateTime.now().microsecondsSinceEpoch),
         credentials: genesis_credentials);
+    notifyListeners();
   }
-
 }

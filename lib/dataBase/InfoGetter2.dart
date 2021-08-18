@@ -24,16 +24,15 @@ Future<GraphQLClient> getClient() async {
   );
 
   /// initialize Hive and wrap the default box in a HiveStore
-  final store = await HiveStore.open(path: 'my/cache/path');
   return GraphQLClient(
     /// pass the store to the cache for persistence
-    cache: GraphQLCache(store: store),
+    cache: GraphQLCache(),
     link: _httpLink,
   );
 }
 
 class InfoGetter2 {
-  Future<List> get2(String query) async {
+  Future<Map<String, dynamic>> get2(String query) async {
     final client = await getClient();
 
     String readRepositories = query;
@@ -53,8 +52,7 @@ class InfoGetter2 {
       print(result);
     }
 
-    final List<dynamic> repositories =
-    result.data! as List<dynamic>;
+    final Map<String, dynamic> repositories =  result.data! as Map<String, dynamic>;
     print(repositories);
     return repositories;
   // ...
