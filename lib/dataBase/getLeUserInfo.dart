@@ -1,21 +1,18 @@
 
+import 'package:provider/provider.dart';
 import 'package:uirp/dataBase/leUser.dart';
 import './InfoGetter2.dart';
 import './BlockchainIntegration.dart';
 
 
-Future<LeUser> getLeUserInfo() async{
-  /*
- * must get user info right after sign-in.
- */
-  /* Demo only: */
-  InfoGetter2 info = new InfoGetter2();
+Future<LeUser> getLeUserInfo(context) async{
 
+  InfoGetter2 info = new InfoGetter2();
   String email = BlockchainIntegration().getEmail();
-  print(email);
-  String query = r'''
+  print("Email is" + email);
+  String query = '''
 {
-  users(where:{email:"ollie041114@gmail.com\t"}) {
+  users(where:{email: "$email"}) {
     id
     __typename
     name
@@ -32,7 +29,6 @@ Future<LeUser> getLeUserInfo() async{
 
   Map<String, dynamic> userMap =
   {
-    "name": myList["users"][0]["name"],
     "email": myList["users"][0]["email"]
   };
   LeUser x = LeUser.fromJson(userMap);

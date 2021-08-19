@@ -57,8 +57,4 @@ class InfoGetter2 {
     return repositories;
   // ...
   }
-
-  // List<dynamic> myBike = InfoGetter2.readRepositories();
- // id = myBike['bikes']['id']
- // amountEarned = myBike['bikes']['']
 }

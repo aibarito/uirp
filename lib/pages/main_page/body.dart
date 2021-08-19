@@ -15,7 +15,6 @@ import 'package:uirp/pages/qr_scanner/qrScanner.dart';
 import 'package:uirp/pages/signup_page/signupPage.dart';
 import 'package:uirp/pages/balance/myBalance.dart';
 
-import 'package:uirp/pages/futurebuilder/SideProfileRemake.dart';
 
 import '../../constants.dart';
 class Body extends StatelessWidget {
@@ -67,16 +66,6 @@ class Body extends StatelessWidget {
           },
           color: lightColor,
           textColor: Colors.black,
-        ),
-        RoundedButton(
-          text: "Side Profile",
-          callback: () {
-            Navigator.push(context, MaterialPageRoute(builder: (context) {
-              return SideProfileRemake();
-            }));
-          },
-          color: primaryColor,
-          textColor: Colors.white,
         ),
         RoundedButton(
           text: "Enable Camera Access",

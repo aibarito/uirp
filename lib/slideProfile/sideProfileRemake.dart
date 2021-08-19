@@ -45,7 +45,9 @@ class _SideProfileRemakeState extends State<SideProfileRemake> {
   @override
   void initState(){
     super.initState();
-    _value = getLeUserInfo();
+    if(mounted){
+    _value = getLeUserInfo(context);
+    }
   }
 
   @override

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:uirp/components/alreadyHaveAnAccount.dart';
 import 'package:uirp/components/roundedButton.dart';
 import 'package:uirp/components/roundedField.dart';
@@ -24,20 +25,19 @@ class LoginPage extends StatefulWidget {
 
 class _Body extends State<LoginPage> {
   final _validate = true;
-  final BlockchainIntegration solidity = BlockchainIntegration();
   final TextEditingController _email_controller = TextEditingController();
   final TextEditingController _ID_controller = TextEditingController();
   final TextEditingController _name_controller = TextEditingController();
   final TextEditingController _surname_controller = TextEditingController();
   final TextEditingController _password_controller = TextEditingController();
   void _onPressed(){
-    var reply = solidity.LogIn(_email_controller.text, _password_controller.text);
+    var reply = Provider.of<BlockchainIntegration>(context, listen: false).LogIn(_email_controller.text, _password_controller.text);
 
     Navigator.push(context, MaterialPageRoute(builder: (context) {
       return LoadingPage(
           goToPage: BikeManagerPage(),
           backPage: LoginPage(text: "Incorrect username or password"),
-          callback: solidity.LogIn(_email_controller.text, _password_controller.text));
+          callback: Provider.of<BlockchainIntegration>(context, listen: false).LogIn(_email_controller.text, _password_controller.text));
     }));
 
     print(Text(_email_controller.text));

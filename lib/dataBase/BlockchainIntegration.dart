@@ -17,7 +17,6 @@ class BlockchainIntegration with ChangeNotifier{
   Future<String> getContractAddress() async{
     var info = json.decode(await rootBundle.loadString('./assets/Everything.json'));
     return info['networks']['3']['address'].toString();
-    notifyListeners();
   }
 
 
@@ -45,9 +44,26 @@ class BlockchainIntegration with ChangeNotifier{
     return IOWebSocketChannel.connect(wsUrl).cast<String>();
   });
 
+  List<String> removeTabs(List<String> args){
+    List<String> toReturn = [];
+    args.forEach((element) {
+      element = element.replaceAll("/t", "");
+      toReturn.add(element);
+    });
+    return toReturn;
+  }
+
 
   Future<String> SignUp(String _name, String _surname, String _password,
       String _id, String _email) async {
+    // removes all tab characters from strings
+    var MyArray = removeTabs([_name, _surname, _password, _id, _email]);
+    _name = MyArray[0];
+    _surname = MyArray[1];
+    _password = MyArray[2];
+    _id = MyArray[3];
+    _email = MyArray[4];
+
     try {
       print("Starting the goddamn promise");
       final EthereumAddress contractAddr = await EthereumAddress.fromHex(await getContractAddress());
@@ -111,9 +127,23 @@ class BlockchainIntegration with ChangeNotifier{
   var success = false;
   var GlobalEmail;
 
+  Future<Credentials> createCredentials(String pathway, String password) async {
+    Directory directory = await Directory(pathway).create(recursive: true);
+// The created directory is returned as a Future.
+      print('Path of New Dir: ' + directory.path);
+      pathway = directory.path;
+      File file = File(pathway + '/file.txt'); // (1)
+      //print(file);
+      String content = file.readAsStringSync();
+      Wallet wallet = Wallet.fromJson(content, password);
+      print("Wallet is: ");
+      print(wallet);
+      Credentials unlocked = wallet.privateKey;
+      setGlobalAddress(unlocked);
+      return unlocked;
+  }
 
   void setGlobalAddress(Credentials unlocked) async {
-    success = true;
     GlobalAddress = await unlocked.extractAddress();
     notifyListeners();
   }
@@ -124,37 +154,24 @@ class BlockchainIntegration with ChangeNotifier{
   }
 
   Future<String> LogIn(String _username, String _password) async {
+    // removes all tab characters from strings
+    var MyArray = removeTabs([_username, _password]);
+    _username = MyArray[0];
+    _password = MyArray[1];
+
     GlobalEmail = _username;
     try {
       String password = _username + _password;
-      //late Wallet wallet;
       Directory appDocDirectory = await getApplicationDocumentsDirectory();
       String pathway = "/data/user/0/com.example.uirp/app_flutter/dir";
       String content = "2";
 
-      late Credentials unlocked;
-      new Directory(pathway).create(recursive: true)
-// The created directory is returned as a Future.
-          .then((Directory directory) {
-        print('Path of New Dir: ' + directory.path);
-        pathway = directory.path;
-        File file = File(pathway + '/file.txt'); // (1)
-        //print(file);
-        content = file.readAsStringSync();
-        Wallet wallet = Wallet.fromJson(content, password);
-        print("Wallet is: ");
-        print(wallet);
-        unlocked = wallet.privateKey;
-        setGlobalAddress(unlocked);
-      }
-      );
-      if (success == false){
-        throw("Oh my god!");
-      }
+      Credentials unlocked = await createCredentials(pathway, password);
+      print(unlocked);
       notifyListeners();
       return "Yes";
-
     } catch (e) {
+      print(e);
       notifyListeners();
       return "No";
     }
