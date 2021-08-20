@@ -7,12 +7,12 @@ class LeUser with ChangeNotifier{
   String email = "";
   String name = "";
   String surname = "";
-  String timeRegistration = "";
+  DateTime timeRegistration = DateTime.now();
   int balance = 0;
   List<LeBicycle> bicycles = [];
   // BorrowerTransactions transactions = [];
 
-  void populateLeUserWithData() async{
+  void populateLeUserWithData(String email) async{
     InfoGetter2 info = new InfoGetter2();
     print("Email is" + email);
     String query = '''
@@ -26,43 +26,18 @@ class LeUser with ChangeNotifier{
         }
       }
         ''';
-
     Map<String, dynamic> myList = await info.get2(query);
 
     this.email = myList["users"][0]["email"];
     this.name =  myList["users"][0]["name"];
     this.surname = myList["users"][0]["surname"];
-    this.timeRegistration = myList["users"][0]["timeRegistration"];
-    LeUser x = LeUser.fromJson(userMap);
-    print("Name is"+x.name);
-    return x;
-  }
-  LeUser() {
-
-    this._name = "";
-    this._email = "";
+    var timestamp = myList["users"][0]["timeRegistration"];
+    this.timeRegistration = DateTime.fromMillisecondsSinceEpoch(timestamp * 1000);
+    this.balance = myList["users"][0]["balance"];
+    print("Name is"+this.name);
   }
 
-  String get name => _name;
-
-  String get email => _email;
-
-  LeUser.fromJson(Map<String, dynamic> json)
-      : this._name = json['name'],
-        this._email = json['email'];
-
-  Map<String, dynamic> toJson() => {
-    'name': this._name,
-    'email': this._email,
-  };
-
-  set name(String value) {
-    _name = value;
-    notifyListeners();
-  }
-
-  set email(String value) {
-    _email = value;
-    notifyListeners();
+  LeUser(String email) {
+    populateLeUserWithData(email);
   }
 }

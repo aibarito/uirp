@@ -10,7 +10,7 @@ import 'bodyBikeLendingHistory.dart';
  */
 
 class BikeLendingHistoryPage extends StatelessWidget {
-  final int id;
+  final String id;
   BikeLendingHistoryPage({
       Key? key,
         required this.id,

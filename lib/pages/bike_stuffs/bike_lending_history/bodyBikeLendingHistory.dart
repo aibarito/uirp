@@ -14,7 +14,7 @@ const DungnTextStyle = TextStyle(fontSize: 20, color: Colors.white);
 String findName(int id) {
   String res = "";
   for (int i = 0; i < bicycleList.length; ++i) {
-    if (bicycleList[i].id == id) {
+    if (bicycleList[i].bicycle_id == id) {
       return bicycleList[i].name;
     }
   }
@@ -22,7 +22,7 @@ String findName(int id) {
 }
 
 class BodyBikeLendingHistory extends StatelessWidget {
-  final int id;
+  final String id;
   BodyBikeLendingHistory({
     Key? key,
     required this.id,

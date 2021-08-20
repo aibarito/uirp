@@ -1,57 +1,49 @@
-import 'dart:convert';
+import 'package:flutter/cupertino.dart';
+import 'package:uirp/dataBase/InfoGetter2.dart';
+import 'package:uirp/dataBase/leUser.dart';
 
-Duration parseTimeTraveled(Map<String, dynamic> json)
-{
-  return Duration(
-    days: json["days"],
-    hours: json["hours"],
-    minutes: json["minutes"],
-    seconds: json["seconds"],
-  );
+class LeBicycle{
+  String bicycle_id = "";
+  var owner;
+  DateTime timeRegistration = DateTime.now();
+  int amountEarned = 0;
+  List<LeBicycle> bicycles = [];
+
+  // BorrowerTransactions transactions = [];
+
+  void populateLeBicycleWithData(String bicycle_id) async{
+    InfoGetter2 info = new InfoGetter2();
+    print("Email is" + email);
+    String query = '''
+      {
+        users(where:{email: "$email"}) {
+          id
+          __typename
+          name
+          email 
+          timeRegistration
+        }
+      }
+        ''';
+    Duration parseTimeTraveled(Map<String, dynamic> json)
+    {
+      return Duration(
+        days: json["days"],
+        hours: json["hours"],
+        minutes: json["minutes"],
+        seconds: json["seconds"],
+      );
+    }
+    Map<String, dynamic> myList = await info.get2(query);
+
+    this.email = myList["users"][0]["email"];
+    this.name =  myList["users"][0]["name"];
+    this.surname = myList["users"][0]["surname"];
+    var timestamp = myList["users"][0]["timeRegistration"];
+    this.timeRegistration = DateTime.fromMillisecondsSinceEpoch(timestamp * 1000);
+    this.balance = myList["users"][0]["balance"];
+    print("Name is"+this.name);
+  }
+
+
 }
-
-class LeBicycle {
-  double _amountEarned;
-  Duration _timeTraveled;
-  int _id;
-  String _name;
-  LeBicycle.fromJson(Map<String, dynamic> json)
-      : this._amountEarned = json["amountEarned"],
-        this._timeTraveled = parseTimeTraveled(json["timeTraveled"]),
-        this._id = json["id"],
-        this._name = json["name"] != null ? json["name"] : "no name";
-  Map<String, dynamic> toJson() => {
-    'amountEarned': this._amountEarned,
-    'timeTraveled': this._timeTraveled,
-    'id' : this._id,
-    'name': this._name,
-  };
-
-  double get amountEarned => _amountEarned;
-
-  set name(String value) {
-    _name = value;
-  }
-
-  set id(int value) {
-    _id = value;
-  }
-
-  set timeTraveled(Duration value) {
-    _timeTraveled = value;
-  }
-
-  set amountEarned(double value) {
-    _amountEarned = value;
-  }
-
-  Duration get timeTraveled => _timeTraveled;
-
-  int get id => _id;
-
-  String get name => this._name;
-}
-
-Map<String, dynamic> str = jsonDecode("{\"id\":0, \"amountEarned\":0.0,"
-    "\"timeTraveled\":1.5, \"name\":\"bicycle#1\"}");
-LeBicycle demoLeBicycle = new LeBicycle.fromJson(str);

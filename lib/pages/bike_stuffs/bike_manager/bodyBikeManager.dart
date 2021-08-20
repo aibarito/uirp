@@ -69,7 +69,7 @@ class _BodyBikeManagerState extends State<BodyBikeManager> {
                               ),
                             ),
                             Text(
-                              bicycleList[i].timeTraveled.toString() +
+                              bicycleList[i].timeRegistration.toString() +
                                   " (hours)",
                               style: TextStyle(
                                 color: Colors.yellowAccent,
@@ -113,7 +113,7 @@ class _BodyBikeManagerState extends State<BodyBikeManager> {
                     onPressed: () {
                       Navigator.push(context,
                           MaterialPageRoute(builder: (context) {
-                        return BikeLendingHistoryPage(id: bicycleList[i].id);
+                        return BikeLendingHistoryPage(id: bicycleList[i].bicycle_id);
                       }));
                     },
                     child: Text("Transaction history"),
@@ -130,7 +130,7 @@ class _BodyBikeManagerState extends State<BodyBikeManager> {
                       color: Colors.black, fontWeight: FontWeight.bold)),
               onPressed: () {
                 Navigator.of(context).push(MyDialogRoute(builder: (context) {
-                  return QrPopUpCard(bicycleList[i].id.toString());
+                  return QrPopUpCard(bicycleList[i].bicycle_id.toString());
                 }));
               },
             ),
