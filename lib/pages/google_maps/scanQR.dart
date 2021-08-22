@@ -14,11 +14,11 @@ class ScanQR extends StatelessWidget {
   String? message;
   Color? color;
   ScanQR({
-    Key?key,
+    Key? key,
     this.runTime,
     this.message,
     this.color,
-  }):super(key:key);
+  }) : super(key: key);
   final _picker = ImagePicker();
   selectImage() async {
     final pickedFile;
@@ -31,11 +31,9 @@ class ScanQR extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     String newMessage = "Scan QR code";
-    if(message != null)
-      newMessage = message!;
+    if (message != null) newMessage = message!;
     Color newColor = primaryColor;
-    if(color != null)
-      newColor = color!;
+    if (color != null) newColor = color!;
     bool _toggle = false;
     Size size = MediaQuery.of(context).size;
     return Container(
@@ -43,7 +41,7 @@ class ScanQR extends StatelessWidget {
       onPressed: () async {
         String scanning = await BarcodeScanner.scan();
         print(scanning);
-        Navigator.push(context, DialogPopup(builder: (context){
+        Navigator.push(context, DialogPopup(builder: (context) {
           return PopUpReadyToRide();
         }));
         /*showDialog<String>(
@@ -70,10 +68,10 @@ class ScanQR extends StatelessWidget {
                   ],
                 ));*/
       },
-      child: Text(newMessage, style:TextStyle(fontSize: size.width*0.05)),
+      child: Text(newMessage, style: TextStyle(fontSize: size.width * 0.05)),
       style: ButtonStyle(
-          padding: MaterialStateProperty.all(
-              EdgeInsets.all(size.height * 0.02)),
+          padding:
+              MaterialStateProperty.all(EdgeInsets.all(size.height * 0.02)),
           backgroundColor: MaterialStateProperty.all(newColor)),
     ));
   }
