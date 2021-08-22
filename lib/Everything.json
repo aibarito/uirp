@@ -26,9 +26,9 @@
         },
         {
             "indexed": false,
-            "internalType": "bytes32",
+            "internalType": "string",
             "name": "BicycleId",
-            "type": "bytes32"
+            "type": "string"
         }
     ],
     "name": "NewBicycle",
