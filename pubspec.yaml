@@ -54,7 +54,8 @@ dependencies:
   qr_flutter: ^4.0.0
   barcode_scan: ^2.0.2
   qr_code_scanner: ^0.5.2
-
+  # firebase_auth: ^0.15.1+
+  cloud_firestore: ^0.13.0+1
 dev_dependencies:
   flutter_test:
     sdk: flutter
