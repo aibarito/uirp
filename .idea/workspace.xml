@@ -19,25 +19,21 @@
         <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
       </path>
     </expand>
-    <select />
+    <select>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="BRANCH:main" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </select>
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f2a97386-95ac-4751-a356-317bb5ead845" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/lib/pages/payment/PayPalPayment.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/pages/payment/PaypalServices.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/pages/payment/payment.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TestingTheGraph/something" beforeDir="false" afterPath="$PROJECT_DIR$/../TestingTheGraph/something" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/components/balanceCard.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/components/balanceCard.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/dataBase/leBicycle.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/dataBase/leBicycle.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/dataBase/leUser.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/dataBase/leUser.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/pages/bike_stuffs/bike_manager/bodyBikeManager.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/bike_stuffs/bike_manager/bodyBikeManager.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/pages/login_page/background.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/login_page/background.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/pages/main_page/body.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/main_page/body.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/pages/new_transaction/accountBallance.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/new_transaction/accountBallance.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/pages/new_transaction/sendMoneyButton.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/new_transaction/sendMoneyButton.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/slideProfile/sideProfileRemake.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/slideProfile/sideProfileRemake.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_SDK.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_SDK.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/uirp-FUCKYOU.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/uirp-FUCKYOU.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,7 +48,7 @@
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1x1yGzw4kjC8crKxz0lwYVHM9F2" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -91,7 +87,19 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="main" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
