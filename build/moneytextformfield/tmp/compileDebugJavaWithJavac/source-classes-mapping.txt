@@ -1,4 +1,0 @@
-com/octapush/moneytextformfield/moneytextformfield/BuildConfig.java
- com.octapush.moneytextformfield.moneytextformfield.BuildConfig
-com/octapush/moneytextformfield/moneytextformfield/MoneytextformfieldPlugin.java
- com.octapush.moneytextformfield.moneytextformfield.MoneytextformfieldPlugin

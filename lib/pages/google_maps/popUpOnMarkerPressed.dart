@@ -3,28 +3,28 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:uirp/dataBase/getBicycleInfos.dart';
 import 'package:uirp/pages/bike_stuffs/startRiding/ridingPage.dart';
 
-class PopUpReadyToRide extends StatelessWidget {
+class PopUpOnMarkerPressed extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-
-
+    /*
+    * FOR DEMO PURPOSE,
+     */
     String bikeID = "1";
     loadTransactionHistory();
     List hist = getTransactionHistory(bikeID);
     // print(hist);
-      // done loading data
+    // done loading data
     double totalRating = 0;
     Duration totalTime = Duration(days: 0, hours: 0, minutes: 0, seconds: 0);
-    for(int i = 0; i < hist.length; ++i)
-      {
-        var startDate = DateTime.parse(hist[i]["startDate"]);
-        var endDate = DateTime.parse(hist[i]["endDate"]);
-        totalTime = totalTime + endDate.difference(startDate);
-        double rating_ = 1.0 * hist[i]["rating"];
-        totalRating += rating_;
-      }
-    totalRating /= 1.0*hist.length;
+    for (int i = 0; i < hist.length; ++i) {
+      var startDate = DateTime.parse(hist[i]["startDate"]);
+      var endDate = DateTime.parse(hist[i]["endDate"]);
+      totalTime = totalTime + endDate.difference(startDate);
+      double rating_ = 1.0 * hist[i]["rating"];
+      totalRating += rating_;
+    }
+    totalRating /= 1.0 * hist.length;
     /*
     * FOR DEMO PURPOSE,
      */
@@ -46,40 +46,39 @@ class PopUpReadyToRide extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    Image.asset(
-                      "assets/images/bicycle.png",
-                      width: size.width * 0.3,
-                    ),
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        customLine("bike id: ", bikeID.toString(), size.width),
-                        customLine("time used: ", totalTime.toString(), size.width),
-                        RatingBarIndicator(
-                          rating: totalRating,
-                          itemBuilder: (context, index) => Icon(
-                            Icons.star,
-                            color: Colors.amber,
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Image.asset(
+                        "assets/images/bicycle.png",
+                        width: size.width * 0.3,
+                      ),
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          customLine(
+                              "bike id: ", bikeID.toString(), size.width),
+                          customLine(
+                              "time used: ", totalTime.toString(), size.width),
+                          RatingBarIndicator(
+                            rating: totalRating,
+                            itemBuilder: (context, index) => Icon(
+                              Icons.star,
+                              color: Colors.amber,
+                            ),
+                            itemCount: 5,
+                            itemSize: 30.0,
+                            direction: Axis.horizontal,
                           ),
-                          itemCount: 5,
-                          itemSize: 30.0,
-                          direction: Axis.horizontal,
-                        ),
-                      ],
-                    )
-
-                  ]
-                ),
+                        ],
+                      )
+                    ]),
                 OutlinedButton(
-                  onPressed: (){
-                    Navigator.of(context).push(MaterialPageRoute(builder: (context){
-                      return StartRidingPage();
-                    }));
+                  onPressed: () {
+                    Navigator.pop(context);
                   },
-                  child: Text("CONFIRM",
+                  child: Text(
+                    "CONFIRM",
                     style: TextStyle(
                       color: Colors.white,
                     ),
@@ -96,11 +95,12 @@ class PopUpReadyToRide extends StatelessWidget {
   }
 }
 
-
 Widget customLine(String text1, String text2, double width) {
   return Row(
     children: [
-      SizedBox(width: width * 0.05,),
+      SizedBox(
+        width: width * 0.05,
+      ),
       Text(
         text1,
         style: TextStyle(color: Colors.white),

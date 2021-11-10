@@ -298,7 +298,7 @@ class SideProfileRemake extends StatelessWidget {
                         width: size.width * 0.05,
                       ),
                       Text(
-                        "Increase nasds",
+                        "Buy 100 coins",
                         style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                       ),
                     ],
@@ -312,7 +312,6 @@ class SideProfileRemake extends StatelessWidget {
                         leUser.balance += 100;
                           // payment done
                         print('Your payment is being processed: '+number);
-
                       },);
                     }));
                   },

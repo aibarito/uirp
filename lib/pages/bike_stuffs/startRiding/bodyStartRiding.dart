@@ -6,6 +6,7 @@ import 'package:uirp/pages/bike_stuffs/stopRiding/stopRidingPage.dart';
 import 'package:uirp/pages/google_maps/scanQR.dart';
 import 'package:uirp/pages/main_page/mainPage.dart';
 import 'backgroundStartRiding.dart';
+import 'package:uirp/dataBase/leUser.dart';
 
 var debugDecor = BoxDecoration(
   border: Border.all(color: Colors.green),

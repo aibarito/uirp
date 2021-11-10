@@ -22,7 +22,7 @@ class SendMoneyButton extends StatelessWidget {
             fixedSize: MaterialStateProperty.all(
                 Size(size.width * 0.9, size.height * 0.07))),
         onPressed: () {
-          balance.decrement(int.parse(amount));
+          balance.decrement(double.parse(amount));
           showDialog(
             context: context,
             builder: (context) {

@@ -1,4 +1,0 @@
-com/octapush/moneyformatter/fluttermoneyformatter/BuildConfig.java
- com.octapush.moneyformatter.fluttermoneyformatter.BuildConfig
-com/octapush/moneyformatter/fluttermoneyformatter/FlutterMoneyFormatterPlugin.java
- com.octapush.moneyformatter.fluttermoneyformatter.FlutterMoneyFormatterPlugin

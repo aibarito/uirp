@@ -5,8 +5,10 @@ import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:uirp/components/dialogPopup.dart';
 import 'package:uirp/pages/google_maps/background.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:uirp/pages/google_maps/popUpOnMarkerPressed.dart';
 import 'package:uirp/pages/google_maps/zoomButton.dart';
 import 'package:uirp/slideProfile/sideProfileRemake.dart';
 
@@ -59,6 +61,11 @@ class BodyState extends State<Body> {
         BitmapDescriptor.fromBytes(markerIcon);
     setState(() {
       markers.add(Marker(
+        onTap: () {
+          Navigator.push(context, DialogPopup(builder: (context) {
+            return PopUpOnMarkerPressed();
+          }));
+        },
         icon: bicycleMarker,
         position: cordinate,
         markerId: MarkerId(id.toString()),

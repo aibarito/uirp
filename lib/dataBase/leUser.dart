@@ -9,7 +9,7 @@ class LeUser with ChangeNotifier{
   String name = "";
   String surname = "";
   DateTime timeRegistration = DateTime.now();
-  int balance = 0;
+  double balance = 0;
   List<LeBicycle> bicycles = [];
   // BorrowerTransactions transactions = [];
 
@@ -77,12 +77,12 @@ class LeUser with ChangeNotifier{
     notifyListeners();
   }
 
-  void increment(int value) {
+  void increment(double value) {
     balance = balance + value;
     notifyListeners();
   }
 
-  void decrement(int value) {
+  void decrement(double value) {
     balance = balance - value;
     notifyListeners();
   }
