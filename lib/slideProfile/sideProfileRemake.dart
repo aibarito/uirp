@@ -95,6 +95,38 @@ class SideProfileRemake extends StatelessWidget {
                         width: size.width * 0.05,
                       ),
                       Text(
+                        "Bike manager page",
+                        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                      ),
+                    ],
+                  ),
+                  onTap: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (context) {
+                      return BikeManagerPage();
+                    }));
+                  },
+                ),
+                ListTile(
+                  title: Row(
+                    children: [
+                      Center(
+                        child: Container(
+                            width: 35,
+                            height: 35,
+                            decoration: BoxDecoration(
+                              color: Colors.black,
+                              shape: BoxShape.circle,
+                            ),
+                            child: Icon(
+                              Icons.attach_money_rounded,
+                              size: 27,
+                              color: Colors.white,
+                            )),
+                      ),
+                      SizedBox(
+                        width: size.width * 0.05,
+                      ),
+                      Text(
                         "My balance",
                         style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                       ),

@@ -39,7 +39,7 @@ class BalanceCard extends StatelessWidget {
                   Center(
                     child: Padding(
                       padding: EdgeInsets.all(5.0),
-                      child: Text(r"$" + balance.balance.toString(),
+                      child: Text(r"UNICOINS: " + balance.balance.toString(),
                           style: TextStyle(
                               color: Colors.black,
                               fontSize: size.height * 0.04)),

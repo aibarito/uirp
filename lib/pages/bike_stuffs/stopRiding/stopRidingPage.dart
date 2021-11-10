@@ -71,7 +71,7 @@ class StopRidingPage extends StatelessWidget {
                 SizedBox(
                   height: constraints.maxWidth * 0.1,
                 ),
-                Text("You have spend " + (seconds * 0.1).toString() + " won"),
+                Text("You have spend " + (seconds * 0.1).toString() + " UNICOINS"),
                 SizedBox(height: constraints.maxWidth * 0.1),
                 Text("lattitude is: " +
                     currentPosition.latitude.toString() +
